@@ -1,4 +1,4 @@
-package shoppino.persistence.mongo.converter;
+package openrecordz.persistence.mongo.converter;
 
 import org.springframework.core.convert.converter.Converter;
 
