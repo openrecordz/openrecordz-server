@@ -55,7 +55,7 @@
 
    <!--    <filter>
           <filter-name>trimjson</filter-name>
-          <filter-class>shoppino.filter.TrimJsonResponse</filter-class>
+          <filter-class>openrecordz.filter.TrimJsonResponse</filter-class>
   	</filter> -->
   
    <!-- encoding utf-8 -->

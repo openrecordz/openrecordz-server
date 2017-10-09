@@ -22,7 +22,7 @@
   
      	 <!-- AOP -->
                 
-        <bean id="registerScriptingAspectBean" class="shoppino.aspect.scripting.RegisterScriptingHandler"/>
+        <bean id="registerScriptingAspectBean" class="openrecordz.aspect.scripting.RegisterScriptingHandler"/>
        
          
         <aop:config>

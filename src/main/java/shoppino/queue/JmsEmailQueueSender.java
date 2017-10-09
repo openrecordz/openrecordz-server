@@ -14,7 +14,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 
-import shoppino.mail.service.EmailMessageType;
+import openrecordz.mail.service.EmailMessageType;
 import shoppino.service.TenantService;
 
 /**

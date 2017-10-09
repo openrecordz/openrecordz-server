@@ -54,7 +54,7 @@
           
    </bean>
 
-   <bean id="mailService" class="shoppino.mail.service.MailServiceImpl">
+   <bean id="mailService" class="openrecordz.mail.service.MailServiceImpl">
   	 	<property name="enabled" value="true"></property>
    </bean>
    

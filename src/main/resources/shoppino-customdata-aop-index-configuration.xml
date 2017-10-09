@@ -23,7 +23,7 @@
   
      	 <!-- AOP -->
                 
-         <bean id="indexCustomDataAspectBean" class="shoppino.aspect.SolrCustomDataIndexer"/>         
+         <bean id="indexCustomDataAspectBean" class="openrecordz.aspect.SolrCustomDataIndexer"/>         
         <aop:config>
             
        	   <!-- CustomData -->

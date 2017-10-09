@@ -23,7 +23,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 
-import shoppino.mail.service.MailService;
+import openrecordz.mail.service.MailService;
 import shoppino.scripting.CSVUtil;
 import shoppino.scripting.JSAuthorizationService;
 import shoppino.scripting.JSONUtil;

@@ -3,7 +3,7 @@ package shoppino.service.impl;
 import java.util.HashMap;
 import java.util.Map;
 
-import shoppino.mail.service.MailServiceImpl;
+import openrecordz.mail.service.MailServiceImpl;
 
 
 /**

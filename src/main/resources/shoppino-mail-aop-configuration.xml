@@ -18,9 +18,9 @@
   
      	 <!-- AOP -->
                 
-         <!-- <bean id="sendMailAspectBean" class="shoppino.aspect.MailSender"/>  -->
+         <!-- <bean id="sendMailAspectBean" class="openrecordz.aspect.MailSender"/>  -->
                         
-         	<bean id="registrationMailAspectBean" class="shoppino.aspect.RegistrationMailSender"/>
+         	<bean id="registrationMailAspectBean" class="openrecordz.aspect.RegistrationMailSender"/>
          	 
         <aop:config>
                    	 
