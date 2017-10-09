@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 4.0//EN"
+        "http://www.tuckey.org/res/dtds/urlrewrite4.0.dtd">
+
+<!--
+
+    Configuration file for UrlRewriteFilter
+    http://www.tuckey.org/urlrewrite/
+    
+    http://urlrewritefilter.googlecode.com/svn/trunk/src/doc/manual/4.0/index.html
+
+-->
+<urlrewrite>
+
+   <!--  <rule>
+        <note>
+            The rule means that requests to /test/status/ will be redirected to /rewrite-status
+            the url will be rewritten.
+        </note>
+        <from>/test/status/</from>
+        <to type="redirect">%{context-path}/rewrite-status</to>
+    </rule> -->
+
+    
+     <rule>
+        <note></note>     
+        <condition name="host">www.dressique.localhost.com</condition>
+        <from>/service/v1/search/products</from>
+        <to>%{context-path}/service/v1/functions/search.html?</to>
+    </rule>
+    
+     
+     <rule>
+        <note></note>     
+        <condition name="host">ecoprint.frontiere21.it</condition>
+        <from>/service/v1/search/products</from>
+        <to>%{context-path}/service/v1/gfunctions/g_search.html?</to>
+    </rule>
+    
+     <rule>
+        <note></note>     
+        <condition name="host">ecoprint.ciaotrip.it</condition>
+       <!--  <condition name="Access-Control-Request-Headers" operator="notequal">x-csrf-token</condition>
+        <condition type="method">GET</condition>         -->
+        
+        <!-- urlrewrite con cors ha dei problemi-> disabilito l'url rewrite per la console dove faccio chiamate cors -->
+        <condition name="Origin" operator="notequal">http://console.smart21.it</condition>      
+        
+        
+        <from>/service/v1/search/products</from>
+        <!-- type="redirect" qsappend="true" --><!-- default è forward -->
+        <to>%{context-path}/service/v1/gfunctions/g_search.html?</to>
+    </rule>
+    
+     
+     <!-- mydolly -->
+     
+      <rule>
+        <note></note>     
+        <condition name="host">mydolly.ciaotrip.it</condition>
+       <!--  <condition name="Access-Control-Request-Headers" operator="notequal">x-csrf-token</condition>
+        <condition type="method">GET</condition>         -->
+        
+        <!-- urlrewrite con cors ha dei problemi-> disabilito l'url rewrite per la console dove faccio chiamate cors -->
+        <condition name="Origin" operator="notequal">http://console.smart21.it</condition>      
+        
+        
+        <from>^/service/v1/products/(.*)$</from>
+        <!-- type="redirect" qsappend="true" --><!-- default è forward -->
+        <to>%{context-path}/service/v1/gfunctions/g_productdetail.html?id=$1</to>
+    </rule>
+
+    <rule>
+        <note></note>
+        <condition name="host">ginosa.ciaotrip.it</condition>
+       <!--  <condition name="Access-Control-Request-Headers" operator="notequal">x-csrf-token</condition>
+        <condition type="method">GET</condition>         -->
+
+        <!-- urlrewrite con cors ha dei problemi-> disabilito l'url rewrite per la console dove faccio chiamate cors -->
+        <condition name="Origin" operator="notequal">http://ginosa.console.smart21.it</condition>
+
+
+        <from>/service/v1/timeline</from>
+        <!--<type="redirect" qsappend="true">--><!-- default è forward -->
+        <to>%{context-path}/service/v1/gfunctions/g_timeline.html?</to>
+    </rule>
+
+     <rule>
+        <note></note>
+        <condition name="host">ginosa.smart21.it</condition>
+       <!--  <condition name="Access-Control-Request-Headers" operator="notequal">x-csrf-token</condition>
+        <condition type="method">GET</condition>         -->
+
+        <!-- urlrewrite con cors ha dei problemi-> disabilito l'url rewrite per la console dove faccio chiamate cors -->
+        <condition name="Origin" operator="notequal">http://ginosa.console.smart21.it</condition>
+
+
+        <from>/service/v1/timeline</from>
+        <!-- type="redirect" qsappend="true" --><!-- default è forward -->
+        <to>%{context-path}/service/v1/gfunctions/g_timeline.html?</to>
+    </rule>
+
+    
+      
+       <!-- test -->
+     
+    <rule>
+        <note></note>
+        <condition name="host">1ginosa.ciaotrip.it</condition>
+       <!--  <condition name="Access-Control-Request-Headers" operator="notequal">x-csrf-token</condition>
+        <condition type="method">GET</condition>         -->
+
+        <!-- urlrewrite con cors ha dei problemi-> disabilito l'url rewrite per la console dove faccio chiamate cors -->
+        <!-- <condition name="Origin" operator="notequal">http://console.smart21.it</condition> -->
+        <condition name="remote-host">95.241.186.153</condition>
+
+        <from>^/service/v1/(.*)$</from>
+        <!-- type="redirect" qsappend="true" --><!-- default è forward -->
+        <to type="redirect" qsappend="true">http://capellitrapianto.ciaotrip.it/service/v1/$1</to>
+    </rule>
+
+    
+    <!-- redirect per validazione email a diverso url -->
+ <rule>
+        <note></note>
+        <condition name="host">chat21.smart21.it</condition>
+<!--     <condition name="query-string">v=2</condition>-->
+
+        <condition name="Origin" operator="notequal">http://(.*)console.smart21.it</condition>         
+        <from>^/$</from>
+<!--     <from>(.*)</from>-->
+        <!-- type="redirect" qsappend="true" --><!-- default è forward -->
+        <to type="redirect">http://www.smart21.it/email-verified/</to>
+    </rule>
+
+
+   <rule>
+        <note></note>
+        <condition name="host">misterlupo.smart21.it</condition>
+<!--     <condition name="query-string">v=2</condition>-->
+
+        <condition name="Origin" operator="notequal">http://(.*)console.smart21.it</condition>
+        <from>^/$</from>
+<!--     <from>(.*)</from>-->
+        <!-- type="redirect" qsappend="true" --><!-- default è forward -->
+        <to type="redirect">http://www.misterlupo.com/email-verified/</to>
+    </rule>
+ 
+   <rule>
+        <note></note>
+        <condition name="host">apps.smart21.it</condition>
+<!--     <condition name="query-string">v=2</condition>-->
+
+        <condition name="Origin" operator="notequal">http://(.*)admin.smart21.it</condition>
+        <from>^/$</from>
+<!--     <from>(.*)</from>-->
+        <!-- type="redirect" qsappend="true" --><!-- default è forward -->
+        <to type="redirect">http://www.smart21.it/email-verified/</to>
+    </rule>
+
+       <rule>
+        <note></note>
+        <condition name="host">apps.frontiere21.it</condition>
+<!--     <condition name="query-string">v=2</condition>-->
+
+        <condition name="Origin" operator="notequal">http://(.*)admin.smart21.it</condition>
+        <from>^/$</from>
+<!--     <from>(.*)</from>-->
+        <!-- type="redirect" qsappend="true" --><!-- default è forward -->
+        <to type="redirect">http://www.smart21.it/email-verified/</to>
+    </rule>
+    
+
+     <rule>
+        <note></note>
+        <condition name="host">sponzapp.smart21.it</condition>
+       <!--  <condition name="Access-Control-Request-Headers" operator="notequal">x-csrf-token</condition>
+        <condition type="method">GET</condition>         -->
+        <!-- urlrewrite con cors ha dei problemi-> disabilito l'url rewrite per la console dove faccio chiamate cors -->
+        <condition name="Origin" operator="notequal">http://sponzapp.console.smart21.it</condition>
+<!--    <condition name="query-string">category=1</condition>-->
+        <condition type="parameter" name="category" operator="equal">^/sponzapp/programma</condition>
+        <from>/service/v1/products(.*)$</from>
+        <!-- type="redirect" qsappend="true" --><!-- default è forward -->
+        <to type="redirect" qsappend="true">%{context-path}/service/v1/gfunctions/g_productcategories.html?</to>
+    </rule>
+
+   <rule>
+        <note></note>
+        <condition name="host">salve.smart21.it</condition>
+       <!--  <condition name="Access-Control-Request-Headers" operator="notequal">x-csrf-token</condition>
+        <condition type="method">GET</condition>         -->
+        <!-- urlrewrite con cors ha dei problemi-> disabilito l'url rewrite per la console dove faccio chiamate cors -->
+        <condition name="Origin" operator="notequal">http://salve.console.smart21.it</condition>
+<!--    <condition name="query-string">category=1</condition>-->
+        <condition type="parameter" name="category" operator="equal">^/salve/eventi</condition>
+        <from>/service/v1/products(.*)$</from>
+        <!-- type="redirect" qsappend="true" --><!-- default è forward -->
+        <to type="redirect" qsappend="true">%{context-path}/service/v1/gfunctions/g_productcategories.html?</to>
+    </rule>
+
+
+
+   <!--  <outbound-rule>
+        <note>
+            The outbound-rule specifies that when response.encodeURL is called (if you are using JSTL c:url)
+            the url /rewrite-status will be rewritten to /test/status/.
+
+            The above rule and this outbound-rule means that end users should never see the
+            url /rewrite-status only /test/status/ both in thier location bar and in hyperlinks
+            in your pages.
+        </note>
+        <from>/rewrite-status</from>
+        <to>/test/status/</to>
+    </outbound-rule>
+ -->
+
+    <!--
+
+    INSTALLATION
+
+        in your web.xml add...
+
+        <filter>
+            <filter-name>UrlRewriteFilter</filter-name>
+            <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
+            <init-param>
+                <param-name>logLevel</param-name>
+                <param-value>WARN</param-value>
+            </init-param>
+        </filter>
+        <filter-mapping>
+            <filter-name>UrlRewriteFilter</filter-name>
+            <url-pattern>/*</url-pattern>
+        </filter-mapping>
+
+     EXAMPLES
+
+     Redirect one url
+        <rule>
+            <from>/some/old/page.html</from>
+            <to type="redirect">/very/new/page.html</to>
+        </rule>
+
+    Redirect a directory
+        <rule>
+            <from>/some/olddir/(.*)</from>
+            <to type="redirect">/very/newdir/$1</to>
+        </rule>
+
+    Clean a url
+        <rule>
+            <from>/products/([0-9]+)</from>
+            <to>/products/index.jsp?product_id=$1</to>
+        </rule>
+    eg, /products/1234 will be passed on to /products/index.jsp?product_id=1234 without the user noticing.
+
+    Browser detection
+        <rule>
+            <condition name="user-agent">Mozilla/[1-4]</condition>
+            <from>/some/page.html</from>
+            <to>/some/page-for-old-browsers.html</to>
+        </rule>
+    eg, will pass the request for /some/page.html on to /some/page-for-old-browsers.html only for older
+    browsers whose user agent srtings match Mozilla/1, Mozilla/2, Mozilla/3 or Mozilla/4.
+
+    Centralised browser detection
+        <rule>
+            <condition name="user-agent">Mozilla/[1-4]</condition>
+            <set type="request" name="browser">moz</set>
+        </rule>
+    eg, all requests will be checked against the condition and if matched
+    request.setAttribute("browser", "moz") will be called.
+
+    -->
+
+</urlrewrite>
+

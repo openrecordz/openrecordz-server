@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
+	   default-autowire="byName">
+	
+    <!-- <bean id="scriptService" class="shoppino.service.impl.ScriptServiceImpl"> -->
+    <bean id="scriptService" class="shoppino.service.impl.ScriptServiceMultiEngineImpl">
+       
+         <constructor-arg ref="authenticationService" />
+         <constructor-arg ref="tenantService" />
+         <constructor-arg ref="customDataService" />             
+         <constructor-arg ref="mailService" />
+         <!-- <constructor-arg ref="notificationService" /> -->
+         <constructor-arg ref="urlService" />
+         <constructor-arg ref="personService" />
+         <constructor-arg ref="environmentService" />
+         <constructor-arg ref="categoryService" />
+         <constructor-arg ref="jsRestOperation" />
+         <constructor-arg ref="jsAuthorizationService" />
+         <constructor-arg ref="tenantSettingMappingCustomDataMessageSource" />
+         <constructor-arg ref="rdbService" />
+         <constructor-arg ref="imageService" />
+         <constructor-arg ref="fileService" />
+         <constructor-arg ref="recordDataService" />
+         <!-- <constructor-arg ref="remainderService" /> -->
+    </bean>        
+    
+    
+    
+      <import resource="classpath:/shoppino-script-aop-configuration.xml"/>    
+     
+      <bean id="jsRestOperation" class="shoppino.scripting.JSRestOperation"/>
+      
+      <bean id="jsAuthorizationService" class="shoppino.scripting.JSAuthorizationService"/>
+      
+      
+          
+</beans>

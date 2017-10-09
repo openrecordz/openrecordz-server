@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/data/mongo
+       http://www.springframework.org/schema/data/mongo/spring-mongo.xsd
+       http://www.springframework.org/schema/context
+	   http://www.springframework.org/schema/context/spring-context-3.2.xsd
+	   http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.2.xsd"
+	   default-autowire="byName">
+
+    <!-- <task:annotation-driven/> -->
+  <!-- http://www.skill-guru.com/blog/2010/01/13/asynchronous-method-invocation-in-spring-3-0/ -->
+  
+     	 <!-- AOP -->
+                
+        <bean id="registerScriptingAspectBean" class="shoppino.aspect.scripting.RegisterScriptingHandler"/>
+       
+         
+        <aop:config>
+            
+       	   
+        	
+        	 <!-- user registration -->
+	        
+        	<aop:pointcut id="registerRegistrationServiceScriptingPointcut" 
+	        	expression="execution(* shoppino.service.RegistrationService.register(..))"/>
+        	<!-- <aop:pointcut id="registerRegistrationServiceScriptingPointcut" 
+	        	expression="execution(* shoppino.service.RegistrationService.register(java.lang.String, java.lang.String, java.lang.String, java.lang.String)) and args(username, fullName, email, password)"/> -->
+	        
+	        
+	        <!-- content  -->
+	         <aop:pointcut id="addContentScriptingPointcut"  
+	        	expression="execution(* shoppino.service.ContentService.add(java.lang.String, java.lang.String, java.util.List, java.lang.Float, java.lang.Float, java.lang.String,  java.util.Date, java.util.Date, java.lang.Double[], java.lang.String)) and args(title, description, categories, startPrice, price, shop, startDate, endDate, location, oType)"/>		  
+	  	
+	        <aop:pointcut id="addContentScriptingPointcutForAfter" 
+	        	expression="execution(* shoppino.service.ContentService.add(..))"/>  		 
+	        
+	        <!-- 	public String update(String id, String title, String description, List<String> categories, Float startPrice, Float price, String shop, Date startDate, Date endDate, Double[] location) throws ShoppinoException, AuthorizationException; -->
+	        
+	        <aop:pointcut id="updateContentScriptingPointcut"  
+	        	expression="execution(* shoppino.service.ContentService.update(java.lang.String, java.lang.String, java.lang.String,  java.util.List, java.lang.Float, java.lang.Float, java.lang.String,  java.util.Date, java.util.Date, java.lang.Double[], java.lang.String)) and args(id, title, description, categories, startPrice, price, shop, startDate, endDate, location, oType)"/>		  
+	  	
+	        <aop:pointcut id="updateContentScriptingPointcutForAfter" 
+	        	expression="execution(* shoppino.service.ContentService.update(..))"/>  		  
+	        		   			
+	        
+	        
+	        
+	        
+	        
+        	
+			
+			
+			
+			
+			
+			
+	
+			
+			<!-- user registration -->
+			<aop:aspect id="afterRegisterRegistrationServiceScriptingAspect" ref="registerScriptingAspectBean">					
+			    			      						      			 
+			  <aop:after-returning
+			      pointcut-ref="registerRegistrationServiceScriptingPointcut" 
+			      method="afterRegister"
+			      returning="returnUsername" />
+			</aop:aspect>			
+			
+			
+			
+			
+		</aop:config>
+        
+        
+		
+        
+        
+</beans>

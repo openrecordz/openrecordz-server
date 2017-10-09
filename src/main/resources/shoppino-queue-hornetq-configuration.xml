@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+	   http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd">
+	
+
+	<!-- ===================================================================================== -->
+	<!-- 								HornetQ -Server										   -->
+	<!-- ===================================================================================== -->
+
+
+<bean name="namingServerImpl" class="org.jnp.server.NamingBeanImpl" init-method="start" destroy-method="stop"  >
+	<property  name="useGlobalService" value="false" />
+</bean>   
+             
+<bean name="namingServer" class="org.jnp.server.Main" init-method="start" destroy-method="stop">
+ <property name="namingInfo" ref="namingServerImpl" />
+ <property name="port" value="4099" />
+ <!-- <property name="port" value="2099" /> used by smart21 v1.x and 2.x -->
+<!--default value..port conflict with jstat-->
+<!-- <property name="port" value="1099" />-->
+ <property name="bindAddress" value="localhost" />
+ <!-- <property name="rmiPort" value="2098" />used by smart21 v1.x and 2.x  -->
+ <property name="rmiPort" value="4098" />
+<!--default value-->
+<!-- <property name="rmiPort" value="1098" />    -->
+ <property name="rmiBindAddress" value="localhost" />
+</bean>   
+    
+<bean name="mbeanServer" class="java.lang.management.ManagementFactory" factory-method="getPlatformMBeanServer" />
+
+
+<!-- <bean id="EmbeddedJms" class="org.hornetq.integration.spring.SpringJmsBootstrap" init-method="start" destroy-method="stop"> -->
+<!--    </bean> -->
+
+<bean name="fileConfiguration" class="org.hornetq.core.config.impl.FileConfiguration" init-method="start" destroy-method="stop" />
+
+<bean name="hornetQSecurityManagerImpl" class="org.hornetq.spi.core.security.HornetQSecurityManagerImpl" />
+
+<!--  The core server  -->
+<bean name="hornetQServerImpl" class="org.hornetq.core.server.impl.HornetQServerImpl">
+ <constructor-arg ref="fileConfiguration" />
+ <constructor-arg ref="mbeanServer" />
+ <constructor-arg ref="hornetQSecurityManagerImpl" />
+</bean>
+
+<!--  The JMS server  -->
+<bean name="jmsServerManagerImpl" class="org.hornetq.jms.server.impl.JMSServerManagerImpl" 
+		init-method="start" destroy-method="stop" depends-on="namingServer, systemPropertyConfigurer">
+ <constructor-arg ref="hornetQServerImpl" />
+</bean>
+     
+<bean name="systemPropertyConfigurer" class="shoppino.queue.SystemPropertyConfigurer">
+ <property name="systemProperties">
+  <props>
+   <prop key="java.naming.factory.initial">org.jnp.interfaces.NamingContextFactory</prop>
+  </props>
+ </property>
+</bean>
+<!---->
+<!---->
+
+</beans>

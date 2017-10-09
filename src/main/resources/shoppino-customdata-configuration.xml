@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
+	   default-autowire="byName">
+	
+    <bean id="customDataService" class="shoppino.service.impl.CustomDataServiceImpl">      
+        <property name="checkReservedCharsEnabled" value="true" />
+    </bean>        
+       
+     <bean id="customDataServiceWithCheckDisabled" class="shoppino.service.impl.CustomDataServiceImpl">      
+        <property name="checkReservedCharsEnabled" value="false" />
+    </bean>      
+    
+ <!--  <bean id="customDataSearchRepository" class="shoppino.search.solr.SolrCustomDataRepository">
+    <property name="solrOperations" ref="solrTemplate" />
+  </bean>
+  
+     <bean id="customDataSearchService" class="shoppino.service.impl.CustomDataSearchServiceImpl"/>
+     -->
+    <!-- https://github.com/synyx/messagesource -->
+  <!--   <bean id="cdmessageSource" class="org.synyx.messagesource.InitializableMessageSource">
+    <property name="autoInitialize" value="false" />
+    <property name="messageProvider">
+        <bean class="org.synyx.messagesource.jdbc.JdbcMessageProvider">
+            <property name="dataSource" ref="mysqlMessagesDataSource"/>
+        </bean>
+    </property>
+	</bean>
+	
+     <bean id="mysqlMessagesDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost/$shoppino{database.name}"/>
+        <property name="username" value="$shoppino{database.user}"/>
+        <property name="password" value="$shoppino{database.passwd}"/>
+    </bean> -->
+
+     <import resource="classpath:/shoppino-customdata-aop-configuration.xml"/>    
+     <!-- <import resource="classpath:/shoppino-customdata-aop-index-configuration.xml"/> -->
+     
+</beans>

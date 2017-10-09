@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/data/mongo
+       http://www.springframework.org/schema/data/mongo/spring-mongo.xsd
+       http://www.springframework.org/schema/context   
+	   http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+	   default-autowire="byName">
+
+    <import resource="classpath*:/META-INF/applicationContext*.xml"/>    
+    
+    <import resource="classpath:/applicationContext-security.xml" />
+    <import resource="classpath:/shoppino-shared-main-security-configuration.xml"/>
+    
+	<context:annotation-config/>
+	
+	<import resource="classpath*:/common-configuration.xml"/>
+	<!--  <bean id="shoppinoConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+                <property name="placeholderPrefix" value="$shoppino{" />
+                <property name="placeholderSuffix" value="}" />
+                <property name="locations">
+                	<value>classpath:/application-${my.env}.properties
+                	</value>
+                </property>
+     </bean> -->
+     
+	 <bean id="shoppinoCommonsConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+                <property name="placeholderPrefix" value="$shoppino-commons{" />
+                <property name="placeholderSuffix" value="}" />
+                <property name="locations">
+                	<value>classpath:/application-commons.properties
+                	</value>
+                </property>
+     </bean>
+     
+	<!--  <bean id="shoppinoSocialConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+                <property name="placeholderPrefix" value="$shoppino-social{" />
+                <property name="placeholderSuffix" value="}" />
+                <property name="locations">
+                	<value>classpath:/application-social.properties
+                	</value>
+                </property>
+     </bean> -->
+     
+    <bean class="org.springframework.beans.factory.config.PropertyOverrideConfigurer">
+		 <property name="locations" value="classpath:/application-override.properties" />
+	</bean>
+	
+    <!-- export env var to jsp -->
+   <!--  <bean id="myEnv" class="shoppino.util.EnvironmentVariableExporter">
+	   <property name="myEnv" value="${my.env}" />
+	</bean> -->
+    
+    
+	 <!-- moved here for categoryservice -->
+	 
+	 
+	 <!-- Caused by: java.lang.IllegalStateException: ApplicationEventMulticaster not initialized - call 'refresh' before multicasting events via the context: Root WebApplicationContext: startup date [Tue Nov 25 12:22:03 CET 2014]; root of context hierarchy -->
+	  <!-- <bean id="messageSource"
+		class="shoppino.messagesource.customdata.mongodb.CustomDataMessageSource" >
+		<property name="parentMessageSource" ref="reloadableResourceBundleMessageSource" />
+		<property name="customDataService" ref="customDataServiceWithCheckDisabled" />	
+		
+	 </bean>  -->
+
+		<!-- <bean id="reloadableResourceBundleMessageSource" -->	 
+	  <bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<!-- <property name="basenames" value="classpath:messages,classpath:tenantmessages" /> bug classpath messages not reload-->
+		<property name="basenames" value="/WEB-INF/messages/messages,/WEB-INF/messages/tenantmessages" />
+		
+		<property name="defaultEncoding" value="UTF-8"/>
+		<property name="cacheSeconds" value="1"/> 
+	 </bean>
+	
+	  <!-- import tenant service -->
+  	<import resource="classpath:/shoppino-tenant-configuration.xml"/>
+	<!-- <bean id="tenantService" class="shoppino.service.impl.TenantServiceImpl"/> -->
+	
+	
+	<bean id="imageService" class="shoppino.service.impl.ImageServiceImpl">
+		<property name="imagerepoUrl" value="$shoppino{imagerepo.url}"/>
+		<property name="addUrl" value="$shoppino{imagerepo.add.url}"/>
+		<property name="getSizeUrl" value="$shoppino{imagerepo.getsize.url}"/>
+		<property name="searchUrl" value="$shoppino{imagerepo.search.url}"/>
+		<property name="deleteUrl" value="$shoppino{imagerepo.delete.url}"/>
+	</bean>	
+	
+	
+	<bean id="personService" class="shoppino.service.impl.mongo.PersonServiceMongoImpl"/>
+	<!-- <bean id="personSearchService" class="shoppino.service.impl.PersonSearchServiceImpl"/> -->
+	
+	<bean id="registrationService" class="shoppino.service.impl.RegistrationServiceImpl"/>
+	<!-- <bean id="socialService" class="shoppino.service.impl.SocialServiceImpl"/> --> 
+	
+	
+	
+	<bean id="categoryMessageSource"
+		class="shoppino.messagesource.customdata.mongodb.CustomDataMessageSource" >
+		<property name="parentMessageSource" ref="categoryReloadableResourceBundleMessageSource" />
+		<property name="customDataService" ref="customDataServiceWithCheckDisabled" />	
+		
+	 </bean>
+	<bean id="categoryReloadableResourceBundleMessageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<!-- <property name="basenames" value="classpath:messages,classpath:tenantmessages" /> bug classpath messages not reload-->
+		<property name="basenames" value="/WEB-INF/messages/messages" />
+		
+		<property name="defaultEncoding" value="UTF-8"/>
+		<property name="cacheSeconds" value="1"/> 
+	 </bean>
+	 
+	<bean id="categoryService" class="shoppino.service.impl.mongo.CategoryServiceMongoImpl">
+	   <!-- <property name="messageSource" ref="categoryMessageSource"/> -->
+	</bean>
+	
+	
+	
+	<!-- <bean id="notificationService" class="shoppino.service.impl.mongo.NotificationServiceMongoImpl">
+	    <property name="gcmPushNotificationManager" ref="gcmPushNotificationManager" />
+	    <property name="apnsPushNotificationManager" ref="apnsPushNotificationManager" />
+	</bean>
+	 -->
+	<bean id="environmentService" class="shoppino.service.impl.EnvironmentServiceImpl"/>
+	
+	<bean id="fileService" class="shoppino.service.impl.FileServiceImpl"/>
+	<bean id="rdbService" class="shoppino.service.impl.RDBServiceImpl"/>
+	
+	<!-- used by shopSearcherGooglePlacesImpl. must be here -->
+	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+	    <property name="messageConverters">
+	        <list>
+	            <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
+	            <bean class="org.springframework.http.converter.FormHttpMessageConverter" />
+	            <bean class="org.springframework.http.converter.StringHttpMessageConverter" />
+	            <bean class="org.springframework.http.converter.xml.SourceHttpMessageConverter" />
+	        </list>
+	    </property>
+	</bean>
+	
+	<!-- <bean id="shopSearcherGooglePlacesImpl" class="shoppino.searcher.ShopSearcherGooglePlacesImpl">
+		<property name="types" value="$shoppino-commons{google.places.searcher.poi.types}"  />
+	</bean> -->
+	
+	<!-- <bean id="remainderService" class="it.smart21.remainder21.service.Remainder21ServiceImpl"/> -->
+	
+<!-- 	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+ -->	
+	
+	<!-- statup data populator -->
+	<bean id="startupdatapopulator" class="shoppino.startup.StartupDataPopulator" init-method="init" lazy-init="false" />
+	
+	<!-- Default bean name is 'mongo' -->
+     <mongo:mongo host="localhost" port="27017"/> 
+   	
+	<!-- Sets up a Mongo DB instance. Configure host, port and credentials if needed. -->
+	<mongo:db-factory dbname="$shoppino{database.name}"/>
+
+	<!-- http://docs.spring.io/spring-data/data-mongo/docs/1.5.2.RELEASE/reference/html/mongo.core.html#mongo.custom-converters -->
+	<!-- <mongo:mapping-converter>
+	  <mongo:custom-converters base-package="shoppino.persistence.mongo.converter" />
+	</mongo:mapping-converter> -->
+
+	
+	<mongo:mapping-converter>
+	  <mongo:custom-converters>
+	    <mongo:converter ref="customDataReadConverter"/>
+	    <mongo:converter>
+	      <bean class="shoppino.persistence.mongo.converter.CustomDataWriteConverter"/>
+	    </mongo:converter>
+	  </mongo:custom-converters>
+	</mongo:mapping-converter>
+	
+	<bean id="customDataReadConverter" class="shoppino.persistence.mongo.converter.CustomDataReadConverter"/>
+	
+	
+	
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg ref="mongoDbFactory" />
+		 <constructor-arg ref="mappingConverter"/> 
+	</bean>
+	
+	<mongo:repositories base-package="shoppino.persistence.mongo" />
+	
+	
+   <!--  SOLR  -->
+ 	<!-- <bean id="fullReindexer" class="shoppino.search.solr.FullReindexer">	
+	</bean> -->
+	
+ 
+ <!--  <bean id="solrServer" abstract="true">
+    <constructor-arg value="$shoppino{solr.host}" />
+    <property name="connectionTimeout" value="100" />
+    <property name="defaultMaxConnectionsPerHost" value="100" />
+    <property name="maxTotalConnections" value="1000" />
+  </bean>
+
+  <bean id="solrTemplate" class="at.pagu.soldockr.core.SolrTemplate" scope="singleton">
+    <constructor-arg>
+      <bean class="org.apache.solr.client.solrj.impl.CommonsHttpSolrServer" parent="solrServer" />
+    </constructor-arg>
+  </bean>
+
+  
+  <bean id="personSearchRepository" class="shoppino.search.solr.SolrPersonRepository">
+    <property name="solrOperations" ref="solrTemplate" />
+  </bean>
+ -->
+  
+  
+ <!--  <bean id="mydataSourcePopulator" class="shoppino.DataSourcePopulator">
+        <property name="mutableAclService" ref="aclService"/>
+        <property name="productService" ref="productService"/>
+        <property name="platformTransactionManager" ref="transactionManager"/>
+  </bean>
+   <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="mysqlDataSource"/>
+   </bean> -->
+    
+   
+   
+ <!-- import aop -->
+<!--  <import resource="classpath:/shoppino-aop-configuration.xml"/>    -->
+   
+  <!-- import mail -->
+ <import resource="classpath:/shoppino-mail-configuration.xml"/>   
+ 
+  <!-- import mail aop -->
+  <import resource="classpath:/shoppino-mail-aop-configuration.xml"/>
+ 
+  <!-- import notification-device -->
+  <!-- <import resource="classpath:/shoppino-notification-configuration.xml"/> -->
+  
+   <!-- import cache -->
+  <import resource="classpath:/shoppino-cache-configuration.xml"/>
+    
+  <!-- import urlservice -->
+  <import resource="classpath:/shoppino-url-configuration.xml"/>
+  
+    <!-- import scriptservice -->
+  <import resource="classpath:/shoppino-script-configuration.xml"/>
+  
+  
+   <!-- import customdataservice -->
+  <import resource="classpath:/shoppino-customdata-configuration.xml"/>
+  
+  
+  
+  <!-- import jmx -->
+  <import resource="classpath:/shoppino-jmx-configuration.xml"/>
+  
+  <!-- import property service -->
+  <import resource="classpath:/shoppino-property-configuration.xml"/>
+  
+  <!-- import runtime service -->
+  <import resource="classpath:/shoppino-runtime-configuration.xml"/>
+  
+  <!-- import template service -->
+  <import resource="classpath:/shoppino-template-configuration.xml"/>
+  
+  <!--<import resource="classpath:/shoppino-script-scheduler-configuration.xml"/>-->
+  <!-- <import resource="classpath:/shoppino-scheduler-configuration.xml"/> -->
+
+  <import resource="classpath:/shoppino-recorddata-configuration.xml"/>
+  
+  
+  
+ <!-- fullreindex -->
+<!--  <bean id="fullReindexer" class="shoppino.indexer.FullReindexer">   
+ </bean> -->
+ 
+ <!-- <bean id="incrementalReindexer" class="shoppino.indexer.IncrementalReindexer">    
+ </bean>-->
+  
+ 
+</beans>

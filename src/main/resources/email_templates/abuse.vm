@@ -1,0 +1,11 @@
+Nuovo report registrato per la app ${info.tenantDisplayName}
+tipo: ${model.objectType}
+#if( $model.product )
+Relativamente al prodotto seguente:
+ ${info.tenantUrl}/products/${model.product.id}
+#end
+#if( $model.reporterUsername )
+Dall'utente: ${model.reporterUsername}
+#end
+testo:
+${model.text}

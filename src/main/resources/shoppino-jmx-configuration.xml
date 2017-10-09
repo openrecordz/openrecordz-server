@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd"
+         profile="jmx"
+        >
+
+    <!-- http://www.javacodegeeks.com/2012/07/jmx-and-spring-part-1.html -->
+    
+    <!-- http://blog.markshead.com/1129/connecting-visual-vm-to-tomcat-7/ -->
+    
+    <context:property-placeholder location="classpath:application-jmx.properties" />
+
+    <bean id="rmiRegistry" class="org.springframework.remoting.rmi.RmiRegistryFactoryBean">
+        <!-- <property name="alwaysCreate" value="true" /> -->
+        <property name="port" value="${shoppino.jmx.rmi.port}" />
+        <!-- <property name="port" value="50500" /> -->
+    </bean>
+
+    <bean id="shoppinoJmxServer" class="org.springframework.jmx.support.ConnectorServerFactoryBean"
+        depends-on="rmiRegistry" >
+        <property name="objectName" value="connector:name=rmi" />
+        
+        <!-- http://docs.oracle.com/cd/E19340-01/820-6740/ggvvp/index.html -->
+        
+        <!-- service:jmx:rmi://localhost:50508/jndi/rmi://0.0.0.0:50500/shoppinoJmxConnector -->
+        <property name="serviceUrl"            
+            value="service:jmx:rmi://${shoppino.jmx.rmi.external.host}:${shoppino.monitor.rmi.port}/jndi/rmi://${shoppino.jmx.rmi.host}:${shoppino.jmx.rmi.port}/shoppinoJmxConnector" />
+        <!-- value="service:jmx:rmi://${shoppino.jmx.rmi.external.host}/jndi/rmi://${shoppino.jmx.rmi.host}:${shoppino.jmx.rmi.port}/shoppinoJmxConnector" /> -->
+       
+         <!--  the following is only valid when the sun jmx implementation is used -->
+         <property name="environment">
+            <map>
+                <entry key="jmx.remote.x.password.file" value="${shoppino.jmx.folder.home}/jmxremote.password" />
+                <entry key="jmx.remote.x.access.file" value="${shoppino.jmx.folder.home}/jmxremote.access" />
+            </map>
+        </property>
+ 	</bean>
+
+    
+    
+    <!-- Exporter -->
+    <!-- http://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/jmx.html -->
+    
+    <bean id="mbeanServer" class="org.springframework.jmx.support.MBeanServerFactoryBean"/>
+    
+    <!-- <bean id="mbeanServer" class="org.springframework.jmx.support.MBeanServerFactoryBean">
+     indicate to first look for a server
+     <property name="locateExistingServerIfPossible" value="true"/>
+     search for the MBeanServer instance with the given agentId
+     <property name="agentId" value="<MBeanServer instance agentId>"/>
+   </bean> -->	
+   
+   <bean id="namingStrategy"
+        class="org.springframework.jmx.export.naming.IdentityNamingStrategy"/>
+   
+   <!-- <bean id="exporter" class="org.springframework.jmx.export.MBeanExporter" lazy-init="false">
+     <property name="server" ref="mbeanServer"/>
+     <property name="namingStrategy" ref="namingStrategy"/>
+     <property name="autodetect" value="true"/>
+   </bean> -->
+
+    <!-- <bean name="spring:mbean=true" class="org.springframework.jmx.export.TestDynamicMBean"/> -->
+        
+</beans>

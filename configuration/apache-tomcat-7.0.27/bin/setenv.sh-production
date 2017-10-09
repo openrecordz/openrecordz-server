@@ -1,0 +1,2 @@
+#export JAVA_OPTS="-Dmy.env='production'"
+export JAVA_OPTS="-XX:MaxPermSize=256M -Xms128m -Xmx712m -Dmy.env='production' -Dcom.sun.management.jmxremote" -Dspring.profiles.active='jmx'  -Djava.rmi.server.hostname=ciaotrip.it -Djava.net.preferIPv4Stack=true -Djava.net.preferIPv6Addresses=false"

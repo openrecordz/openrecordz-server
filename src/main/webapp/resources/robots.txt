@@ -1,0 +1,8 @@
+User-agent: * 
+Disallow: /search
+Disallow: /service/
+Disallow: /signup
+Disallow: /signin
+Disallow: /like
+Disallow: /abuse
+Disallow: /comments

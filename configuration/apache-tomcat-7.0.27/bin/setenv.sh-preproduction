@@ -1,0 +1,2 @@
+export JAVA_OPTS="-XX:MaxPermSize=256M -Xms128m -Xmx712m -Dmy.env='preproduction' -Dcom.sun.management.jmxremote" -Dspring.profiles.active='jmx' -Djava.rmi.server.hostname=default.frontiere21.it -Djava.net.preferIPv4Stack=true -Djava.net.preferIPv6Addresses=false -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/heapDumps"
+

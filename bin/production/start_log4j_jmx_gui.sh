@@ -1,0 +1,3 @@
+#!/bin/bash
+
+java -cp /home/andrea/work/android\ dev/android-projects/smart21-server/script/log4j-api-2.1.jar:/home/andrea/work/android\ dev/android-projects/smart21-server/script/log4j-core-2.1.jar:/home/andrea/work/android\ dev/android-projects/smart21-server/script/log4j-jmx-gui-2.1.jar org.apache.logging.log4j.jmx.gui.ClientGui service:jmx:rmi:///jndi/rmi://ciaotrip.it:50500/shoppinoJmxConnector

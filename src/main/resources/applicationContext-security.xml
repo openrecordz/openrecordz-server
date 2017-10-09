@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  - Sample namespace-based configuration
+  -
+  -->
+<b:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:b="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+
+    	<!-- property placeholder fot spring security  -->
+     <b:bean id="shoppinoConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+                <b:property name="placeholderPrefix" value="$shoppino{" />
+                <b:property name="placeholderSuffix" value="}" />
+                <b:property name="locations">
+                	<b:value>classpath:/application-${my.env}.properties
+                	</b:value>
+                </b:property>
+     </b:bean>
+     
+     
+    
+      <!-- messageSource must be here for tenantSetterRequest  -->
+      <!-- <b:bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<b:property name="basenames" value="/WEB-INF/messages/tenants-mapping" />	
+		<b:property name="defaultEncoding" value="UTF-8"/>
+		<b:property name="cacheSeconds" value="1"/> 
+	 </b:bean> -->
+	 <!-- definito 2 volte qui e in shoppino-servlet -->
+	 <b:import resource="classpath:/shoppino-shared-main-security-configuration.xml"/>	 
+	  <!-- <b:bean id="tenantSetterRequest" class="shoppino.service.impl.TenantSetterRequest">
+         <b:property name="messageSource" ref="messageSource"/>
+     </b:bean> -->
+     
+     
+		<!-- oauth support -->     
+       <!-- <b:import resource="classpath:/applicationContext-security-oauth.xml"/> --> 
+       
+     <!-- http://forum.springsource.org/archive/index.php/t-106092.html -->
+     <!-- vedi giu la parte relativa al custom voter. ma eeWebSecurityExpression	 deve stare qui prima della definizione del tag http altrimenti non va -->
+       <!-- v2 deprecated -->
+       <b:bean id="tenantTypeWebSecurityExpressionHandler" class="shoppino.security.voter.TenantTypeWebExpressionHandler">
+           <!-- <b:property name="tenantService" ref="tenantService"/> -->
+           <b:property name="tenantSettingsSetter" ref="tenantSettingsSetter"/>
+           <b:property name="tenantSetterRequest" ref="tenantSetterRequest"/>
+           <b:property name="enableMTSecurity" value="$shoppino{security.mt.enabled}"/>
+           <b:property name="roleHierarchy" ref="roleHierarchy"/>
+       </b:bean> 
+       
+       
+       <!-- vecchia configurazione prima di tenantTypeWebSecurityExpressionHandler -->
+       <!-- <b:bean id="eeWebSecurityExpressionHandler" class="shoppino.security.voter.EEWebExpressionHandler">         
+           <b:property name="tenantSetterRequest" ref="tenantSetterRequest"/>
+           <b:property name="enableMTSecurity" value="$shoppino{security.mt.enabled}"/>
+       </b:bean> -->
+       
+       <!-- http://docs.spring.io/spring-security/site/docs/3.1.6.RELEASE/reference/authz-arch.html -->
+       <b:bean id="roleHierarchy" class="org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl">
+		    <b:property name="hierarchy">
+		        <b:value>
+		            ROLE_SUPERADMIN > ROLE_ADMIN
+		            ROLE_ADMIN > ROLE_RESTUSER
+		            ROLE_ADMIN > ROLE_USER
+		            <!-- ROLE_USER > ROLE_GUEST -->
+		        </b:value>
+		    </b:property>
+		</b:bean>
+
+       <!-- http://docs.spring.io/spring-security/site/docs/3.0.x/reference/el-access.html -->
+     <global-method-security pre-post-annotations="enabled" >
+         <!-- http://java.dzone.com/articles/writing-your-spring-security -->
+          <expression-handler ref="tenantTypeExpressionHandler"/> 
+        <!-- AspectJ pointcut expression that locates our "post" method and applies security that way
+        <protect-pointcut expression="execution(* bigbank.*Service.post*(..))" access="ROLE_TELLER"/>
+        -->
+          
+          
+          <!-- <expression-handler ref="oAuth2MethodSecurityExpressionHandler"/> 
+           -->
+    </global-method-security>
+    
+     <!-- <b:bean name="oAuth2MethodSecurityExpressionHandler" class="org.springframework.security.oauth2.provider.expression.OAuth2MethodSecurityExpressionHandler"/> -->
+     
+     <!-- http://docs.spring.io/spring-security/site/docs/3.0.x/reference/el-access.html -->
+    <!--   <b:bean id="tenantTypeExpressionHandler"
+      class="org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler">
+       <b:property name="permissionEvaluator" ref="tenantTypeSecurityExpressionRoot"/>
+     </b:bean>  -->
+     <!-- used by method security exp handler and not by websecurityexprhandler -->
+     <!-- <b:bean id="tenantTypeSecurityExpressionRoot"
+      class="shoppino.security.voter.TenantTypeWebSecurityExpressionRoot">              
+        <b:property name="tenantSettingsSetter" ref="tenantSettingsSetter"/>
+        <b:property name="tenantSetterRequest" ref="tenantSetterRequest"/>
+        <b:property name="enableMTSecurity" value="$shoppino{security.mt.enabled}"/>
+       
+     </b:bean> --> 
+     
+     <!-- TODO remove tenantService from here. already registered into configuration.xml -->
+     <b:bean id="tenantService" class="shoppino.service.impl.TenantServiceImpl"/>
+     <b:bean id="tenantTypeExpressionHandler"
+      class="shoppino.security.voter.TenantTypeExpressionHandler">
+        <b:property name="tenantService" ref="tenantService"/>
+        <b:property name="tenantSettingsSetter" ref="tenantSettingsSetter"/>
+        <b:property name="enableMTSecurity" value="$shoppino{security.mt.enabled}"/>
+        <b:property name="roleHierarchy" ref="roleHierarchy"/>
+     </b:bean>
+        
+	<!-- stateless REST webservice use HTTP Basic Auth --> 
+	<!-- read this for digest auth -> http://www.baeldung.com/2011/11/20/basic-and-digest-authentication-for-a-restful-service-with-spring-security-3-1/ -->
+	<!-- http://docs.spring.io/spring-security/site/docs/3.0.x/reference/ns-config.html -->
+   		<http pattern="/service/**" auto-config="true" create-session="stateless" use-expressions="true">   		  
+   		    
+   		    <expression-handler ref="tenantTypeWebSecurityExpressionHandler"/>
+   		    <!-- <expression-handler ref="eeWebSecurityExpressionHandler"/> -->
+   		    
+   		     
+   		     <!-- temp setting -->   		     
+   		     
+   		     <intercept-url pattern="/**/notifications" access="hasRole('ROLE_RESTUSER')" />
+   		     <intercept-url pattern="/**/notifications/registerdevice" access="permitAll" />
+   		     <intercept-url pattern="/**/notifications/unregisterdevice" access="permitAll" />
+   		     <intercept-url pattern="/**/notifications/send" access="hasMTRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')" />
+   		     <intercept-url pattern="/**/notifications/usersend" access="hasRole('ROLE_RESTUSER')" />
+   		     <!-- <intercept-url pattern="/**/notifications/send" access="permitAll" /> -->
+   		     <intercept-url pattern="/**/notifications/*" access="hasRole('ROLE_RESTUSER')" />
+   		     
+   		     <intercept-url pattern="/**/categories/add" access="hasMTRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')" />
+   		     <intercept-url pattern="/**/categories/delete" access="hasMTRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')" />
+   		     <intercept-url pattern="/**/categories/deleteall" access="hasRole('ROLE_SUPERADMIN')" />
+   		     
+   		      <!-- <intercept-url pattern="/**/wscripts/*" access="hasMTRole('ROLE_RESTUSER') or hasRole('ROLE_SUPERADMIN')" /> -->
+   		      <!-- <intercept-url pattern="/**/functions/*" access="hasMTRole('ROLE_RESTUSER') or hasRole('ROLE_SUPERADMIN')" /> -->
+   		     
+  		     <!-- <intercept-url pattern="/**/cdata/*" access="hasMTRole('ROLE_RESTUSER') or hasRole('ROLE_SUPERADMIN')" /> -->
+
+ 			<intercept-url pattern="/**/wscripts/*" access="isAuthenticated()" />
+ 			<intercept-url pattern="/**/afunctions/*" access="hasMTRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')" />
+   		    <intercept-url pattern="/**/functions/*" access="isAuthenticated()" />
+   		    <intercept-url pattern="/**/gfunctions/*" access="permitAll" />
+   		    
+   		    
+     	  <!--   <intercept-url pattern="/**/cdata/*" access="isAuthenticated()" /> -->
+     	    
+     	    
+     	    
+     	    
+  		       		      
+   		  <!--   <intercept-url pattern="/**/abuse/report" access="permitAll" />
+   		    
+   		    <intercept-url pattern="/**/users/me/forgot_password" access="permitAll" /> -->   		    
+   		    <intercept-url pattern="/**/users/me/*" access="hasRole('ROLE_RESTUSER')" />
+   		    
+   		    <intercept-url pattern="/**/users/getroles" access="isAuthenticated()" />
+   		    <intercept-url pattern="/**/users/addrole" access="hasRole('ROLE_SUPERADMIN')" />
+   		    <intercept-url pattern="/**/users/saveroles" access="hasRole('ROLE_SUPERADMIN')" />
+   		    
+   		    <!-- deprecated -->   		 
+   		    <!--  <intercept-url pattern="/**/people/uploadphoto" access="hasRole('ROLE_RESTUSER')" />-->
+   		    
+   		    <intercept-url pattern="/**/people/update" access="hasMTRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')" />
+   		    <intercept-url pattern="/**/people/updatephoto" access="hasMTRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')" />
+   		    
+   		    <intercept-url pattern="/**/people/join" access="hasRole('ROLE_RESTUSER')" />
+   		    <intercept-url pattern="/**/people/disjoin" access="hasRole('ROLE_RESTUSER')" />
+   		    
+   		    <intercept-url pattern="/**/people/me" access="hasRole('ROLE_RESTUSER')" />
+   		    <intercept-url pattern="/**/people/me/update" access="hasRole('ROLE_RESTUSER')" />
+   		    <intercept-url pattern="/**/people/me/updatephoto" access="hasRole('ROLE_RESTUSER')" />
+   		    
+   		    
+   		   <!--  <intercept-url pattern="/**/properties/*" access="hasRole('ROLE_SUPERADMIN')" /> -->
+   		       		     
+   		    <!-- <intercept-url pattern="/**/properties/*" access="hasMTRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')" /> -->
+   		    
+   		    <intercept-url pattern="/**/runtime/*" access="hasRole('ROLE_SUPERADMIN')" />
+   		    
+   		    <intercept-url pattern="/**/analytics/*" access="hasMTRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')" />
+   		    
+   		    
+   		    <intercept-url pattern="/**/files/download" access="permitAll" />
+   		    <intercept-url pattern="/**/files/*" access="hasMTRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')" />
+   		    
+   		    
+   		    <intercept-url pattern="/**/tenants/registerapp" access="permitAll" />
+   		    <!--<intercept-url pattern="/**/tenants" access="hasMTRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')" />-->
+		    <intercept-url pattern="/**/tenants" access="isAuthenticated()" />
+		    <intercept-url pattern="/**/tenants/add" access="isAuthenticated()" />
+   		    <intercept-url pattern="/**/tenants/*" access="hasMTRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')" />
+   		    
+   		     
+   		    <intercept-url pattern="/**" access="permitAll" />
+   	
+   		    
+   		    <http-basic/>   		    
+   		</http>
+   
+   
+   <!-- 
+ 	  
+   		add the properties below to your app's properties file 
+			or replace with hardcoded values to get working
+	<ldap-server 
+		id="contextSource"
+		
+		url="ldap://directory.bpp.net:389/"
+		manager-dn="uid=test.monitoraggio,ou=People,ou=Personale BPP,o=bpp.it"
+		manager-password="123456"/>
+		 
+	<authentication-manager erase-credentials="true">
+		<authentication-provider ref='ldapAuthProvider' />
+	</authentication-manager>
+	
+	using bean-based configuration here to set the DefaultLdapAuthoritiesPopulater with 
+		ignorePartialResultsException=true.  This is a known Spring/AD issue and a workaround for it
+	<b:bean id="ldapAuthProvider" class="org.springframework.security.ldap.authentication.LdapAuthenticationProvider">
+		<b:constructor-arg>
+			the bind authenticator will first lookup the user using the service account credentials, then 
+				 attempt to bind the user with their password once found
+			<b:bean id="bindAuthenticator" class="org.springframework.security.ldap.authentication.BindAuthenticator">
+				<b:constructor-arg ref="contextSource" />
+				<b:property name="userSearch" ref="userSearch" />
+			</b:bean>
+		</b:constructor-arg>
+		<b:constructor-arg>
+			<b:bean class="org.springframework.security.ldap.userdetails.DefaultLdapAuthoritiesPopulator">
+				<b:constructor-arg ref="contextSource" />
+				<b:constructor-arg value="DC=company,DC=com" /> group search base
+				<property name="defaultRole" value="ROLE_USER" /> 
+					You can add a default role to everyone if needed
+				<b:property name="searchSubtree" value="true" />
+				<b:property name="ignorePartialResultException" value="true" />
+				<b:property name="groupSearchFilter" value="(member={0})" />
+			</b:bean>
+		</b:constructor-arg>
+	</b:bean>
+	<b:bean id="userSearch" class="org.springframework.security.ldap.search.FilterBasedLdapUserSearch">
+		<b:constructor-arg index="0" value="DC=company,DC=com" />
+		<b:constructor-arg index="1" value="(sAMAccountName={0})" />
+		<b:constructor-arg index="2" ref="contextSource" />
+		<b:property name="searchSubtree" value="true" />
+	</b:bean>
+	end ldap
+	 -->
+	
+	
+	
+	
+	
+	
+	
+	
+   		
+   		
+  	 <!-- form login for web site   -->   
+  	 
+  	 <!-- spring security ajax returning 403  
+  	 http://stackoverflow.com/questions/8171256/use-spring-security-to-tell-ajax-requests-where-the-login-page-is -->
+  	 
+  	 <b:bean id="authEntryPoint" class="shoppino.security.web.authentication.AjaxAwareLoginUrlAuthenticationEntryPoint" scope="singleton">
+    	<b:property name="loginFormUrl" value="/signin" />
+	</b:bean>
+  	 
+	<!-- v2 deprecated -->
+	<!--   <http auto-config="true" use-expressions="true" entry-point-ref="authEntryPoint"  >
+	     
+	    
+	    <expression-handler ref="tenantTypeWebSecurityExpressionHandler"/>
+	
+        
+        
+        
+        dressique
+        <intercept-url pattern="/products/add" access="hasMTRole('ROLE_USER') or hasRole('ROLE_SUPERADMIN')" />
+        <intercept-url pattern="/products/*/edit" access="hasMTRole('ROLE_USER') or hasRole('ROLE_SUPERADMIN')" />
+        <intercept-url pattern="/shops/add" access="hasMTRole('ROLE_USER') or hasRole('ROLE_SUPERADMIN')" />
+            
+        
+        <intercept-url pattern="/connect" access="isAuthenticated()" />
+        <intercept-url pattern="/settings" access="isAuthenticated()" />
+        <intercept-url pattern="/like*" access="isAuthenticated()" />
+        <intercept-url pattern="/unlike*" access="isAuthenticated()" />
+        <intercept-url pattern="/settings" access="isAuthenticated()" />
+        <intercept-url pattern="/settings/password" access="isAuthenticated()" />
+        <intercept-url pattern="/comments/add" access="hasRole('ROLE_USER')" />        
+        <intercept-url pattern="/notifications" access="hasRole('ROLE_USER')" />
+        
+        <intercept-url pattern="/products/selectimage" access="hasMTRole('ROLE_USER') or hasRole('ROLE_SUPERADMIN')" />
+        <intercept-url pattern="/products/writedescription" access="hasMTRole('ROLE_USER') or hasRole('ROLE_SUPERADMIN')" />
+        <intercept-url pattern="/products/selectlocation" access="hasMTRole('ROLE_USER') or hasRole('ROLE_SUPERADMIN')" />
+        <intercept-url pattern="/products/selectdate" access="hasMTRole('ROLE_USER') or hasRole('ROLE_SUPERADMIN')" />
+        <intercept-url pattern="/products/selectdate" access="hasMTRole('ROLE_USER') or hasRole('ROLE_SUPERADMIN')" />
+        
+   		 <intercept-url pattern="/admin/**" access="hasMTRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')" />
+   		 
+   		  <intercept-url pattern="/dashboard" access="hasMTRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')" />
+   		  <intercept-url pattern="/dashboard/**" access="hasMTRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')" />
+   		  
+   		   <intercept-url pattern="/pages/*" access="isAuthenticated()" />
+   		 
+        <intercept-url pattern="/**" access="permitAll" />
+        redirected to tenant/login in loginController
+        todo for mt
+        <form-login login-page="/signin" authentication-failure-url="/signin?login_error=1"/> 
+        <form-login />
+        
+        <logout logout-success-url="/" />
+     
+        http://static.springsource.org/spring-security/site/docs/3.1.x/reference/remember-me.html#remember-me-persistent-token
+        prima di mtPersistentTokenBasedRememberMeServices
+       key deve essere uguale alla key definita al bean mtPersistentTokenBasedRememberMeServices giu 
+        <remember-me key="Dressique" services-ref="mtPersistentTokenBasedRememberMeServices"/>
+
+    Uncomment to enable X509 client authentication support
+        <x509 />
+
+        Uncomment to limit the number of sessions a user can have
+        <session-management>
+            <concurrency-control max-sessions="1" error-if-maximum-exceeded="true" />
+        </session-management>
+
+    </http> -->
+    
+ <!-- http://www.springsource.org/spring-social/ -->
+ <!-- http://www.tikalk.com/java/blog/integrating-spring-security-mongodb-1 -->
+	<authentication-manager alias="authenticationManager" >
+	  <!-- <authentication-provider>
+	    <user-service>
+		<user name="mkyong" password="123456" authorities="ROLE_USER" />
+	    </user-service>
+	  </authentication-provider> -->
+	 <authentication-provider user-service-ref="userDetailsService" >
+	     	<!-- password encoder -->
+           <!-- <password-encoder hash="md5"/> -->
+           <!-- <jdbc-user-service data-source-ref="dataSource"/> -->
+           <!-- ultimo funzionante -->
+           <!-- <jdbc-user-service   data-source-ref="mysqlDataSource"/>         -->   
+        </authentication-provider> 
+	</authentication-manager>
+
+	  
+	<!-- user service -->
+	<b:bean id="userService" class="shoppino.security.service.impl.UserServiceRDBMSImpl">
+	    <b:property name="dataSource" ref="mysqlDataSource"></b:property>
+	    <!-- <b:property name="userDetailsService" ref="userDetailsService"/> -->
+		<!-- <b:property name="userDetailsManager" ref="userDetailsManager"></b:property> -->
+	</b:bean>
+	
+	<!--  user service -->
+	<!-- for test -->
+	<!-- <b:bean id="hsqlDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <b:property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
+        <b:property name="url" value="jdbc:hsqldb:mem:test"/>
+        <value>jdbc:hsqldb:hsql://localhost/acl</value>
+        <b:property name="username" value="sa"/>
+        <b:property name="password" value=""/>
+    </b:bean> -->
+    
+	
+	<!-- http://springinpractice.com/2010/07/06/spring-security-database-schemas-for-mysql/ -->
+	<b:bean id="mysqlDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <b:property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <b:property name="url" value="jdbc:mysql://localhost/$shoppino{database.name}"/>
+        <b:property name="username" value="$shoppino{database.user}"/>
+        <b:property name="password" value="$shoppino{database.passwd}"/>
+    </b:bean>
+  
+	
+	<!-- <b:bean id="userDetailsService" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl"> -->
+	 <b:bean id="userDetailsService" class="org.springframework.security.provisioning.JdbcUserDetailsManager">
+  		<b:property name="dataSource" ref="mysqlDataSource"/>
+	</b:bean>  
+	
+	
+	<!-- populate db -->
+<!-- 	 <b:bean  id="dataSourcePopulator" class="shoppino.security.DataSourcePopulator">
+         <b:property name="dataSource" ref="mysqlDataSource"/>
+         <b:property name="mutableAclService" ref="aclService"/>
+        <b:property name="platformTransactionManager" ref="transactionManager"/>
+    </b:bean>
+ -->    
+	 
+	 
+    
+    <!-- authentication service -->
+	<b:bean id="authenticationService" class="shoppino.security.service.impl.AuthenticationServiceImpl">
+	    <b:property name="userDetailsService" ref="userDetailsService"></b:property>
+	    <b:property name="authenticationManager" ref="authenticationManager"></b:property>  
+	</b:bean>
+	
+	
+	
+	
+	 <!-- Automatically receives AuthenticationEvent messages -->
+    <b:bean id="loggerListener" class="org.springframework.security.authentication.event.LoggerListener"/>
+    
+	<!-- custom voter  -->
+	<!-- http://bluefoot.info/howtos/spring-security-adding-a-custom-role-prefix/ -->
+	<!-- modificato anche  -->	
+
+	<!-- <b:bean id="mtRoleVoter"
+	   class="shoppino.security.voter.MTRoleVoter ">
+	  <b:property name="rolePrefix" value="MTROLE_" />
+	</b:bean> -->
+		
+	<!-- <b:bean id="authenticatedVoter"
+	   class="org.springframework.security.access.vote.AuthenticatedVoter" />
+	<b:bean id="roleVoter"
+	   class="org.springframework.security.access.vote.RoleVoter ">
+	  <b:property name="rolePrefix" value="ROLE_" />
+	</b:bean> -->
+	
+	<!-- <b:bean id="eeWebExpressionVoter"
+	   class="shoppino.security.voter.EEWebExpressionVoter" /> -->
+	   
+	 <!--   <b:bean id="eeWebSecurityExpressionHandler"
+	   class="shoppino.security.voter.EEWebExpressionHandler" /> -->
+	
+	<!-- <b:bean id="accessDecisionManager"
+	   class="org.springframework.security.access.vote.AffirmativeBased">
+	  <b:property name="decisionVoters">
+	    <b:list>
+	      <b:ref bean="roleVoter" />
+	      <b:ref bean="authenticatedVoter" />
+	      <b:ref bean="mtRoleVoter" />
+	      <b:ref bean="eeWebExpressionVoter" />
+	      <b:bean class="org.springframework.security.web.access.expression.WebExpressionVoter">
+	    	  <b:property name="expressionHandler" ref="eeWebSecurityExpressionHandler"/>
+	      </b:bean>
+	  
+	    </b:list>
+	  </b:property>
+	</b:bean> -->
+ 	
+	<!-- http://stackoverflow.com/questions/9623456/spring-security-two-web-sites-sharing-same-remember-me-login -->
+	<!-- modifica il cookie domain per mt. modificata anche parte in alto remember-me -->
+	<!-- v2 deprecated -->
+	 <!--  <b:bean id="mtPersistentTokenBasedRememberMeServices"
+	   class="shoppino.security.rememberme.MTPersistentTokenBasedRememberMeServices" >
+	  	<b:property name="cookieDomain" value="$shoppino{cookie.domain}"/>
+	  	<b:property name="userDetailsService" ref="userDetailsService"/>
+	  	<b:property name="tokenRepository" ref="jdbcTokenRepository" />
+	    <b:property name="tokenValiditySeconds" value="31536000" /> 1 year
+	    deve essere uguale alla key definita in remember-me config su
+	  	<b:property name="key" value="Dressique"/>	  	 
+	  	<b:property name="cookiesDomain" ref="cookiesDomain"/>
+
+	  </b:bean> -->
+	
+	 <!--  <b:bean id="cookiesDomain" class="java.util.ArrayList">
+		    <b:constructor-arg>
+		        <b:list>
+		            <b:value>$shoppino{cookie.domain2}</b:value>
+		            <b:value>$shoppino{cookie.domain3}</b:value>
+		        </b:list>
+		    </b:constructor-arg>
+	  </b:bean>
+	  
+	  <b:bean id="jdbcTokenRepository" class="org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl">
+		<b:property name="dataSource" ref="mysqlDataSource" />
+		<b:property name="createTableOnStartup" value="false" />
+	  </b:bean> -->
+	
+	
+	  
+	   <!-- authorization service -->
+	<b:bean id="authorizationService" class="shoppino.security.service.impl.AuthorizationServiceImpl">
+	    <!-- <b:property name="userDetailsService" ref="userDetailsService"></b:property>
+	    <b:property name="authenticationManager" ref="authenticationManager"></b:property>   -->
+	</b:bean>
+	 
+	
+</b:beans>

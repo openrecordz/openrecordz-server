@@ -1,0 +1,3 @@
+Chat da ${model.from} a ${model.to}
+messaggio :  ${model.message}
+ 

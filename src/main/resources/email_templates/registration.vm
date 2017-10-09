@@ -1,0 +1,78 @@
+<html>
+<body>
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;line-height:24px;margin:0;padding:0;width:100%;font-size:17px;background:#ffffff">
+<tbody>
+<tr>
+<td valign="top" style="border-collapse:collapse">
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse">
+<tbody>
+<tr>
+<td valign="bottom" style="border-collapse:collapse;padding:20px 16px 12px">
+							<div style="text-align:center">
+								<a href="http://www.openrecordz.com" style="color:#2daae1;font-weight:bold;text-decoration:none;word-break:break-word" target="_blank">
+									<img src="http://www.openrecordz.com/wp-content/uploads/2016/10/logo_openrecordz_menu_38.png" style="outline:none;text-decoration:none;border:none;min-height:36px" class="CToWUd">
+								</a>
+							</div>
+</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+
+<tr>
+<td valign="top" style="border-collapse:collapse">
+
+<table cellpadding="32" cellspacing="0" border="0" align="center" style="border-collapse:collapse;background:white;border-radius:0.5rem;margin-bottom:1rem">
+<tbody>
+<tr>
+<td width="546" valign="top" style="border-collapse:collapse">
+<div style="max-width:600px;margin:0 auto">				
+<div style="background:white;border-radius:0.5rem;margin-bottom:1rem">
+	<h2 style="line-height:30px;margin-bottom:12px;margin:0 0 12px">Ciao ${model.person.username}</h2>
+
+	<p style="font-size:18px;line-height:24px;margin:0 0 16px">Grazie per esserti registrato su <span style="color:#2daae1;"><b>Open</b></span><span><b>Recordz</b></span>. Clicca sul link seguente per validare la tua email:</p>
+
+	<div style="text-align:center;margin:2rem 0 1rem">
+
+<table cellpadding="0" cellspacing="0" style="border-collapse:collapse;background:#2daae1;border-bottom:2px solid #1f8cba;border-radius:4px;padding:14px 32px;display:inline-block">
+<tbody>
+<tr>
+<td style="border-collapse:collapse">
+	<a href="http://apps.api.openrecordz.com/urls/${model.validationEmail}/f" style="color:white;font-weight:normal;text-decoration:none;word-break:break-word;display:inline-block;letter-spacing:1px;font-size:20px;line-height:26px" align="center" target="_blank">
+	Verifica la mail
+	</a></td>
+
+		</tr></tbody></table></div>
+
+<!--
+	<p style="font-size:0.9rem;line-height:20px;margin:0 auto 1rem;color:#aaa;text-align:center;max-width:320px;word-break:break-word"><span class="il">MisterLupo</span> is always free for an unlimited period of time and unlimited number of people.</p>
+-->
+
+<p style="font-size:18px;line-height:24px;margin:0 0 16px"><strong><span class="il">OpenRecordz</span> &#232; la prima piattaforma OpenData cloud</strong> </p>
+	</p>
+
+<p style="font-size:18px;line-height:24px;margin:0 0 16px">E infine, forniscici i tuoi feedback - positivi o negativi, abbiamo bisogno dei tuoi consigli :) Scrivi a <a href="mailto:info@openrecordz.com" style="color:#2daae1;font-weight:bold;text-decoration:none;word-break:break-word" target="_blank">info@<span class="il">openrecordz</span>.com</a>.</p>
+
+	<p style="font-size:18px;line-height:24px;margin:0 0 16px">
+		Buona continuazione con <span class="il">OpenRecordz</span>!
+		<br> 
+		-- Team <span class="il">OpenRecordz</span>
+	</p>
+
+	
+</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>

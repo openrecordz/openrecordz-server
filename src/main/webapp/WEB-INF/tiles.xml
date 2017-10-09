@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+    
+<!-- 
+    <definition name="service.definition"
+        template="/jsp/layout/layout-service.jsp">
+    </definition>
+   
+      -->
+     <!-- ****** service ****** -->
+  
+  <!--    
+     <definition name="index-service" extends="service.definition">
+        <put-attribute name="body" value="/jsp/index-service.jsp" />
+    </definition>
+    
+     <definition name="failure-service" extends="service.definition">
+        <put-attribute name="body" value="/jsp/failure-service.jsp" />
+    </definition>
+     -->
+     <!-- signin -->
+     
+    
+   
+    <!-- notifications -->
+        <!-- 
+    <definition name="notifications-service" extends="service.definition">
+        <put-attribute name="body" value="/jsp/notifications/notifications-service.jsp" />
+    </definition>
+    
+    <definition name="add-notification-service" extends="service.definition">
+        <put-attribute name="body" value="/jsp/notifications/add-notifications-service.jsp" />
+    </definition>
+    
+    <definition name="hasnew-notifications-service" extends="service.definition">
+        <put-attribute name="body" value="/jsp/notifications/hasnew-notifications-service.jsp" />
+    </definition>
+     -->
+    
+   
+</tiles-definitions>

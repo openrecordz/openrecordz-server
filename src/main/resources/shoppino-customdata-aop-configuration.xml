@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/data/mongo
+       http://www.springframework.org/schema/data/mongo/spring-mongo.xsd
+       http://www.springframework.org/schema/context
+	   http://www.springframework.org/schema/context/spring-context-3.2.xsd
+	   http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.2.xsd"
+	   default-autowire="byName">
+   
+  
+     	 <!-- AOP -->
+                
+        <bean id="customDataScriptingAspectBean" class="shoppino.domain.customdata.scripting.CustomDataScriptingHandler"/>         
+        
+       
+         
+        <aop:config>
+            
+       	   <!--  add -->
+       	   <!-- public String add(String className, String json); -->
+	        	       
+	        <aop:pointcut id="addCustomDataScriptingPointcut"  
+	        	expression="execution(* shoppino.service.CustomDataService.add(java.lang.String, java.lang.String)) and args(className, json)"/>		  	   		
+	        	
+	        
+	         <!--  update -->
+	         
+	        	<!-- public String update(String id, String className, String json) throws ResourceNotFoundException; -->
+	         <aop:pointcut id="updateCustomDataScriptingPointcut"  
+	        	expression="execution(* shoppino.service.CustomDataService.update(java.lang.String, java.lang.String, java.lang.String)) and args(id, className, json)"/>		  
+	  	
+      
+	        
+        	<!-- add -->			
+			
+			 <aop:aspect id="beforeCustomDataAddScriptingAspect" ref="customDataScriptingAspectBean">					
+			    			      						      			 
+			 <aop:before 
+      			pointcut-ref="addCustomDataScriptingPointcut" 
+      			method="beforeCustomDataAdd"
+      			/>
+			</aop:aspect>							
+			
+			 <aop:aspect id="afterCustomDataAddScriptingAspect" ref="customDataScriptingAspectBean">
+			      <aop:after-returning
+			      pointcut-ref="addCustomDataScriptingPointcut" 
+			      method="afterCustomDataAdd"
+			      returning="id" />
+			</aop:aspect> 
+			
+			
+			
+			
+			
+			
+			
+			
+			<!-- update -->		
+			 <aop:aspect id="beforeCustomDataUpdateScriptingAspect" ref="customDataScriptingAspectBean">					
+			    			      						      			 
+			 <aop:before 
+      			pointcut-ref="updateCustomDataScriptingPointcut" 
+      			method="beforeCustomDataUpdate"
+      			/>
+			</aop:aspect>							
+			
+			<aop:aspect id="afterCustomDataUpdateScriptingAspect" ref="customDataScriptingAspectBean">
+			      <aop:after-returning
+			      pointcut-ref="updateCustomDataScriptingPointcut" 
+			      method="afterCustomDataUpdate"
+			      returning="returnId" />
+			</aop:aspect>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		</aop:config>
+        
+        
+		
+        
+        
+</beans>

@@ -1,0 +1,30 @@
+# smart21 auto-start
+#
+# description: Auto-starts smart21
+# processname: ubuntu
+
+
+T_PID=$(ps aux | grep tomcat | awk 'NR==1{print $2}')
+echo 'tomcat pid : ' $T_PID
+        
+case $1 in 
+start)
+		sudo /home/ubuntu/pacchetti/shoppino/script/production/jstatd.sh
+		
+        sudo su ubuntu -c /home/ubuntu/apps/apache-tomcat-7.0.27/bin/startup.sh
+        ;;
+stop)
+        sudo su ubuntu -c /home/ubuntu/apps/apache-tomcat-7.0.27/bin/shutdown.sh
+        
+        #pkill -9 java
+        #only tomcat and not solr
+        kill -9 $T_PID
+         
+        ;;
+restart)
+        sudo su ubuntu -c /home/ubuntu/apps/apache-tomcat-7.0.27/bin/shutdown.sh
+        #pkill -9 java
+        kill -9 $T_PID
+        sudo su ubuntu -c /home/ubuntu/apps/apache-tomcat-7.0.27/bin/startup.sh
+        ;;
+esac

@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app version="2.4"
+         xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+         http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" >
+         
+    
+    <!-- http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html#The DispatcherServlet -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            /WEB-INF/shoppino-servlet.xml
+            <!-- /WEB-INF/applicationContext-security.xml -->
+			<!-- /WEB-INF/applicationContext-common-authorization.xml -->
+        </param-value>
+    </context-param>
+    
+    
+
+      <!--
+      - Loads the root application context of this web app at startup.
+  	  -->
+   <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+   </listener>
+     
+   <listener>
+		<listener-class>shoppino.listener.ShoppinoContextListener</listener-class>
+   </listener>
+   
+     <listener>
+                <listener-class>net.bull.javamelody.SessionListener</listener-class>
+     </listener>
+        
+     <filter>
+	    <filter-name>UrlRewriteFilter</filter-name>
+	    <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
+		 <!-- set the amount of seconds the conf file will be checked for reload
+	    can be a valid integer (0 denotes check every time,
+	    -1 denotes no reload check, default -1) -->
+	    <init-param>
+	        <param-name>confReloadCheckInterval</param-name>
+	        <param-value>10</param-value>
+	    </init-param>
+	      <!-- you may want to allow more hosts to look at the status page
+	    statusEnabledOnHosts is a comma delimited list of hosts, * can
+	    be used as a wildcard (defaults to "localhost, local, 127.0.0.1") -->
+	   <!--  <init-param>
+	        <param-name>statusEnabledOnHosts</param-name>
+	        <param-value>*</param-value>
+	    </init-param> -->
+	</filter>
+
+   <!--    <filter>
+          <filter-name>trimjson</filter-name>
+          <filter-class>shoppino.filter.TrimJsonResponse</filter-class>
+  	</filter> -->
+  
+   <!-- encoding utf-8 -->
+	<filter>
+        <filter-name>encoding-filter</filter-name>
+        <filter-class>
+            org.springframework.web.filter.CharacterEncodingFilter
+        </filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+        <param-name>forceEncoding</param-name>
+        <param-value>true</param-value>
+        </init-param>
+    </filter>
+   
+	<!-- http://software.dzhuvinov.com/cors-filter-configuration.html -->
+	<filter>
+		<filter-name>CORS</filter-name>
+		<filter-class>com.thetransactioncompany.cors.CORSFilter</filter-class>
+		<init-param>
+			<param-name>cors.configurationFile</param-name>
+			<param-value>/WEB-INF/cors.properties</param-value>
+		</init-param>
+	</filter>
+	
+  <!--Servlet Filter that handles site authorization.-->
+	 <!-- <filter>
+	     <filter-name>TenantFilter</filter-name>
+	     <filter-class>shoppino.web.filter.TenantFilter</filter-class>
+	     <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	
+	<filter-mapping>
+	     <filter-name>TenantFilter</filter-name>
+	     <url-pattern>*</url-pattern>
+	</filter-mapping> -->
+
+<!-- before spring securiy -->
+ <filter>
+          <filter-name>monitoring</filter-name>
+          <filter-class>net.bull.javamelody.MonitoringFilter</filter-class>
+  </filter>
+	
+<!-- spring security -->
+	<filter>
+	  <filter-name>springSecurityFilterChain</filter-name>
+	  <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	
+	<!-- Enables support for DELETE and PUT request methods with web browser clients -->
+	<filter>
+		<filter-name>hiddenHttpMethodFilter</filter-name>
+		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+	</filter>
+	
+	   
+	
+	    
+	<!-- <filter>
+	  <filter-name>CorsFilter</filter-name>
+	  <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+	</filter> -->
+	
+	
+	<filter-mapping>
+	    <filter-name>UrlRewriteFilter</filter-name>
+	    <url-pattern>/*</url-pattern>
+	    <dispatcher>REQUEST</dispatcher>
+	    <dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+
+	<!-- <filter-mapping>
+        <filter-name>trimjson</filter-name>
+        <url-pattern>/service/v1/*</url-pattern>
+    </filter-mapping>
+	 -->
+	
+
+	<filter-mapping>
+        <filter-name>encoding-filter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+	
+	<!-- must be before spring security -->
+	<!-- https://spring.io/guides/gs/rest-service-cors/ -->
+	<!-- http://software.dzhuvinov.com/cors-filter-installation.html -->
+	<!-- http://software.dzhuvinov.com/cors-filter-configuration.html -->
+	<!-- problema sicurezza -->
+	<!-- http://www.troyhunt.com/2010/11/owasp-top-10-for-net-developers-part-5.html -->
+	<filter-mapping>
+        <filter-name>CORS</filter-name>
+        <url-pattern>/service/*</url-pattern>
+	</filter-mapping>
+	
+      <filter-mapping>
+                <filter-name>monitoring</filter-name>
+                <url-pattern>/*</url-pattern>
+     </filter-mapping>
+	
+		 
+	<filter-mapping>
+	  <filter-name>springSecurityFilterChain</filter-name>
+	  <url-pattern>/*</url-pattern>
+	</filter-mapping>
+				
+
+	<filter-mapping>
+		<filter-name>hiddenHttpMethodFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+		
+
+
+	 
+<!-- 	<filter-mapping>
+	  <filter-name>CorsFilter</filter-name>
+	  <url-pattern>/*</url-pattern>
+	</filter-mapping> -->
+	
+	
+	
+	
+	
+  <servlet>
+    <servlet-name>shoppino</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    	<!-- http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html -->
+    	<init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value></param-value>
+        </init-param>
+        
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <!-- JMX -->
+  <!--
+<servlet>
+        <servlet-name>JmxMiniConsoleServlet</servlet-name>
+        <servlet-class>org.jminix.console.servlet.MiniConsoleServlet</servlet-class>
+</servlet>
+ -->
+  <servlet-mapping>
+    <servlet-name>shoppino</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  
+  <!--
+  <servlet-mapping>
+        <servlet-name>JmxMiniConsoleServlet</servlet-name>
+        <url-pattern>/jmx/*</url-pattern>
+</servlet-mapping>
+  -->
+  
+  <!-- <welcome-file-list>
+    <welcome-file>
+      /jsp/index.jsp
+    </welcome-file>
+  </welcome-file-list> -->
+
+  <jsp-config>
+	 <taglib>
+	     <taglib-uri>http://java.sun.com/jsp/jstl/core</taglib-uri>
+	     <taglib-location>/WEB-INF/c.tld</taglib-location>
+	 </taglib>
+	 <taglib>
+	     <taglib-uri>http://java.sun.com/jsp/jstl/fmt</taglib-uri>
+	     <taglib-location>/WEB-INF/fmt.tld</taglib-location>
+	 </taglib>
+  </jsp-config>
+		
+  
+  
+  <!-- java melody -->
+  		<login-config>
+                <auth-method>BASIC</auth-method>
+                <realm-name>Monitoring</realm-name>
+        </login-config>
+        <security-role>
+                <!-- <role-name>monitoring</role-name> -->
+                <role-name>monitoring</role-name>
+                
+        </security-role>
+        <security-constraint>
+                <web-resource-collection>
+                        <web-resource-name>Monitoring</web-resource-name>
+                        <url-pattern>/monitoring</url-pattern>
+                </web-resource-collection>
+                <auth-constraint>
+                        <role-name>monitoring</role-name>
+                </auth-constraint>
+                <!-- if SSL enabled (SSL and certificate must then be configured in the server)
+                <user-data-constraint>
+                        <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+                </user-data-constraint> 
+                -->
+        </security-constraint>
+        
+</web-app>

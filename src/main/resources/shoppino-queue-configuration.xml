@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:lang="http://www.springframework.org/schema/lang"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+	   http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd 
+	   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+	   http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.2.xsd
+	   http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd">
+
+    
+    <import resource="classpath:/shoppino-queue-hornetq-configuration.xml"/>
+    
+	<!-- =================================================================== -->
+	<!-- G E S T I O N E C O D E -->
+	<!-- =================================================================== -->
+
+	<!-- MDP Configurato -->
+	<!-- bean per la gestione delle code relative a iscrizioni, inviti e conferme -->
+	<bean id="jmsQueueNotificationSender" class="shoppino.queue.JmsQueueNotificationSender"
+		lazy-init="true">
+		<property name="queue" value="skillidEmail"></property>
+		<property name="connectionFactory" ref="connectionFactory"/>
+	</bean>
+	
+	<bean id="jmsEmailQueueSender" class="shoppino.queue.JmsEmailQueueSender"
+		lazy-init="true">
+		<property name="queue" value="shoppinoEmail"></property>
+		<property name="connectionFactory" ref="connectionFactory"/>
+	</bean>
+
+	<bean id="notificationListener" class="shoppino.queue.NotificationListener">
+	</bean>
+	
+	<bean id="mailListener" class="shoppino.queue.MailListener">
+	</bean>
+	
+	<!-- The Spring JMS container -->
+	<!-- container per la coda Email -->
+	<bean id="jmsNotificationContainer"
+		class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="destinationName" value="shoppinoEmail"></property>
+		<property name="messageListener" ref="mailListener" />
+		<!-- <property name="transactionManager" ref="jtaTransactionManager"></property> -->
+		<property name="sessionTransacted" value="true" />
+	</bean>
+	<!---->
+	<!-- JBOSS -->
+	<!--<jee:jndi-lookup id="connectionFactory" jndi-name="java:JmsXA" /> -->
+	<!---->
+	<!-- TOMCAT -->
+	<!-- <jee:jndi-lookup id="hornetqConnectionFactory" jndi-name="java:/ConnectionFactory" 
+		> -->
+	<!-- </jee:jndi-lookup> -->
+	<!-- -->
+	<bean id="hornetqConnectionFactory" class="org.springframework.jndi.JndiObjectFactoryBean"
+		depends-on="jmsServerManagerImpl">
+		<property name="jndiName">
+			<value>java:/XAConnectionFactory</value>
+		</property>
+	</bean>
+
+	<bean id="connectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
+	    <constructor-arg ref="hornetqConnectionFactory"/><property name="sessionCacheSize" value="100"/>
+	</bean>
+	
+</beans>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+         http://www.springframework.org/schema/task
+   		http://www.springframework.org/schema/task/spring-task-3.2.xsd"
+	   default-autowire="byName">
+	
+    <task:annotation-driven/>
+    
+    <bean id="shoppinoNotificationConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+                <property name="placeholderPrefix" value="$shoppino-notification{" />
+                <property name="placeholderSuffix" value="}" />
+                <property name="locations">
+                	<value>classpath:/application-notification-${my.env}.properties
+                	</value>
+                </property>
+    </bean>
+     
+    <bean id="notificationMessageSource"
+		class="shoppino.messagesource.customdata.mongodb.CustomDataMessageSource" >
+		<property name="parentMessageSource" ref="notificationReloadableResourceBundleMessageSource" />
+		<property name="customDataService" ref="customDataServiceWithCheckDisabled" />	
+		
+	 </bean>
+	
+     <!-- <bean id="notificationMessageSource" -->
+    <bean id="notificationReloadableResourceBundleMessageSource" 
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames" value="/WEB-INF/messages/tenants-notification" />	
+		<property name="defaultEncoding" value="UTF-8"/>
+		<property name="cacheSeconds" value="1"/> 
+	</bean>
+	 
+    <bean id="deviceNotificationDAO" class="shoppino.notification.dao.JdbcDeviceNotificationDAOImpl">
+        <property name="dataSource" ref="mysqlNDeviceDataSource"/>
+    </bean>     
+     
+    <bean id="mysqlNDeviceDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost/$shoppino{database.name}"/>
+        <property name="username" value="$shoppino{database.user}"/>
+        <property name="password" value="$shoppino{database.passwd}"/>
+    </bean>
+    
+    <!-- <bean id="gcmPushNotificationManager" class="shoppino.notification.GcmPushNotificationManagerImpl">
+        <property name="apiKey" value="$shoppino-notification{notification.android.gcm.apikey}"/>
+    </bean> -->
+    
+    
+    <!-- <bean id="gcmPushNotificationManager" class="shoppino.notification.GcmPushNotificationManagerMTImpl">
+        <constructor-arg>        
+        		<map>
+        			<entry key="default" value="$shoppino-notification{notification.android.gcm.apikey}" />
+        			<entry key="soleto" value="$shoppino-notification{notification.soleto.android.gcm.apikey}" />        			
+        			<entry key="sanvitobr" value="$shoppino-notification{notification.sanvitobr.android.gcm.apikey}" />
+        			<entry key="vacanzeinpuglia" value="$shoppino-notification{notification.vacanzeinpuglia.android.gcm.apikey}" />
+        			<entry key="animaecuore" value="$shoppino-notification{notification.animaecuore.android.gcm.apikey}" />
+        			<entry key="studiosponziello" value="$shoppino-notification{notification.studiosponziello.android.gcm.apikey}" />
+        			<entry key="yousnow" value="$shoppino-notification{notification.yousnow.android.gcm.apikey}" />
+        			<entry key="ecoprint" value="$shoppino-notification{notification.ecoprint.android.gcm.apikey}" />
+        		</map>
+        </constructor-arg>
+    </bean>     
+ -->    
+ 
+   <bean id="gcmPushNotificationManager" class="shoppino.notification.GcmPushNotificationManagerMTDynamicImpl">
+        <!-- <constructor-arg>        
+        		<map>
+        			<entry key="default" value="$shoppino-notification{notification.android.gcm.apikey}" />
+        			<entry key="soleto" value="$shoppino-notification{notification.soleto.android.gcm.apikey}" />        			
+        			<entry key="sanvitobr" value="$shoppino-notification{notification.sanvitobr.android.gcm.apikey}" />
+        			<entry key="vacanzeinpuglia" value="$shoppino-notification{notification.vacanzeinpuglia.android.gcm.apikey}" />
+        			<entry key="animaecuore" value="$shoppino-notification{notification.animaecuore.android.gcm.apikey}" />
+        			<entry key="studiosponziello" value="$shoppino-notification{notification.studiosponziello.android.gcm.apikey}" />
+        			<entry key="yousnow" value="$shoppino-notification{notification.yousnow.android.gcm.apikey}" />
+        			<entry key="ecoprint" value="$shoppino-notification{notification.ecoprint.android.gcm.apikey}" />
+        		</map>
+        </constructor-arg> -->
+    </bean>     
+ 
+ 
+    <!-- <bean id="apnsPushNotificationManager" class="shoppino.notification.ApnsPushNotificationManagerImpl">
+        <constructor-arg value="$shoppino-notification{notification.ios.apns.certificatePath}" />        
+        <constructor-arg value="$shoppino-notification{notification.ios.apns.keystorepwd}" />
+        <constructor-arg value="$shoppino-notification{notification.ios.apns.production}" />        		
+    </bean>  --> 
+    
+    <!-- <bean id="apnsPushNotificationManager" class="shoppino.notification.ApnsPushNotificationManagerMTImpl">
+        <constructor-arg>        
+        		<map>
+        			<entry key="default" value="$shoppino-notification{notification.ios.apns.certificatePath}" />
+        			<entry key="soleto" value="$shoppino-notification{notification.soleto.ios.apns.certificatePath}" />
+    				<entry key="animaecuore" value="$shoppino-notification{notification.animaecuore.ios.apns.certificatePath}" />  
+    				<entry key="vacanzeinpuglia" value="$shoppino-notification{notification.vacanzeinpuglia.ios.apns.certificatePath}" />    					
+    				<entry key="sanvitobr" value="$shoppino-notification{notification.sanvitobr.ios.apns.certificatePath}" />
+    				<entry key="eurofood" value="$shoppino-notification{notification.eurofood.ios.apns.certificatePath}" />
+    				<entry key="studiosponziello" value="$shoppino-notification{notification.studiosponziello.ios.apns.certificatePath}" />
+    				<entry key="bpp" value="$shoppino-notification{notification.bpp.ios.apns.certificatePath}" />
+    				<entry key="yousnow" value="$shoppino-notification{notification.yousnow.ios.apns.certificatePath}" />
+        		</map>
+        </constructor-arg>
+        <constructor-arg>   		
+        		<map>
+        			<entry key="default" value="$shoppino-notification{notification.ios.apns.keystorepwd}" />
+        			<entry key="soleto" value="$shoppino-notification{notification.soleto.ios.apns.keystorepwd}" />
+        			<entry key="animaecuore" value="$shoppino-notification{notification.animaecuore.ios.apns.keystorepwd}" />
+        			<entry key="vacanzeinpuglia" value="$shoppino-notification{notification.vacanzeinpuglia.ios.apns.keystorepwd}" />	
+        			<entry key="sanvitobr" value="$shoppino-notification{notification.sanvitobr.ios.apns.keystorepwd}" />        			
+        			<entry key="eurofood" value="$shoppino-notification{notification.eurofood.ios.apns.keystorepwd}" />
+        			<entry key="studiosponziello" value="$shoppino-notification{notification.studiosponziello.ios.apns.keystorepwd}" />
+        			<entry key="bpp" value="$shoppino-notification{notification.bpp.ios.apns.keystorepwd}" />
+        			<entry key="yousnow" value="$shoppino-notification{notification.yousnow.ios.apns.keystorepwd}" />
+        		</map>
+       </constructor-arg>
+       <constructor-arg value="$shoppino-notification{notification.ios.apns.production}" />        		
+    </bean> -->
+    
+    <bean id="apnsPushNotificationManager" class="shoppino.notification.ApnsPushNotificationManagerMTDynamicImpl">
+       
+    </bean>
+    
+</beans>
