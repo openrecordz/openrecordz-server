@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import shoppino.domain.Person;
+import openrecordz.domain.Person;
 
 
 /**

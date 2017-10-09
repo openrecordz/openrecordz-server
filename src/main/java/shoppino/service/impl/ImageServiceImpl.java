@@ -6,6 +6,7 @@ import java.net.MalformedURLException;
 import java.nio.charset.Charset;
 
 import microdev.util.HttpUtil;
+import openrecordz.domain.Image;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -27,7 +28,6 @@ import org.json.simple.JSONValue;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 
-import shoppino.domain.Image;
 import shoppino.service.ImageService;
 
 public class ImageServiceImpl implements ImageService {

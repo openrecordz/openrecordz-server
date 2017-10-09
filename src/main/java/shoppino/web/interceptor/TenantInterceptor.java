@@ -12,7 +12,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import shoppino.domain.Tenant;
+import openrecordz.domain.Tenant;
 import shoppino.service.TenantService;
 import shoppino.service.impl.TenantThreadLocal;
 

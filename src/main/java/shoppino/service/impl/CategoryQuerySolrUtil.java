@@ -1,6 +1,6 @@
 package shoppino.service.impl;
 
-import shoppino.domain.Searchable;
+import openrecordz.domain.Searchable;
 
 public class CategoryQuerySolrUtil {
 

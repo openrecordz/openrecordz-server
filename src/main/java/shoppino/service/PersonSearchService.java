@@ -2,7 +2,7 @@ package shoppino.service;
 
 import java.util.List;
 
-import shoppino.domain.Person;
+import openrecordz.domain.Person;
 import shoppino.exception.ShoppinoException;
 
 public interface PersonSearchService {

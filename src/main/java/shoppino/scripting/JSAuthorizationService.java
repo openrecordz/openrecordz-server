@@ -7,7 +7,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 
-import shoppino.domain.Tenant;
+import openrecordz.domain.Tenant;
 import shoppino.exception.ShoppinoRuntimeException;
 import shoppino.security.exception.UserNotExistsException;
 import shoppino.security.service.AuthenticationService;

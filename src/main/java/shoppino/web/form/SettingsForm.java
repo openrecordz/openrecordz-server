@@ -3,7 +3,7 @@ package shoppino.web.form;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import shoppino.domain.Person;
+import openrecordz.domain.Person;
 
 public class SettingsForm extends Person {
 	

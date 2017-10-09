@@ -17,8 +17,8 @@ import org.codehaus.jackson.type.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
-import shoppino.domain.Person;
-import shoppino.domain.Tenant;
+import openrecordz.domain.Person;
+import openrecordz.domain.Tenant;
 import shoppino.exception.ResourceNotFoundException;
 import shoppino.mail.service.EmailMessageType;
 import shoppino.mail.service.MailService;

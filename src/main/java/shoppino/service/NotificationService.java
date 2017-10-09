@@ -3,7 +3,7 @@ package shoppino.service;
 import java.util.List;
 import java.util.Map;
 
-import shoppino.domain.Notification;
+import openrecordz.domain.Notification;
 import shoppino.exception.ResourceNotFoundException;
 import shoppino.exception.ShoppinoException;
 import shoppino.exception.TooManyNotificationException;

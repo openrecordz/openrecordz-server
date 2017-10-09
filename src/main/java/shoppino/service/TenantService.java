@@ -2,7 +2,7 @@ package shoppino.service;
 
 import java.util.List;
 
-import shoppino.domain.Tenant;
+import openrecordz.domain.Tenant;
 import shoppino.web.exception.ValidationException;
 
 public interface TenantService {

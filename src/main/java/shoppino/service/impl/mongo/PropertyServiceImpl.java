@@ -5,8 +5,8 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import shoppino.domain.Property;
-import shoppino.domain.customdata.CustomData;
+import openrecordz.domain.Property;
+import openrecordz.domain.customdata.CustomData;
 import shoppino.exception.ResourceNotFoundException;
 import shoppino.service.CustomDataService;
 import shoppino.service.PropertyService;

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import microdev.util.HttpUtil;
+import openrecordz.domain.Person;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -16,7 +17,6 @@ import org.springframework.social.connect.ConnectionFactoryLocator;
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.util.MultiValueMap;
 
-import shoppino.domain.Person;
 import shoppino.exception.ShoppinoException;
 import shoppino.service.PersonService;
 import shoppino.service.SocialService;

@@ -28,7 +28,7 @@ import org.apache.log4j.spi.LoggingEvent;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 
-import shoppino.domain.Tenant;
+import openrecordz.domain.Tenant;
 import shoppino.service.TenantService;
 import shoppino.service.impl.RequestThreadLocal;
 import shoppino.service.impl.TenantThreadLocal;

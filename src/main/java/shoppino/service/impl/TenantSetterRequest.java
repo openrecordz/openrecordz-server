@@ -8,7 +8,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.context.MessageSource;
 
-import shoppino.domain.Tenant;
+import openrecordz.domain.Tenant;
 import shoppino.service.TenantService;
 
 public class TenantSetterRequest {

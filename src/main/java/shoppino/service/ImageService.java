@@ -8,7 +8,7 @@ import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
 import org.springframework.core.io.Resource;
 
-import shoppino.domain.Image;
+import openrecordz.domain.Image;
 
 
 

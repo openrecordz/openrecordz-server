@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import shoppino.domain.Person;
-import shoppino.domain.validator.UserRegistrationServiceValidation;
+import openrecordz.domain.Person;
+import openrecordz.domain.validator.UserRegistrationServiceValidation;
 import shoppino.exception.ResourceNotFoundException;
 import shoppino.exception.ShoppinoException;
 import shoppino.security.exception.UserNotExistsException;

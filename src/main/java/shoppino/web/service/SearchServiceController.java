@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import shoppino.domain.customdata.CustomData;
+import openrecordz.domain.customdata.CustomData;
 import shoppino.exception.ShoppinoException;
 import shoppino.service.CustomDataService;
 

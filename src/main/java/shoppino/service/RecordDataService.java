@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 
-import shoppino.domain.customdata.CustomData;
-import shoppino.domain.customdata.CustomDatable;
+import openrecordz.domain.customdata.CustomData;
+import openrecordz.domain.customdata.CustomDatable;
 import shoppino.exception.ResourceNotFoundException;
 
 

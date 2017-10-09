@@ -23,9 +23,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
-import shoppino.domain.Person;
-import shoppino.domain.Tenant;
-import shoppino.domain.validator.UserRegistrationValidation;
+import openrecordz.domain.Person;
+import openrecordz.domain.Tenant;
+import openrecordz.domain.validator.UserRegistrationValidation;
 import shoppino.exception.EmailAlreadyInUseException;
 import shoppino.exception.ResourceNotFoundException;
 import shoppino.exception.ShoppinoException;

@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.supercsv.io.CsvMapWriter;
 import org.supercsv.prefs.CsvPreference;
 
-import shoppino.domain.customdata.CustomData;
+import openrecordz.domain.customdata.CustomData;
 import shoppino.exception.ShoppinoException;
 import shoppino.service.CustomDataService;
 

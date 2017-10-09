@@ -7,7 +7,7 @@
 <%-- <%@ taglib prefix="mtsec" uri="http://www.dressique.com/security/tags" %> --%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
-<%@ page import="shoppino.domain.properties.PropertyKeyConstants" %> 
+<%@ page import="openrecordz.domain.properties.PropertyKeyConstants" %> 
 <fmt:setBundle basename="application-${env}" var="application" scope="application"/>
 <fmt:setBundle basename="application-social" var="applicationSocial" scope="application"/>
 <fmt:setBundle basename="application-commons" var="applicationCommons" scope="application"/>

@@ -9,7 +9,7 @@ import javax.jms.ConnectionFactory;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Repository;
 
-import shoppino.domain.Notification;
+import openrecordz.domain.Notification;
 
 /**
  * @author Lorenzo

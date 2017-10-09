@@ -7,7 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.expression.WebSecurityExpressionRoot;
 
-import shoppino.domain.Tenant;
+import openrecordz.domain.Tenant;
 import shoppino.service.impl.TenantSetterRequest;
 import shoppino.service.impl.TenantSettingsSetter;
 

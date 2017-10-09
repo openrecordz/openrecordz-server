@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import shoppino.domain.Category;
+import openrecordz.domain.Category;
 import shoppino.service.CategoryService;
 import shoppino.service.TenantService;
 

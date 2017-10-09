@@ -12,7 +12,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.provisioning.UserDetailsManager;
 
-import shoppino.domain.Tenant;
+import openrecordz.domain.Tenant;
 import shoppino.security.exception.UserNotExistsException;
 import shoppino.security.service.AuthorizationService;
 import shoppino.security.service.UserService;

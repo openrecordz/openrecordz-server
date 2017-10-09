@@ -24,8 +24,8 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import shoppino.domain.Person;
-import shoppino.domain.validator.UserRegistrationServiceValidation;
+import openrecordz.domain.Person;
+import openrecordz.domain.validator.UserRegistrationServiceValidation;
 import shoppino.exception.EmailAlreadyInUseException;
 import shoppino.exception.ShoppinoException;
 import shoppino.security.domain.User;

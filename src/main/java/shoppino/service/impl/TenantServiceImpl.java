@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import shoppino.domain.Tenant;
+import openrecordz.domain.Tenant;
 import shoppino.exception.ShoppinoRuntimeException;
 import shoppino.security.service.AuthenticationService;
 import shoppino.service.RDBService;

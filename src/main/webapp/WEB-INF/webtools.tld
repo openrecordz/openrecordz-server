@@ -76,7 +76,7 @@
       <function>
         <name>generateURL</name>
         <function-class>shoppino.WebTools</function-class>
-        <function-signature>java.lang.String generateURL(shoppino.domain.Product)</function-signature>
+        <function-signature>java.lang.String generateURL(openrecordz.domain.Product)</function-signature>
     </function>
     
 </taglib>

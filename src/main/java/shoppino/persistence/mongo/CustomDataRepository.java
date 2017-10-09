@@ -2,7 +2,7 @@ package shoppino.persistence.mongo;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-import shoppino.domain.customdata.CustomData;
+import openrecordz.domain.customdata.CustomData;
 
 
 /**

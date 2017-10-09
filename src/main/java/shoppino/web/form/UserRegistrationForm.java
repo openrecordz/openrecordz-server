@@ -4,7 +4,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.social.connect.UserProfile;
 
-import shoppino.domain.Person;
+import openrecordz.domain.Person;
 
 public class UserRegistrationForm extends Person {
 	

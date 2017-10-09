@@ -20,7 +20,7 @@
   
      	 <!-- AOP -->
                 
-        <bean id="customDataScriptingAspectBean" class="shoppino.domain.customdata.scripting.CustomDataScriptingHandler"/>         
+        <bean id="customDataScriptingAspectBean" class="openrecordz.domain.customdata.scripting.CustomDataScriptingHandler"/>         
         
        
          

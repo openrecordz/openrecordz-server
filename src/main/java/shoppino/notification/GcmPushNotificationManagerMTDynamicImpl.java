@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
 
-import shoppino.domain.Tenant;
 import shoppino.exception.ShoppinoRuntimeException;
 import shoppino.notification.dao.DeviceNotificationDAO;
 import shoppino.notification.domain.DeviceNotification;
@@ -29,6 +28,8 @@ import com.google.android.gcm.server.Message;
 import com.google.android.gcm.server.MulticastResult;
 import com.google.android.gcm.server.Result;
 import com.google.android.gcm.server.Sender;
+
+import openrecordz.domain.Tenant;
 
 public class GcmPushNotificationManagerMTDynamicImpl implements PushNotificationManager {
 

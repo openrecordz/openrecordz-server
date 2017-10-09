@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 
-import shoppino.domain.Person;
+import openrecordz.domain.Person;
 import shoppino.exception.ResourceNotFoundException;
 import shoppino.mail.service.EmailSettingsConstant;
 import shoppino.mail.service.MailService;

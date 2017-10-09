@@ -13,7 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import shoppino.domain.Person;
+import openrecordz.domain.Person;
 import shoppino.exception.ResourceNotFoundException;
 import shoppino.security.exception.AuthenticationException;
 import shoppino.security.service.AuthenticationService;

@@ -118,7 +118,7 @@
                 <bean class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean">
                     <property name="serializers">
                         <array>
-                            <bean class="shoppino.domain.serializer.ObjectIdSerializer"/>
+                            <bean class="openrecordz.domain.serializer.ObjectIdSerializer"/>
                         </array>
                     </property>
                 </bean>
@@ -324,11 +324,11 @@
 	
 	
 	
-	<bean class="shoppino.domain.validator.UserRegistrationValidation" />		
-	<bean class="shoppino.domain.validator.UserRegistrationServiceValidation" />
-	<bean class="shoppino.domain.validator.ChangePasswordValidation" />
-	<bean class="shoppino.domain.validator.SettingsValidation" />
-	<bean class="shoppino.domain.validator.PasswordForgotValidation" />
+	<bean class="openrecordz.domain.validator.UserRegistrationValidation" />		
+	<bean class="openrecordz.domain.validator.UserRegistrationServiceValidation" />
+	<bean class="openrecordz.domain.validator.ChangePasswordValidation" />
+	<bean class="openrecordz.domain.validator.SettingsValidation" />
+	<bean class="openrecordz.domain.validator.PasswordForgotValidation" />
 	
 	
 	

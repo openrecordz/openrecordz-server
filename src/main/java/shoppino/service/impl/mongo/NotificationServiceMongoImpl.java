@@ -16,8 +16,8 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Order;
 import org.springframework.data.mongodb.core.query.Query;
 
-import shoppino.domain.Notification;
-import shoppino.domain.Person;
+import openrecordz.domain.Notification;
+import openrecordz.domain.Person;
 import shoppino.exception.ResourceNotFoundException;
 import shoppino.exception.ShoppinoException;
 import shoppino.exception.TooManyNotificationException;

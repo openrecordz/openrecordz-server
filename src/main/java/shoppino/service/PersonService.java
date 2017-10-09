@@ -3,7 +3,7 @@ package shoppino.service;
 import java.io.InputStream;
 import java.util.List;
 
-import shoppino.domain.Person;
+import openrecordz.domain.Person;
 import shoppino.exception.EmailAlreadyInUseException;
 import shoppino.exception.ResourceNotFoundException;
 import shoppino.exception.ShoppinoException;

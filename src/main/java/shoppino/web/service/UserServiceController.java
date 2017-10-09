@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import shoppino.domain.Person;
-import shoppino.domain.Tenant;
+import openrecordz.domain.Person;
+import openrecordz.domain.Tenant;
 import shoppino.exception.ResourceNotFoundException;
 import shoppino.mail.service.MailService;
 import shoppino.security.exception.AuthenticationException;

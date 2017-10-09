@@ -9,7 +9,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.context.MessageSource;
 import org.springframework.context.support.AbstractMessageSource;
 
-import shoppino.domain.customdata.CustomData;
+import openrecordz.domain.customdata.CustomData;
 import shoppino.security.exception.AuthenticationException;
 import shoppino.security.service.AuthenticationService;
 import shoppino.service.CustomDataService;
@@ -43,7 +43,7 @@ protected Log log = LogFactory.getLog(getClass());
 //				//TODO does it correct to log with admin?
 //			}, authenticationService.getCurrentLoggedUsername(),"admin");
 	
-			List<CustomData> messages =	customDataService.findByQueryInternal("{\"code\":\""+codeFinal+"\"}", shoppino.domain.MessageSource.MESSAGE_SOURCE_CLASS_NAME);
+			List<CustomData> messages =	customDataService.findByQueryInternal("{\"code\":\""+codeFinal+"\"}", openrecordz.domain.MessageSource.MESSAGE_SOURCE_CLASS_NAME);
 			
 			if (messages!=null && messages.size()>0){
 				if (messages.size()==1){

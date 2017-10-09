@@ -23,12 +23,12 @@ import org.springframework.data.mongodb.core.query.BasicQuery;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Order;
 
-import shoppino.domain.Person;
-import shoppino.domain.Searchable;
-import shoppino.domain.customdata.CustomData;
-import shoppino.domain.customdata.CustomDataImpl;
-import shoppino.domain.properties.Property;
-import shoppino.domain.properties.PropertyImpl;
+import openrecordz.domain.Person;
+import openrecordz.domain.Searchable;
+import openrecordz.domain.customdata.CustomData;
+import openrecordz.domain.customdata.CustomDataImpl;
+import openrecordz.domain.properties.Property;
+import openrecordz.domain.properties.PropertyImpl;
 import shoppino.exception.EmailAlreadyInUseException;
 import shoppino.exception.ResourceNotFoundException;
 import shoppino.exception.ShoppinoException;

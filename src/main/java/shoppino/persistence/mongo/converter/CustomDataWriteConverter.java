@@ -2,9 +2,9 @@ package shoppino.persistence.mongo.converter;
 
 import org.springframework.core.convert.converter.Converter;
 
-import shoppino.domain.customdata.CustomDataImpl;
-
 import com.mongodb.DBObject;
+
+import openrecordz.domain.customdata.CustomDataImpl;
 
 public class CustomDataWriteConverter implements Converter<CustomDataImpl, DBObject> {
 

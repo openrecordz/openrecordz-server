@@ -23,12 +23,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.supercsv.io.CsvMapWriter;
 import org.supercsv.prefs.CsvPreference;
 
-import shoppino.domain.customdata.CustomData;
 import shoppino.exception.ResourceNotFoundException;
 import shoppino.exception.ShoppinoException;
 import shoppino.service.CustomDataService;
 
 import com.mongodb.util.JSON;
+
+import openrecordz.domain.customdata.CustomData;
 
 
 

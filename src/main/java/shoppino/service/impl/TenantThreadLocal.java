@@ -1,6 +1,6 @@
 package shoppino.service.impl;
 
-import shoppino.domain.Tenant;
+import openrecordz.domain.Tenant;
 import shoppino.service.TenantService;
 
 /**

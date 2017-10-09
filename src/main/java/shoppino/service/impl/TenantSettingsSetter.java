@@ -6,8 +6,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.context.MessageSource;
 
-import shoppino.domain.Statusable;
-import shoppino.domain.Tenant;
+import openrecordz.domain.Statusable;
+import openrecordz.domain.Tenant;
 
 public class TenantSettingsSetter {
 
