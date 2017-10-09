@@ -33,7 +33,7 @@
         	
 			<!-- da finire -->
         	<!-- <aop:pointcut id="forgotPasswordServicePointcut" 
-	        	expression="execution(* shoppino.web.service.UserServiceController.passwordForgot(java.lang.String)) and args(email)"/>	 -->	        	   
+	        	expression="execution(* openrecordz.web.service.UserServiceController.passwordForgot(java.lang.String)) and args(email)"/>	 -->	        	   
  							
 			
 			

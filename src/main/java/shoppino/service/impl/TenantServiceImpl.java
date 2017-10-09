@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import openrecordz.domain.Tenant;
 import openrecordz.exception.ShoppinoRuntimeException;
+import openrecordz.web.exception.ValidationException;
 import shoppino.security.service.AuthenticationService;
 import shoppino.service.RDBService;
 import shoppino.service.TenantService;
-import shoppino.web.exception.ValidationException;
 
 public class TenantServiceImpl implements TenantService {
 

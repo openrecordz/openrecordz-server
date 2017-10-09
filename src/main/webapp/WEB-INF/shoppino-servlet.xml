@@ -181,11 +181,11 @@
                         
                         
                         <!-- 404 -->
-                        <!-- <entry key="shoppino.web.exception.UnknownResourceException" value="404, _exmsg"/> -->
+                        <!-- <entry key="openrecordz.web.exception.UnknownResourceException" value="404, _exmsg"/> -->
                         <entry key="openrecordz.exception.ResourceNotFoundException" value="404, _exmsg"/>
                                                
                         <!-- 406 NOT_ACCEPTABLE  -->
-                        <entry key="shoppino.web.exception.ValidationException" value="406, _exmsg"/>
+                        <entry key="openrecordz.web.exception.ValidationException" value="406, _exmsg"/>
                         
                         <!-- 409 conflict -->
                         <entry key="shoppino.security.exception.UsernameAlreadyInUseException" value="409, _exmsg"/>

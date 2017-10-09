@@ -7,8 +7,8 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import openrecordz.exception.ResourceNotFoundException;
+import openrecordz.web.form.PasswordForgotForm;
 import shoppino.service.PersonService;
-import shoppino.web.form.PasswordForgotForm;
 
 public class PasswordForgotValidation implements Validator {
 
