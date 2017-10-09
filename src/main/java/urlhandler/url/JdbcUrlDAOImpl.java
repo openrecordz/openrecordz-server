@@ -1,4 +1,4 @@
-package shoppino.url;
+package urlhandler.url;
 
 import java.util.HashMap;
 import java.util.Map;

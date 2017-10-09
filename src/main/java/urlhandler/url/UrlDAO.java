@@ -1,4 +1,4 @@
-package shoppino.url;
+package urlhandler.url;
 
 public interface UrlDAO {
 

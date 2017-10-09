@@ -3,7 +3,7 @@ package shoppino.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import shoppino.service.UrlService;
-import shoppino.url.UrlDAO;
+import urlhandler.url.UrlDAO;
 
 public class UrlServiceImpl implements UrlService {
 

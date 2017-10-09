@@ -1,4 +1,4 @@
-package shoppino.startup;
+package openrecordz.startup;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

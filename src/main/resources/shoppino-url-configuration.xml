@@ -8,7 +8,7 @@
 	
     <bean id="urlService" class="shoppino.service.impl.UrlServiceImpl"/>        
     
-    <bean id="urlDAO" class="shoppino.url.JdbcUrlDAOImpl">
+    <bean id="urlDAO" class="urlhandler.url.JdbcUrlDAOImpl">
         <property name="dataSource" ref="mysqlUrlDataSource"/>
     </bean>     
      

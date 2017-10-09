@@ -156,7 +156,7 @@
  -->	
 	
 	<!-- statup data populator -->
-	<bean id="startupdatapopulator" class="shoppino.startup.StartupDataPopulator" init-method="init" lazy-init="false" />
+	<bean id="startupdatapopulator" class="openrecordz.startup.StartupDataPopulator" init-method="init" lazy-init="false" />
 	
 	<!-- Default bean name is 'mongo' -->
      <mongo:mongo host="localhost" port="27017"/> 
