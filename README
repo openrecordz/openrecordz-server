@@ -1,3 +1,8 @@
+## Run 
+
+run './bin/start_dev.sh'.
+
+
 - crea l'indice sul campo _location con:
         getCollection().ensureIndex(new BasicDBObject("loc", "2d"), "geospacialIdx");
         descritto qui: https://github.com/deftlabs/mongodb-examples/blob/master/mongo-java-geospatial-example/src/main/com/deftlabs/examples/mongo/GeospacialExample.java
