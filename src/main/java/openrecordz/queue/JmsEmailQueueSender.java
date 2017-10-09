@@ -1,5 +1,5 @@
 
-package shoppino.queue;
+package openrecordz.queue;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

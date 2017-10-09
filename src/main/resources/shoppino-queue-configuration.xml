@@ -20,22 +20,22 @@
 
 	<!-- MDP Configurato -->
 	<!-- bean per la gestione delle code relative a iscrizioni, inviti e conferme -->
-	<bean id="jmsQueueNotificationSender" class="shoppino.queue.JmsQueueNotificationSender"
+	<bean id="jmsQueueNotificationSender" class="openrecordz.queue.JmsQueueNotificationSender"
 		lazy-init="true">
 		<property name="queue" value="skillidEmail"></property>
 		<property name="connectionFactory" ref="connectionFactory"/>
 	</bean>
 	
-	<bean id="jmsEmailQueueSender" class="shoppino.queue.JmsEmailQueueSender"
+	<bean id="jmsEmailQueueSender" class="openrecordz.queue.JmsEmailQueueSender"
 		lazy-init="true">
 		<property name="queue" value="shoppinoEmail"></property>
 		<property name="connectionFactory" ref="connectionFactory"/>
 	</bean>
 
-	<bean id="notificationListener" class="shoppino.queue.NotificationListener">
+	<bean id="notificationListener" class="openrecordz.queue.NotificationListener">
 	</bean>
 	
-	<bean id="mailListener" class="shoppino.queue.MailListener">
+	<bean id="mailListener" class="openrecordz.queue.MailListener">
 	</bean>
 	
 	<!-- The Spring JMS container -->

@@ -1,4 +1,4 @@
-package shoppino.queue;
+package openrecordz.queue;
 
 import java.io.IOException;
 import java.util.HashMap;

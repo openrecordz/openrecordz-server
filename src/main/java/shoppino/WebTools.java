@@ -12,10 +12,11 @@ import org.apache.commons.lang.WordUtils;
 import org.json.simple.JSONObject;
 
 import shoppino.service.TenantService;
-import shoppino.util.MapUtil;
-import shoppino.util.ThumbnailUtil;
 
 import com.github.slugify.Slugify;
+
+import openrecordz.util.MapUtil;
+import openrecordz.util.ThumbnailUtil;
 
 public class WebTools {
 	

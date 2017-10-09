@@ -1,4 +1,4 @@
-package shoppino.util;
+package openrecordz.util;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;

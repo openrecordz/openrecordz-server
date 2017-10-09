@@ -1,4 +1,4 @@
-package shoppino.util;
+package openrecordz.util;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

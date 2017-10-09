@@ -2,7 +2,7 @@
  * Copyright 2010 shareway
  * Lorenzo
  */
-package shoppino.queue;
+package openrecordz.queue;
 
 import javax.jms.JMSException;
 import javax.jms.MapMessage;

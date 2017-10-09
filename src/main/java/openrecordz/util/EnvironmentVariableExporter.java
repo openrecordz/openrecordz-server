@@ -1,9 +1,4 @@
-package shoppino.util;
-
-import javax.inject.Inject;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
+package openrecordz.util;
 
 public class EnvironmentVariableExporter {
 

@@ -55,7 +55,7 @@
 	</bean>
 	
     <!-- export env var to jsp -->
-   <!--  <bean id="myEnv" class="shoppino.util.EnvironmentVariableExporter">
+   <!--  <bean id="myEnv" class="openrecordz.util.EnvironmentVariableExporter">
 	   <property name="myEnv" value="${my.env}" />
 	</bean> -->
     

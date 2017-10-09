@@ -1,4 +1,4 @@
-package shoppino.util;
+package openrecordz.util;
 
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 

@@ -15,8 +15,8 @@ import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import openrecordz.util.DbUtil;
 import shoppino.service.RDBService;
-import shoppino.util.DbUtil;
 
 public class RDBServiceImpl implements RDBService {
 	protected final Log logger = LogFactory.getLog(getClass());

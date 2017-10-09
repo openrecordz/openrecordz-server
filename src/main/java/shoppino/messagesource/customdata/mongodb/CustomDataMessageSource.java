@@ -10,7 +10,6 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.support.AbstractMessageSource;
 
 import openrecordz.domain.customdata.CustomData;
-import shoppino.security.exception.AuthenticationException;
 import shoppino.security.service.AuthenticationService;
 import shoppino.service.CustomDataService;
 

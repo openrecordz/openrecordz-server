@@ -1,4 +1,4 @@
-package shoppino.util;
+package openrecordz.util;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

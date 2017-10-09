@@ -17,7 +17,7 @@
 
     
     
-    <!--   <bean class="shoppino.util.EnvironmentInfoUtils"/> -->
+    <!--   <bean class="openrecordz.util.EnvironmentInfoUtils"/> -->
 		<!-- id="environmentInfoUtils"  -->
     
 <!-- messageSource must be here for tenantSetterRequest  -->

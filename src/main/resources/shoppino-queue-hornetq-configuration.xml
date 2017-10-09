@@ -55,7 +55,7 @@
  <constructor-arg ref="hornetQServerImpl" />
 </bean>
      
-<bean name="systemPropertyConfigurer" class="shoppino.queue.SystemPropertyConfigurer">
+<bean name="systemPropertyConfigurer" class="openrecordz.queue.SystemPropertyConfigurer">
  <property name="systemProperties">
   <props>
    <prop key="java.naming.factory.initial">org.jnp.interfaces.NamingContextFactory</prop>

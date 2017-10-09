@@ -6,7 +6,7 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import openrecordz.exception.ShoppinoException;
-import shoppino.util.UsernameValidator;
+import openrecordz.util.UsernameValidator;
 import shoppino.web.form.UserRegistrationForm;
 
 public class UserRegistrationServiceValidation implements Validator {

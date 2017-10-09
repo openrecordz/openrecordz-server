@@ -1,5 +1,5 @@
 
-package shoppino.queue;
+package openrecordz.queue;
 
 import java.util.HashMap;
 import java.util.Map;

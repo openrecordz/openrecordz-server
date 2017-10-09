@@ -1,4 +1,4 @@
-package shoppino.queue;
+package openrecordz.queue;
 
 import java.util.Iterator;
 import java.util.Map;

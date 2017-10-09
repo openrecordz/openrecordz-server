@@ -1,4 +1,4 @@
-package shoppino.util;
+package openrecordz.util;
 
 import java.util.Calendar;
 import java.util.Date;
