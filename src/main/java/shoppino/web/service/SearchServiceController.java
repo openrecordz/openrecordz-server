@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import openrecordz.domain.customdata.CustomData;
-import shoppino.exception.ShoppinoException;
+import openrecordz.exception.ShoppinoException;
 import shoppino.service.CustomDataService;
 
 @Controller

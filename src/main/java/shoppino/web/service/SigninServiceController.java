@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import shoppino.exception.ResourceNotFoundException;
+import openrecordz.exception.ResourceNotFoundException;
 import shoppino.security.exception.AuthenticationException;
 import shoppino.security.service.AuthenticationService;
 import shoppino.service.PersonService;

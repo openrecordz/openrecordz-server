@@ -28,8 +28,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import shoppino.exception.ResourceNotFoundException;
-import shoppino.exception.ShoppinoException;
+import openrecordz.exception.ResourceNotFoundException;
+import openrecordz.exception.ShoppinoException;
 import shoppino.security.exception.AuthorizationException;
 import shoppino.service.FileService;
 

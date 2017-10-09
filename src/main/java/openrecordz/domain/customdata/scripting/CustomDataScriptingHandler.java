@@ -12,7 +12,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import shoppino.exception.ResourceNotFoundException;
+import openrecordz.exception.ResourceNotFoundException;
 import shoppino.service.CustomDataService;
 import shoppino.service.ScriptService;
 

@@ -6,7 +6,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import openrecordz.domain.customdata.CustomData;
 import openrecordz.domain.customdata.CustomDatable;
-import shoppino.exception.ResourceNotFoundException;
+import openrecordz.exception.ResourceNotFoundException;
 
 
 

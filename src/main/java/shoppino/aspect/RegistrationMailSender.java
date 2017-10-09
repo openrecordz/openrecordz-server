@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 
 import openrecordz.domain.Person;
-import shoppino.exception.ResourceNotFoundException;
+import openrecordz.exception.ResourceNotFoundException;
 import shoppino.mail.service.EmailSettingsConstant;
 import shoppino.mail.service.MailService;
 import shoppino.service.PersonService;

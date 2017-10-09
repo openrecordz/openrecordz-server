@@ -7,7 +7,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.ObjectWriter;
 
 import openrecordz.domain.customdata.CustomDatable;
-import shoppino.exception.ShoppinoRuntimeException;
+import openrecordz.exception.ShoppinoRuntimeException;
 
 @JsonIgnoreProperties({ "_type", "_status", "id" })
 public class MessageSource implements CustomDatable {

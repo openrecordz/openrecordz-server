@@ -6,7 +6,7 @@ import java.util.Map;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import openrecordz.domain.Category;
-import shoppino.exception.ResourceNotFoundException;
+import openrecordz.exception.ResourceNotFoundException;
 
 
 

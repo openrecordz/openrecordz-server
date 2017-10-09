@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 
 import openrecordz.domain.Tenant;
-import shoppino.exception.ShoppinoRuntimeException;
+import openrecordz.exception.ShoppinoRuntimeException;
 import shoppino.security.exception.UserNotExistsException;
 import shoppino.security.service.AuthenticationService;
 import shoppino.security.service.AuthorizationService;

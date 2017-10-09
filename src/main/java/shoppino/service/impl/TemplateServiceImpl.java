@@ -19,8 +19,8 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 
+import openrecordz.exception.ResourceNotFoundException;
 import shoppino.WebTools;
-import shoppino.exception.ResourceNotFoundException;
 import shoppino.security.service.AuthenticationService;
 import shoppino.service.EnvironmentService;
 import shoppino.service.PersonService;

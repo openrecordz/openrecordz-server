@@ -26,7 +26,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 
-import shoppino.exception.ResourceNotFoundException;
+import openrecordz.exception.ResourceNotFoundException;
 import shoppino.queue.JmsEmailQueueSender;
 import shoppino.service.EnvironmentService;
 import shoppino.service.TenantService;

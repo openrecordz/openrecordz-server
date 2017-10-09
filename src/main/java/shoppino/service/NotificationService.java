@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import openrecordz.domain.Notification;
-import shoppino.exception.ResourceNotFoundException;
-import shoppino.exception.ShoppinoException;
-import shoppino.exception.TooManyNotificationException;
+import openrecordz.exception.ResourceNotFoundException;
+import openrecordz.exception.ShoppinoException;
+import openrecordz.exception.TooManyNotificationException;
 
 public interface NotificationService {
 

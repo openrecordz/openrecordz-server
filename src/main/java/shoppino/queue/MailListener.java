@@ -19,7 +19,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 import openrecordz.domain.Person;
 import openrecordz.domain.Tenant;
-import shoppino.exception.ResourceNotFoundException;
+import openrecordz.exception.ResourceNotFoundException;
 import shoppino.mail.service.EmailMessageType;
 import shoppino.mail.service.MailService;
 import shoppino.service.PersonService;

@@ -2,7 +2,7 @@ package shoppino.service;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 
-import shoppino.exception.ResourceNotFoundException;
+import openrecordz.exception.ResourceNotFoundException;
 
 
 

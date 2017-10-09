@@ -182,7 +182,7 @@
                         
                         <!-- 404 -->
                         <!-- <entry key="shoppino.web.exception.UnknownResourceException" value="404, _exmsg"/> -->
-                        <entry key="shoppino.exception.ResourceNotFoundException" value="404, _exmsg"/>
+                        <entry key="openrecordz.exception.ResourceNotFoundException" value="404, _exmsg"/>
                                                
                         <!-- 406 NOT_ACCEPTABLE  -->
                         <entry key="shoppino.web.exception.ValidationException" value="406, _exmsg"/>
@@ -191,13 +191,13 @@
                         <entry key="shoppino.security.exception.UsernameAlreadyInUseException" value="409, _exmsg"/>
                         
                          <!-- 410 -->
-                        <entry key="shoppino.exception.EmailAlreadyInUseException" value="410, _exmsg"/>
+                        <entry key="openrecordz.exception.EmailAlreadyInUseException" value="410, _exmsg"/>
                         
                         <!-- 429 -->
                         <!-- https://en.wikipedia.org/wiki/List_of_HTTP_status_codes -->
-                        <entry key="shoppino.exception.TooManyNotificationException" value="429, _exmsg"/>
+                        <entry key="openrecordz.exception.TooManyNotificationException" value="429, _exmsg"/>
                         
-                          <entry key="shoppino.exception.TenantAlreadyInUseException" value="451 _exmsg"/>
+                          <entry key="openrecordz.exception.TenantAlreadyInUseException" value="451 _exmsg"/>
                         
                         
                         <!-- 500 (catch all): -->
@@ -214,7 +214,7 @@
 	    <property name="defaultStatusCode" value="500"/>
 		<property name="exceptionMappings">
 			<props>
-				<prop key="shoppino.exception.ResourceNotFoundException">resource-notfound-exception</prop>
+				<prop key="openrecordz.exception.ResourceNotFoundException">resource-notfound-exception</prop>
 				<prop key="java.lang.Exception">error</prop>								
 			</props>
 		</property>

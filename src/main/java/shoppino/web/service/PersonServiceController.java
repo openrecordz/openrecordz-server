@@ -22,8 +22,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import openrecordz.domain.Person;
 import openrecordz.domain.validator.UserRegistrationServiceValidation;
-import shoppino.exception.ResourceNotFoundException;
-import shoppino.exception.ShoppinoException;
+import openrecordz.exception.ResourceNotFoundException;
+import openrecordz.exception.ShoppinoException;
 import shoppino.security.exception.UserNotExistsException;
 import shoppino.security.service.AuthenticationService;
 import shoppino.security.service.UserService;

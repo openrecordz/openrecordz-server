@@ -26,8 +26,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import openrecordz.domain.Person;
 import openrecordz.domain.validator.UserRegistrationServiceValidation;
-import shoppino.exception.EmailAlreadyInUseException;
-import shoppino.exception.ShoppinoException;
+import openrecordz.exception.EmailAlreadyInUseException;
+import openrecordz.exception.ShoppinoException;
 import shoppino.security.domain.User;
 import shoppino.security.exception.AuthenticationException;
 import shoppino.security.exception.UserNotExistsException;

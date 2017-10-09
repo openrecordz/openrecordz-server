@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import openrecordz.domain.Person;
-import shoppino.exception.ResourceNotFoundException;
+import openrecordz.exception.ResourceNotFoundException;
 import shoppino.security.exception.AuthenticationException;
 import shoppino.security.service.AuthenticationService;
 import shoppino.security.service.UserService;

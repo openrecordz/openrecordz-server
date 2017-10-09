@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import openrecordz.domain.Property;
 import openrecordz.domain.customdata.CustomData;
-import shoppino.exception.ResourceNotFoundException;
+import openrecordz.exception.ResourceNotFoundException;
 import shoppino.service.CustomDataService;
 import shoppino.service.PropertyService;
 

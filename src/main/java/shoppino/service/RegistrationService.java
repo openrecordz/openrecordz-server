@@ -1,7 +1,7 @@
 package shoppino.service;
 
-import shoppino.exception.EmailAlreadyInUseException;
-import shoppino.exception.ShoppinoException;
+import openrecordz.exception.EmailAlreadyInUseException;
+import openrecordz.exception.ShoppinoException;
 import shoppino.security.exception.UsernameAlreadyInUseException;
 
 public interface RegistrationService {

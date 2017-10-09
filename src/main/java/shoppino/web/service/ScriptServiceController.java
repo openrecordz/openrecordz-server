@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.MultipartResolver;
 
-import shoppino.exception.ShoppinoRuntimeException;
+import openrecordz.exception.ShoppinoRuntimeException;
 import shoppino.service.ScriptService;
 import shoppino.service.TemplateService;
 

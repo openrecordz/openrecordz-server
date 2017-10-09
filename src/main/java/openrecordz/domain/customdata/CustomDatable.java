@@ -2,7 +2,7 @@ package openrecordz.domain.customdata;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 
-import shoppino.exception.ShoppinoRuntimeException;
+import openrecordz.exception.ShoppinoRuntimeException;
 
 
 

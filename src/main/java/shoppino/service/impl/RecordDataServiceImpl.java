@@ -16,7 +16,6 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Order;
 import org.springframework.data.mongodb.core.query.Query;
 
-import shoppino.exception.ResourceNotFoundException;
 import shoppino.persistence.mongo.CustomDataRepository;
 import shoppino.security.exception.AuthorizationRuntimeException;
 import shoppino.security.service.AuthenticationService;
@@ -32,6 +31,7 @@ import openrecordz.domain.customdata.CustomData;
 import openrecordz.domain.customdata.CustomDataImpl;
 import openrecordz.domain.customdata.CustomDatable;
 import openrecordz.domain.customdata.Record;
+import openrecordz.exception.ResourceNotFoundException;
 
 public class RecordDataServiceImpl implements RecordDataService{
 	

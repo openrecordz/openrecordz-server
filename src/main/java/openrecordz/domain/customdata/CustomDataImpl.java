@@ -14,14 +14,13 @@ import openrecordz.domain.Auditable;
 import openrecordz.domain.Patchable;
 import openrecordz.domain.Statusable;
 import openrecordz.domain.Tenantable;
+import openrecordz.exception.ShoppinoRuntimeException;
 
 import org.bson.types.ObjectId;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.ObjectWriter;
 import org.springframework.data.annotation.Id;
-
-import shoppino.exception.ShoppinoRuntimeException;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.util.JSON;

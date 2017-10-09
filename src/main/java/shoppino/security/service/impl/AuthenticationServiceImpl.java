@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.provisioning.UserDetailsManager;
 
 import openrecordz.domain.Person;
-import shoppino.exception.ResourceNotFoundException;
+import openrecordz.exception.ResourceNotFoundException;
 import shoppino.security.exception.AuthenticationException;
 import shoppino.security.service.AuthenticationService;
 import shoppino.service.PersonService;

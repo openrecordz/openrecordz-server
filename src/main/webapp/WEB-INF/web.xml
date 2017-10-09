@@ -27,7 +27,7 @@
    </listener>
      
    <listener>
-		<listener-class>shoppino.listener.ShoppinoContextListener</listener-class>
+		<listener-class>openrecordz.listener.OpenRecordzContextListener</listener-class>
    </listener>
    
      <listener>

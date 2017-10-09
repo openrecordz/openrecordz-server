@@ -4,8 +4,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import shoppino.exception.EmailAlreadyInUseException;
-import shoppino.exception.ShoppinoException;
+import openrecordz.exception.EmailAlreadyInUseException;
+import openrecordz.exception.ShoppinoException;
 import shoppino.security.exception.UserNotExistsException;
 import shoppino.security.exception.UsernameAlreadyInUseException;
 import shoppino.security.service.UserService;

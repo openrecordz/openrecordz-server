@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import openrecordz.domain.Person;
 import openrecordz.domain.Tenant;
-import shoppino.exception.ResourceNotFoundException;
+import openrecordz.exception.ResourceNotFoundException;
 import shoppino.mail.service.MailService;
 import shoppino.security.exception.AuthenticationException;
 import shoppino.security.exception.UserNotExistsException;

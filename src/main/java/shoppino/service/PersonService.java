@@ -4,9 +4,9 @@ import java.io.InputStream;
 import java.util.List;
 
 import openrecordz.domain.Person;
-import shoppino.exception.EmailAlreadyInUseException;
-import shoppino.exception.ResourceNotFoundException;
-import shoppino.exception.ShoppinoException;
+import openrecordz.exception.EmailAlreadyInUseException;
+import openrecordz.exception.ResourceNotFoundException;
+import openrecordz.exception.ShoppinoException;
 
 
 

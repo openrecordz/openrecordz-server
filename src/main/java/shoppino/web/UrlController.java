@@ -31,7 +31,7 @@ import org.springframework.web.client.RequestCallback;
 import org.springframework.web.client.ResponseExtractor;
 import org.springframework.web.client.RestOperations;
 
-import shoppino.exception.ShoppinoException;
+import openrecordz.exception.ShoppinoException;
 import shoppino.security.exception.UserNotExistsException;
 import shoppino.security.service.UserService;
 import shoppino.service.EnvironmentService;

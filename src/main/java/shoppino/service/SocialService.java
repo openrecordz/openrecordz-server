@@ -1,6 +1,6 @@
 package shoppino.service;
 
-import shoppino.exception.ShoppinoException;
+import openrecordz.exception.ShoppinoException;
 
 public interface SocialService {
 	
