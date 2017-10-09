@@ -84,17 +84,7 @@
 		</init-param>
 	</filter>
 	
-  <!--Servlet Filter that handles site authorization.-->
-	 <!-- <filter>
-	     <filter-name>TenantFilter</filter-name>
-	     <filter-class>shoppino.web.filter.TenantFilter</filter-class>
-	     <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-	</filter>
-	
-	<filter-mapping>
-	     <filter-name>TenantFilter</filter-name>
-	     <url-pattern>*</url-pattern>
-	</filter-mapping> -->
+ 
 
 <!-- before spring securiy -->
  <filter>

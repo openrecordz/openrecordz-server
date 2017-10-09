@@ -18,7 +18,6 @@ import org.springframework.data.mongodb.core.query.Query;
 
 import shoppino.service.CategoryService;
 import shoppino.service.TenantService;
-import shoppino.web.interceptor.CategoryInterceptor;
 
 import com.github.slugify.Slugify;
 
@@ -26,6 +25,7 @@ import openrecordz.domain.Category;
 import openrecordz.exception.ResourceNotFoundException;
 import openrecordz.exception.ShoppinoRuntimeException;
 import openrecordz.persistence.mongo.CategoryRepository;
+import openrecordz.web.interceptor.CategoryInterceptor;
 
 public class CategoryServiceMongoImpl implements CategoryService
 //	, MessageSourceAware 

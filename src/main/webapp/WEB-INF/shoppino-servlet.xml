@@ -33,29 +33,29 @@
 	<!-- <import resource="classpath:/applicationContext-security.xml" /> -->
 	
 		
-	<!-- <bean id="loggerInterceptor" class="shoppino.web.interceptor.LoggerInterceptor" />
+	<!-- <bean id="loggerInterceptor" class="openrecordz.web.interceptor.LoggerInterceptor" />
 	<bean id="handlerMapping" class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" 
     p:interceptors-ref="loggerInterceptor" /> -->
 	 <mvc:interceptors>
-<!-- 	     <bean class="shoppino.web.interceptor.ClientLocationInterceptor" />
+<!-- 	     <bean class="openrecordz.web.interceptor.ClientLocationInterceptor" />
  -->	     <!-- set env var in jsp -->
-		<bean class="shoppino.web.interceptor.EnvironmentInterceptor" />
-		<!-- <bean class="shoppino.web.interceptor.CookiesDomainChangerInterceptor" /> -->
+		<bean class="openrecordz.web.interceptor.EnvironmentInterceptor" />
+		<!-- <bean class="openrecordz.web.interceptor.CookiesDomainChangerInterceptor" /> -->
 	   
-	     <!-- <bean class="shoppino.web.interceptor.TenantInterceptor" /> -->
-	    <bean class="shoppino.web.interceptor.TenantDomainAwareInterceptor" />
-	    <bean class="shoppino.web.interceptor.AuthenticationInterceptor" />
-	    <!-- <bean class="shoppino.web.interceptor.PostSocialSignInInterceptor" /> -->
-	    <bean class="shoppino.web.interceptor.CategoryInterceptor" />
-	    <bean id="localeChangeInterceptor" class="shoppino.web.interceptor.LocaleChangeInterceptorWithoutException">
+	     <!-- <bean class="openrecordz.web.interceptor.TenantInterceptor" /> -->
+	    <bean class="openrecordz.web.interceptor.TenantDomainAwareInterceptor" />
+	    <bean class="openrecordz.web.interceptor.AuthenticationInterceptor" />
+	    <!-- <bean class="openrecordz.web.interceptor.PostSocialSignInInterceptor" /> -->
+	    <bean class="openrecordz.web.interceptor.CategoryInterceptor" />
+	    <bean id="localeChangeInterceptor" class="openrecordz.web.interceptor.LocaleChangeInterceptorWithoutException">
 	        <!-- https://jira.spring.io/browse/SPR-9456 --> 
 	        <!-- class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"> -->
 	   	 <property name="paramName" value="lang"/>
 		</bean>
 		
-	   <bean class="shoppino.web.interceptor.AuditingInterceptor" />
-	    <bean class="shoppino.web.interceptor.RequestThreadLocalInterceptor" />
-	    <bean class="shoppino.web.interceptor.ConfigThreadLocalInterceptor" />
+	   <bean class="openrecordz.web.interceptor.AuditingInterceptor" />
+	    <bean class="openrecordz.web.interceptor.RequestThreadLocalInterceptor" />
+	    <bean class="openrecordz.web.interceptor.ConfigThreadLocalInterceptor" />
 	
 	     
 	    
@@ -65,17 +65,17 @@
 	       <!-- interviene solo sui service.. se metto a /** quindi anche per il web... ci sono problemi di cambio di utente correntemente loggato ...ad un certo punto diventa admin...non si capisce perche -->
         	<mvc:mapping path="/service/**"/>        	
         	<!-- <mvc:mapping path="/**"/> -->
-         	<bean class="shoppino.web.interceptor.ScriptingInterceptor" />
+         	<bean class="openrecordz.web.interceptor.ScriptingInterceptor" />
     	</mvc:interceptor> 
      
 	    
 	    
-	    <bean class="shoppino.web.interceptor.LoggerInterceptor" />
+	    <bean class="openrecordz.web.interceptor.LoggerInterceptor" />
 		<!-- spring 3.2 -->
 		<!-- <mvc:interceptor>
 		    <mvc:mapping path="/**"/>
 		    <exclude-mapping path="/resource/**"/>
-			<bean class="shoppino.web.interceptor.AuditingInterceptor" />
+			<bean class="openrecordz.web.interceptor.AuditingInterceptor" />
 		</mvc:interceptor> -->
 		
 		<!-- <bean id="themeChangeInterceptor" class="org.springframework.web.servlet.theme.ThemeChangeInterceptor">
@@ -157,7 +157,7 @@
         <property name="order" value="0"/>
     </bean>      
 	
-    <bean id="restExceptionResolver" class="shoppino.web.rest.exception.handler.RestExceptionHandler">
+    <bean id="restExceptionResolver" class="openrecordz.web.rest.exception.handler.RestExceptionHandler">
         <property name="requestUriRegEx" value=".*/service/.*|.*/like.*|.*/unlike.*|.*shops/search.json.*|.*shops/add.ajax.*|.*shops/add.json.*"/>
         <property name="order" value="100"/>
       <!--   <property name="messageConverters">
@@ -166,7 +166,7 @@
             </list>
         </property> -->
         <property name="errorResolver">
-            <bean class="shoppino.web.rest.exception.handler.DefaultRestErrorResolver">
+            <bean class="openrecordz.web.rest.exception.handler.DefaultRestErrorResolver">
                <!--  <property name="localeResolver" ref="localeResolver"/> -->
                 <property name="defaultMoreInfoUrl" value="$shoppino-commons{shoppino.moreinfo.url}"/>
                 <property name="exceptionMappingDefinitions">
@@ -209,7 +209,7 @@
     </bean>
 	
       <!-- impostando order = 200 si ottiene la 3 priorità -->
-	 <bean class="shoppino.web.exception.resolver.LoggingExceptionResolver">
+	 <bean class="openrecordz.web.exception.resolver.LoggingExceptionResolver">
 	    <property name="order" value="200"/>
 	    <property name="defaultStatusCode" value="500"/>
 		<property name="exceptionMappings">
@@ -317,7 +317,7 @@
 	 
 
     <!-- 
-	<bean id="tenantFilter" class="shoppino.web.filter.TenantFilter"/> -->
+	<bean id="tenantFilter" class="openrecordz.web.filter.TenantFilter"/> -->
 	
 	<!-- <bean id="tenantSetterRequest" class="shoppino.service.impl.TenantSetterRequest"/> -->
 	<!-- <import resource="classpath:/shoppino-shared-main-security-configuration.xml"/> -->
