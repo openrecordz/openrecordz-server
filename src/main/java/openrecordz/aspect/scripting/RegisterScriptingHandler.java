@@ -1,4 +1,4 @@
-package shoppino.aspect.scripting;
+package openrecordz.aspect.scripting;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

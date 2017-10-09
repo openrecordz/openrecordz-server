@@ -326,8 +326,8 @@
 	
 	<bean class="openrecordz.domain.validator.UserRegistrationValidation" />		
 	<bean class="openrecordz.domain.validator.UserRegistrationServiceValidation" />
-	<bean class="openrecordz.domain.validator.ChangePasswordValidation" />
-	<bean class="openrecordz.domain.validator.SettingsValidation" />
+	<!-- <bean class="openrecordz.domain.validator.ChangePasswordValidation" /> -->
+	<!-- <bean class="openrecordz.domain.validator.SettingsValidation" /> -->
 	<bean class="openrecordz.domain.validator.PasswordForgotValidation" />
 	
 	
