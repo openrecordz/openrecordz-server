@@ -32,7 +32,7 @@ import openrecordz.domain.properties.PropertyImpl;
 import openrecordz.exception.EmailAlreadyInUseException;
 import openrecordz.exception.ResourceNotFoundException;
 import openrecordz.exception.ShoppinoException;
-import shoppino.persistence.mongo.PersonRepository;
+import openrecordz.persistence.mongo.PersonRepository;
 import shoppino.security.exception.AuthorizationRuntimeException;
 import shoppino.security.service.AuthenticationService;
 import shoppino.service.ImageService;

@@ -166,7 +166,7 @@
 
 	<!-- http://docs.spring.io/spring-data/data-mongo/docs/1.5.2.RELEASE/reference/html/mongo.core.html#mongo.custom-converters -->
 	<!-- <mongo:mapping-converter>
-	  <mongo:custom-converters base-package="shoppino.persistence.mongo.converter" />
+	  <mongo:custom-converters base-package="openrecordz.persistence.mongo.converter" />
 	</mongo:mapping-converter> -->
 
 	
@@ -174,12 +174,12 @@
 	  <mongo:custom-converters>
 	    <mongo:converter ref="customDataReadConverter"/>
 	    <mongo:converter>
-	      <bean class="shoppino.persistence.mongo.converter.CustomDataWriteConverter"/>
+	      <bean class="openrecordz.persistence.mongo.converter.CustomDataWriteConverter"/>
 	    </mongo:converter>
 	  </mongo:custom-converters>
 	</mongo:mapping-converter>
 	
-	<bean id="customDataReadConverter" class="shoppino.persistence.mongo.converter.CustomDataReadConverter"/>
+	<bean id="customDataReadConverter" class="openrecordz.persistence.mongo.converter.CustomDataReadConverter"/>
 	
 	
 	
@@ -188,7 +188,7 @@
 		 <constructor-arg ref="mappingConverter"/> 
 	</bean>
 	
-	<mongo:repositories base-package="shoppino.persistence.mongo" />
+	<mongo:repositories base-package="openrecordz.persistence.mongo" />
 	
 	
    <!--  SOLR  -->

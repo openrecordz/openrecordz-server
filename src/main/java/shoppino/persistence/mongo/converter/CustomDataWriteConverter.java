@@ -20,7 +20,7 @@ public class CustomDataWriteConverter implements Converter<CustomDataImpl, DBObj
 //    return dbo;
 	  source.removeField("id");
 //	  mappingMongoConverter.get
-	  source.put("_class","shoppino.domain.customdata.CustomDataImpl");
+	  source.put("_class","openrecordz.domain.customdata.CustomDataImpl");
 	  return  source;
   }
 }
