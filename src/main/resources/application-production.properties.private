@@ -7,7 +7,7 @@ platform.web.port=80
 #context path. if ROOT use "" (empty string) character
 platform.web.context=
 
-database.name=smart21
+database.name=openrecordz
 
 database.user = root
 database.passwd = shoppino
