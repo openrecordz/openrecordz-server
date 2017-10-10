@@ -14,58 +14,20 @@ run 'mvn clean install tomcat7:run -Dmy.env=production&'.
 
 
 
+# MongoDB Indexes
+Create OpenRecordz mongodb indexes with:
 
-- crea l'indice sul campo _location con:
-        getCollection().ensureIndex(new BasicDBObject("loc", "2d"), "geospacialIdx");
-        descritto qui: https://github.com/deftlabs/mongodb-examples/blob/master/mongo-java-geospatial-example/src/main/com/deftlabs/examples/mongo/GeospacialExample.java
-	oppure a mano cosi:
-	db.customData.createIndex({ _location: "2dsphere" })
-	
-	
-- crea indice fulltext per tutti i campi di tipo stringa
-
-db.customData.createIndex( { "$**": "text" }, { name: "S21TextIndex" },  { default_language: "italian" })
-
-db.person.createIndex( { "$**": "text" }, { name: "S21PeopleTextIndex" },  { default_language: "italian" })
-db.person.find({ $text: { $search: "andrea" } });
-
-nn prende l'italiano***
-
-- eliminare indice
-   db.customData.dropIndex("S21TextIndex")
-        
-
-        
-        
-- aggiornare mongodb dalla 2.0.X alla 2.6
- sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
- echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list        
- sudo apt-get update
-        
-        
-sudo apt-get install -y mongodb-org=2.6.12 mongodb-org-server=2.6.12 mongodb-org-shell=2.6.12 mongodb-org-mongos=2.6.12 mongodb-org-tools=2.6.12
-        
-        
-        mongorestore --db smart21 dump/smart21
-        
-        
-        
-        
-        
-
-
-
-
-
-
-
- db.customData.createIndex({"_tenants":1});
- db.customData.createIndex({"_dataset_ref_id":1});
+db.customData.createIndex({ _location: "2dsphere" })
+db.customData.createIndex({"_tenants":1});
+db.customData.createIndex({"_dataset_ref_id":1});
 db.customData.createIndex({"_status":1});
-     
-
 db.customData.createIndex({"_createdby":1});
 db.customData.createIndex({"_modifiedby":1});
+
+	
+Create OpenRecordz mongodb fulltext index for all text fields with:
+db.customData.createIndex( { "$**": "text" }, { name: "ORTextIndex" },  { default_language: "italian" })
+db.person.createIndex( { "$**": "text" }, { name: "ORPeopleTextIndex" },  { default_language: "italian" })
 
      
    
