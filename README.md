@@ -1,8 +1,10 @@
 # Prerequisites
-- Java
-- Maven
+* Java
+* Maven
+* MongoDB
 
 # Run 
+Checkout the project and 
 
 ## Run in development mode
 
