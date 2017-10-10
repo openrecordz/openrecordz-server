@@ -9,7 +9,7 @@
 //import org.springframework.test.context.ContextConfiguration;
 //import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 //
-//import openrecordz.url.UrlDAO;
+//import platform.url.UrlDAO;
 //
 ///**
 // * Test case to show the usage of {@link } and thus the Mongo

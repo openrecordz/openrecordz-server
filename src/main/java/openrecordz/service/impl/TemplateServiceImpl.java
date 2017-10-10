@@ -42,10 +42,10 @@ public class TemplateServiceImpl implements TemplateService {
 	private VelocityEngine velocityEngine;
 	
 	
-	@Value("$shoppino{openrecordz.url}")
+	@Value("$shoppino{platform.url}")
 	private String platformUrl;
 	
-	@Value("$shoppino{openrecordz.hostname}")
+	@Value("$shoppino{platform.hostname}")
 	private String platformHostname;
 	
 	

@@ -48,7 +48,7 @@ public class MailListener implements MessageListener {
 	@Autowired
 	UrlService urlService;
 
-	@Value("$shoppino{openrecordz.url}")
+	@Value("$shoppino{platform.url}")
 	private String platformUrl;
 	
 	
