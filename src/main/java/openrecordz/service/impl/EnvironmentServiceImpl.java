@@ -17,7 +17,7 @@ public class EnvironmentServiceImpl  implements EnvironmentService {
 	@Autowired
 	TenantService tenantService;
 	
-	@Value("$shoppino{shoppino.hostname}")
+	@Value("$shoppino{openrecordz.hostname}")
 	String shoppinoHostname;
 	
 	@Value("$shoppino{smart21.web.port}")

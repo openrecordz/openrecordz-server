@@ -15,7 +15,7 @@ public class TenantSetterRequest {
 
 	private Log logger = LogFactory.getLog(this.getClass());
 
-//	@Value("$shoppino{shoppino.url}")
+//	@Value("$shoppino{openrecordz.url}")
 //	private String shoppinoUrl;
 //	@Autowired
 	MessageSource messageSource;

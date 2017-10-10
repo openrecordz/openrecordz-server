@@ -67,10 +67,10 @@ public class ScriptServiceMultiEngineImpl implements ScriptService {
 	public String fileSystemScriptsPath;
 
 	
-	@Value("$shoppino{shoppino.url}")
+	@Value("$shoppino{openrecordz.url}")
 	private String shoppinoUrl;
 	
-	@Value("$shoppino{shoppino.hostname}")
+	@Value("$shoppino{openrecordz.hostname}")
 	private String shoppinoHostname;
 	
 	

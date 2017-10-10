@@ -168,7 +168,7 @@
         <property name="errorResolver">
             <bean class="openrecordz.web.rest.exception.handler.DefaultRestErrorResolver">
                <!--  <property name="localeResolver" ref="localeResolver"/> -->
-                <property name="defaultMoreInfoUrl" value="$shoppino-commons{shoppino.moreinfo.url}"/>
+                <property name="defaultMoreInfoUrl" value="$shoppino-commons{openrecordz.moreinfo.url}"/>
                 <property name="exceptionMappingDefinitions">
                     <map>
                         <!-- 401 -->
