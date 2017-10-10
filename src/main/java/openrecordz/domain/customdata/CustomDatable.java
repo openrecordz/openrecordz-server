@@ -2,7 +2,7 @@ package openrecordz.domain.customdata;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 
-import openrecordz.exception.ShoppinoRuntimeException;
+import openrecordz.exception.OpenRecordzRuntimeException;
 
 
 
@@ -15,7 +15,7 @@ public interface CustomDatable {
 	@JsonIgnore
 	public String getType(); //className
 	
-	public String toJSON() throws ShoppinoRuntimeException ;
+	public String toJSON() throws OpenRecordzRuntimeException ;
 	
 
 

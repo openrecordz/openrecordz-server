@@ -20,7 +20,7 @@ import com.github.slugify.Slugify;
 
 import openrecordz.domain.Category;
 import openrecordz.exception.ResourceNotFoundException;
-import openrecordz.exception.ShoppinoRuntimeException;
+import openrecordz.exception.OpenRecordzRuntimeException;
 import openrecordz.persistence.mongo.CategoryRepository;
 import openrecordz.service.CategoryService;
 import openrecordz.service.TenantService;
@@ -118,7 +118,7 @@ public class CategoryServiceMongoImpl implements CategoryService
 		
 		
 		if (!path.startsWith("/"))
-			throw new ShoppinoRuntimeException("Category path must start with / character.");
+			throw new OpenRecordzRuntimeException("Category path must start with / character.");
 		
 		path = "/"+tenantService.getCurrentTenantName()+path;
 		log.debug("path with tenant: " + path);
@@ -154,7 +154,7 @@ public class CategoryServiceMongoImpl implements CategoryService
 		
 		
 		if (!path.startsWith("/"))
-			throw new ShoppinoRuntimeException("Category path must start with / character.");
+			throw new OpenRecordzRuntimeException("Category path must start with / character.");
 		
 		path = "/"+tenantService.getCurrentTenantName()+path;
 		log.debug("path with tenant: " + path);
@@ -192,7 +192,7 @@ public class CategoryServiceMongoImpl implements CategoryService
 		path=encodePath(path);
 		
 		if (!path.startsWith("/"))
-			throw new ShoppinoRuntimeException("Category path must start with / character.");
+			throw new OpenRecordzRuntimeException("Category path must start with / character.");
 		
 	
 		path = "/"+tenantService.getCurrentTenantName()+path;
@@ -202,7 +202,7 @@ public class CategoryServiceMongoImpl implements CategoryService
 		Category c = this.getById(path);
 		
 		if (!c.getTenants().contains(tenantService.getCurrentTenantName()))
-			throw new ShoppinoRuntimeException("You can't delete category from other tenant");
+			throw new OpenRecordzRuntimeException("You can't delete category from other tenant");
 		
 		repository.delete(path);
 		

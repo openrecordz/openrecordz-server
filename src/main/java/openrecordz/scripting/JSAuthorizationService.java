@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 
 import openrecordz.domain.Tenant;
-import openrecordz.exception.ShoppinoRuntimeException;
+import openrecordz.exception.OpenRecordzRuntimeException;
 import openrecordz.security.exception.UserNotExistsException;
 import openrecordz.security.service.AuthenticationService;
 import openrecordz.security.service.AuthorizationService;
@@ -43,7 +43,7 @@ public class JSAuthorizationService {
 			throw new JSAuthorizationException("Current user can't call this function");
 			
 		} catch (UserNotExistsException e) {
-			throw new ShoppinoRuntimeException(e);
+			throw new OpenRecordzRuntimeException(e);
 		}
 	}
 	

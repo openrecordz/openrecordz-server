@@ -7,7 +7,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.ObjectWriter;
 
 import openrecordz.domain.customdata.CustomDatable;
-import openrecordz.exception.ShoppinoRuntimeException;
+import openrecordz.exception.OpenRecordzRuntimeException;
 
 @JsonIgnoreProperties( { "_type","_status", "id" })
 public class Property implements CustomDatable 
@@ -109,7 +109,7 @@ public class Property implements CustomDatable
 		try {
 			json = ow.writeValueAsString(this);
 		} catch (IOException e) {
-			throw new ShoppinoRuntimeException("Error generating JSON for object " + this.toString(), e);
+			throw new OpenRecordzRuntimeException("Error generating JSON for object " + this.toString(), e);
 		}
 		return json;
 	}

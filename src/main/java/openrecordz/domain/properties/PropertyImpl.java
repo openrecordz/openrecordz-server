@@ -7,7 +7,7 @@ import java.util.List;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import openrecordz.exception.ShoppinoRuntimeException;
+import openrecordz.exception.OpenRecordzRuntimeException;
 
 
 
@@ -52,7 +52,7 @@ public class PropertyImpl<T> implements Property<T> {
 	public PropertyImpl(JSONObject propertyAsJson) {
 		super();
 			if (propertyAsJson.get("_id") == null) {
-				throw new ShoppinoRuntimeException("The property must have a field _id");
+				throw new OpenRecordzRuntimeException("The property must have a field _id");
 			}
 		this.id = propertyAsJson.get("_id").toString();
 		this.displayName = propertyAsJson.get("displayName").toString();		

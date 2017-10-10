@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.MultipartResolver;
 
-import openrecordz.exception.ShoppinoRuntimeException;
+import openrecordz.exception.OpenRecordzRuntimeException;
 import openrecordz.service.ScriptService;
 import openrecordz.service.TemplateService;
 
@@ -74,7 +74,7 @@ public class ScriptServiceController implements BaseServiceController {
 		 logger.debug("functionName : " + functionName);	
 		 
 		 if (functionName.startsWith("g_" )) {
-			 throw new ShoppinoRuntimeException("You cant't invoke a guest function from here");
+			 throw new OpenRecordzRuntimeException("You cant't invoke a guest function from here");
 		 }
 		 
 		 //TODO inserire nello script il controllo sui permessi
@@ -101,7 +101,7 @@ public class ScriptServiceController implements BaseServiceController {
 		 logger.debug("functionName : " + functionName);	
 		 
 		 if (functionName.startsWith("g_" )) {
-			 throw new ShoppinoRuntimeException("You cant't invoke a guest function from here");
+			 throw new OpenRecordzRuntimeException("You cant't invoke a guest function from here");
 		 }
 		 
 		 //TODO inserire nello script il controllo sui permessi
@@ -142,7 +142,7 @@ public class ScriptServiceController implements BaseServiceController {
 		 	Map<String,Object> map = scriptService.call(functionName, params);
 		 	
 		 	if (map==null){
-		 		throw new ShoppinoRuntimeException("Your script controller return a null Map<String,Object>. ");
+		 		throw new OpenRecordzRuntimeException("Your script controller return a null Map<String,Object>. ");
 		 	}
 		 	
 		 	if (map.containsKey("body"))
@@ -209,7 +209,7 @@ public class ScriptServiceController implements BaseServiceController {
 		 logger.debug("functionName : " + functionName);	
 		 
 		 if (!functionName.startsWith("g_" )) {
-			 throw new ShoppinoRuntimeException("You cant't invoke an authenticated function from here");
+			 throw new OpenRecordzRuntimeException("You cant't invoke an authenticated function from here");
 		 }
 		 
 		 //TODO inserire nello script il controllo sui permessi
@@ -232,7 +232,7 @@ public class ScriptServiceController implements BaseServiceController {
 		 logger.debug("functionName : " + functionName);	
 		 
 		 if (!functionName.startsWith("g_" )) {
-			 throw new ShoppinoRuntimeException("You cant't invoke an authenticated function from here");
+			 throw new OpenRecordzRuntimeException("You cant't invoke an authenticated function from here");
 		 }
 		 
 		 //TODO inserire nello script il controllo sui permessi
@@ -247,7 +247,7 @@ public class ScriptServiceController implements BaseServiceController {
 		 Map<String,Object> map = scriptService.call(functionName, params);
 		 	
 			if (map==null){
-		 		throw new ShoppinoRuntimeException("Your script controller return a null Map<String,Object>. ");
+		 		throw new OpenRecordzRuntimeException("Your script controller return a null Map<String,Object>. ");
 		 	}
 		 	
 		 	if (map.containsKey("body"))

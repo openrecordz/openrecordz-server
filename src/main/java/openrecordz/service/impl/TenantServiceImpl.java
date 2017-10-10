@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import openrecordz.domain.Tenant;
-import openrecordz.exception.ShoppinoRuntimeException;
+import openrecordz.exception.OpenRecordzRuntimeException;
 import openrecordz.security.service.AuthenticationService;
 import openrecordz.service.RDBService;
 import openrecordz.service.TenantService;
@@ -124,7 +124,7 @@ public class TenantServiceImpl implements TenantService {
 		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			throw new ShoppinoRuntimeException(e);
+			throw new OpenRecordzRuntimeException(e);
 		}
 		
 	}

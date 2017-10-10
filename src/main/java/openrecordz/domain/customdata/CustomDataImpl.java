@@ -14,7 +14,7 @@ import openrecordz.domain.Auditable;
 import openrecordz.domain.Patchable;
 import openrecordz.domain.Statusable;
 import openrecordz.domain.Tenantable;
-import openrecordz.exception.ShoppinoRuntimeException;
+import openrecordz.exception.OpenRecordzRuntimeException;
 
 import org.bson.types.ObjectId;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
@@ -292,7 +292,7 @@ public class CustomDataImpl extends BasicDBObject implements CustomData, Patchab
 		return clone;
 	}
 	
-	public String toJSON() throws ShoppinoRuntimeException {
+	public String toJSON() throws OpenRecordzRuntimeException {
 //		http://stackoverflow.com/questions/15786129/converting-java-objects-to-json-with-jackson
 		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 		String json=null;
@@ -300,7 +300,7 @@ public class CustomDataImpl extends BasicDBObject implements CustomData, Patchab
 			json = ow.writeValueAsString(this);
 		
 		} catch (IOException e) {
-			throw new ShoppinoRuntimeException("Error creating json :" ,e);
+			throw new OpenRecordzRuntimeException("Error creating json :" ,e);
 		}
 		return json;
 	}
