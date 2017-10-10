@@ -31,7 +31,7 @@ public class SocialServiceImpl implements SocialService{
 	ConnectionFactoryLocator connectionFactoryLocator;
 	ConnectionRepository connectionRepository;
 		
-	@Value("$shoppino{person.avatar.name}")
+	@Value("$platform{person.avatar.name}")
 	String personPhotoName;
 	
 	protected Log logger = LogFactory.getLog(getClass());

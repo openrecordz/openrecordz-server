@@ -19,7 +19,7 @@ public class FileServiceImpl implements FileService {
 
 	protected Log log = LogFactory.getLog(getClass());
 	
-	@Value("$shoppino{file.filesystem.path}")
+	@Value("$platform{file.filesystem.path}")
 	String baseFileDir;
 
 	@Autowired

@@ -17,13 +17,13 @@ public class EnvironmentServiceImpl  implements EnvironmentService {
 	@Autowired
 	TenantService tenantService;
 	
-	@Value("$shoppino{platform.hostname}")
+	@Value("$platform{platform.hostname}")
 	String platformHostname;
 	
-	@Value("$shoppino{platform.web.port}")
+	@Value("$platform{platform.web.port}")
 	String port;
 	
-	@Value("$shoppino{platform.web.context}")
+	@Value("$platform{platform.web.context}")
 	String webContext;
 	
 	@Autowired 

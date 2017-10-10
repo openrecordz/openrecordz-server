@@ -43,19 +43,19 @@ public class PersonServiceController  implements BaseServiceController {
 	@Autowired
 	private AuthenticationService authenticationService;
 	
-	@Value("$shoppino{imagerepo.url}")
+	@Value("$platform{imagerepo.url}")
 	private String imagerepoUrl;
 	
-	@Value("$shoppino{imagerepo.search.url}")
+	@Value("$platform{imagerepo.search.url}")
 	private String imagerepoSearchUrl;
 	
-	@Value("$shoppino{person.avatar.name}")
+	@Value("$platform{person.avatar.name}")
 	String personPhotoName;
     
-	@Value("$shoppino{default.search.service.page}")
+	@Value("$platform{default.search.service.page}")
 	private int defaultPage;
 
-	@Value("$shoppino{default.search.service.pagesize}")
+	@Value("$platform{default.search.service.pagesize}")
 	private int defaultPageSize;
 	
 	@Autowired

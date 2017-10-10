@@ -54,14 +54,14 @@ package openrecordz.service.impl;
 //	public static String DEFAULT_SCRIPT_NAME = "main";
 //	public static String DEFAULT_SCRIPT_EXTENSION = ".js";
 //	
-//	@Value("$shoppino{scripting.filesystem.path}")
+//	@Value("$platform{scripting.filesystem.path}")
 //	public String fileSystemScriptsPath;
 //
 //	
-//	@Value("$shoppino{platform.url}")
+//	@Value("$platform{platform.url}")
 //	private String platformUrl;
 //	
-//	@Value("$shoppino{platform.hostname}")
+//	@Value("$platform{platform.hostname}")
 //	private String platformHostname;
 //	
 //	

@@ -44,7 +44,7 @@ public class PersonServiceMongoImpl implements PersonService {
 	
 	protected Log log = LogFactory.getLog(getClass());
 	
-	@Value("$shoppino{default.avatar.path}")
+	@Value("$platform{default.avatar.path}")
 	String defaultPhotoPath;
 	
 	@Autowired

@@ -31,7 +31,7 @@
 //@ContextConfiguration
 //public class PersonServiceIntegrationTest extends AbstractIntegrationTest {
 //
-//	@Value("$shoppino{default.avatar.path}")
+//	@Value("$platform{default.avatar.path}")
 //	String defaultPhotoPath;
 //	
 //	@Autowired

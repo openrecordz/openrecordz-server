@@ -87,11 +87,11 @@ public class RegisterAppServiceController implements BaseServiceController {
 	@Autowired
 	UserRegistrationValidation userRegistrationValidation;
 	
-	@Value("$shoppino{database.name}")
+	@Value("$platform{database.name}")
 	String databaseName;
-	@Value("$shoppino{database.user}")
+	@Value("$platform{database.user}")
 	String databaseUser;
-	@Value("$shoppino{database.passwd}")
+	@Value("$platform{database.passwd}")
 	String databasePassword;
 	
 	@RequestMapping(value = "/tenants", method = RequestMethod.GET)

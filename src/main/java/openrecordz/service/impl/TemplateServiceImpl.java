@@ -32,7 +32,7 @@ public class TemplateServiceImpl implements TemplateService {
 	public static String CLASSPATH_TEMPLATE_PATH = "/templates/";
 	private static Log log = LogFactory.getLog(TemplateServiceImpl.class);	
 	
-	@Value("$shoppino{templating.filesystem.path}")
+	@Value("$platform{templating.filesystem.path}")
 	public String fileSystemTemplatesPath;
 	
 	@Autowired
@@ -42,17 +42,17 @@ public class TemplateServiceImpl implements TemplateService {
 	private VelocityEngine velocityEngine;
 	
 	
-	@Value("$shoppino{platform.url}")
+	@Value("$platform{platform.url}")
 	private String platformUrl;
 	
-	@Value("$shoppino{platform.hostname}")
+	@Value("$platform{platform.hostname}")
 	private String platformHostname;
 	
 	
-	@Value("$shoppino{imagerepo.url}")
+	@Value("$platform{imagerepo.url}")
 	private String imageRepoUrl;
 	
-	@Value("$shoppino{imagerepo.search.url}")
+	@Value("$platform{imagerepo.search.url}")
 	private String imageRepoSearchUrl;
 	
 	public final String CLASSPATH_GLOBAL_TEMPLATE_PATH = "_global";

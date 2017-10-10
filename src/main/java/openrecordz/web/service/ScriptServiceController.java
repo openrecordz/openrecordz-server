@@ -49,7 +49,7 @@ public class ScriptServiceController implements BaseServiceController {
 //	@Autowired
 //	TenantService tenantService;
 //	
-//	@Value("$shoppino{scripting.filesystem.path}")
+//	@Value("$platform{scripting.filesystem.path}")
 //	public String fileSystemScriptsPath;
 	
 	 @RequestMapping(value = {"/wscripts/{scriptName}", "/wscripts/{scriptName}.json"})

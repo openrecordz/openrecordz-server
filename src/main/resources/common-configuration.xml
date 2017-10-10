@@ -16,7 +16,7 @@
 	   default-autowire="byName">
 
      <bean id="shoppinoConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-                <property name="placeholderPrefix" value="$shoppino{" />
+                <property name="placeholderPrefix" value="$platform{" />
                 <property name="placeholderSuffix" value="}" />
                 <property name="locations">
                 	<value>classpath:/application-${my.env}.properties

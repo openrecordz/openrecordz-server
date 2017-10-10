@@ -50,10 +50,10 @@ public class DatasetServiceController implements BaseServiceController {
 //	@Autowired
 //	CustomDataSearchService customDataSearchService;
 	
-	@Value("$shoppino{default.page}")
+	@Value("$platform{default.page}")
 	private int defaultPage = 0;
 	
-	@Value("$shoppino{default.pagesize}")
+	@Value("$platform{default.pagesize}")
 	private int defaultPageSize = 20;
     
 	//@Autowired

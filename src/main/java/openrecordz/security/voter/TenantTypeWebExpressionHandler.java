@@ -19,7 +19,7 @@ public class TenantTypeWebExpressionHandler extends DefaultWebSecurityExpression
     @Autowired
     TenantSettingsSetter tenantSettingsSetter;
     
-//    @Value("$shoppino{security.mt.enabled}")
+//    @Value("$platform{security.mt.enabled}")
 	private boolean enableMTSecurity;
     
     @Autowired

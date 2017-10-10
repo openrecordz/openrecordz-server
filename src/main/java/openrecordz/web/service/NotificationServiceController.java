@@ -43,10 +43,10 @@ package openrecordz.web.service;
 //	@Autowired
 //	private AuthenticationService authenticationService;
 //	
-//	@Value("$shoppino{default.page}")
+//	@Value("$platform{default.page}")
 //	private int defaultPage = 0;
 //	
-//	@Value("$shoppino{default.pagesize}")
+//	@Value("$platform{default.pagesize}")
 //	private int defaultPageSize = 20;
 //    
 ////	  @RequestMapping(value = "/notifications/add", method = RequestMethod.POST)    

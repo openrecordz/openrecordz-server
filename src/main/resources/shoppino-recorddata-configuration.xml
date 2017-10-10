@@ -33,9 +33,9 @@
 	
      <bean id="mysqlMessagesDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost/$shoppino{database.name}"/>
-        <property name="username" value="$shoppino{database.user}"/>
-        <property name="password" value="$shoppino{database.passwd}"/>
+        <property name="url" value="jdbc:mysql://localhost/$platform{database.name}"/>
+        <property name="username" value="$platform{database.user}"/>
+        <property name="password" value="$platform{database.passwd}"/>
     </bean> -->
 
      <import resource="classpath:/shoppino-customdata-aop-configuration.xml"/>    

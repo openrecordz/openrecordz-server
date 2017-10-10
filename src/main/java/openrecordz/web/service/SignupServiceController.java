@@ -77,10 +77,10 @@ public class SignupServiceController implements BaseServiceController {
 	@Autowired
 	ImageService imageService;
 	
-	@Value("$shoppino{person.avatar.path}")
+	@Value("$platform{person.avatar.path}")
 	String personPhotoPath;
 	
-	@Value("$shoppino{person.avatar.name}")
+	@Value("$platform{person.avatar.name}")
 	String personPhotoName;
 	
 	protected final Log logger = LogFactory.getLog(getClass());	

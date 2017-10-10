@@ -37,10 +37,10 @@ package openrecordz.web.service;
 //	@Autowired
 //	PersonSearchService personSearchService;
 //	
-//	@Value("$shoppino{default.search.service.page}")
+//	@Value("$platform{default.search.service.page}")
 //	private int defaultPage;
 //
-//	@Value("$shoppino{default.search.service.pagesize}")
+//	@Value("$platform{default.search.service.pagesize}")
 //	private int defaultPageSize;
 //		
 //	@RequestMapping(value = "/search/people")

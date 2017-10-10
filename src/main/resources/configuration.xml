@@ -24,7 +24,7 @@
 	
 	<import resource="classpath*:/common-configuration.xml"/>
 	<!--  <bean id="shoppinoConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-                <property name="placeholderPrefix" value="$shoppino{" />
+                <property name="placeholderPrefix" value="$platform{" />
                 <property name="placeholderSuffix" value="}" />
                 <property name="locations">
                 	<value>classpath:/application-${my.env}.properties
@@ -87,11 +87,11 @@
 	
 	
 	<bean id="imageService" class="openrecordz.service.impl.ImageServiceImpl">
-		<property name="imagerepoUrl" value="$shoppino{imagerepo.url}"/>
-		<property name="addUrl" value="$shoppino{imagerepo.add.url}"/>
-		<property name="getSizeUrl" value="$shoppino{imagerepo.getsize.url}"/>
-		<property name="searchUrl" value="$shoppino{imagerepo.search.url}"/>
-		<property name="deleteUrl" value="$shoppino{imagerepo.delete.url}"/>
+		<property name="imagerepoUrl" value="$platform{imagerepo.url}"/>
+		<property name="addUrl" value="$platform{imagerepo.add.url}"/>
+		<property name="getSizeUrl" value="$platform{imagerepo.getsize.url}"/>
+		<property name="searchUrl" value="$platform{imagerepo.search.url}"/>
+		<property name="deleteUrl" value="$platform{imagerepo.delete.url}"/>
 	</bean>	
 	
 	
@@ -162,7 +162,7 @@
      <mongo:mongo host="localhost" port="27017"/> 
    	
 	<!-- Sets up a Mongo DB instance. Configure host, port and credentials if needed. -->
-	<mongo:db-factory dbname="$shoppino{database.name}"/>
+	<mongo:db-factory dbname="$platform{database.name}"/>
 
 	<!-- http://docs.spring.io/spring-data/data-mongo/docs/1.5.2.RELEASE/reference/html/mongo.core.html#mongo.custom-converters -->
 	<!-- <mongo:mapping-converter>
@@ -197,7 +197,7 @@
 	
  
  <!--  <bean id="solrServer" abstract="true">
-    <constructor-arg value="$shoppino{solr.host}" />
+    <constructor-arg value="$platform{solr.host}" />
     <property name="connectionTimeout" value="100" />
     <property name="defaultMaxConnectionsPerHost" value="100" />
     <property name="maxTotalConnections" value="1000" />

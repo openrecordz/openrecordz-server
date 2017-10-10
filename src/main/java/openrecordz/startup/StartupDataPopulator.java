@@ -10,7 +10,7 @@ import org.springframework.context.ApplicationContext;
 public class StartupDataPopulator {
 
 
-	@Value("$shoppino{startup.startupdatapopulator.enabled}")
+	@Value("$platform{startup.startupdatapopulator.enabled}")
 	boolean enabled;
 	
 	@Autowired

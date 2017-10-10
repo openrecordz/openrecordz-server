@@ -28,7 +28,7 @@ public class ScriptingInterceptor extends HandlerInterceptorAdapter {
 
 	private Log logger = LogFactory.getLog(this.getClass());
 	
-	@Value(value="$shoppino{scripting.interceptor.request.uri.filter}")
+	@Value(value="$platform{scripting.interceptor.request.uri.filter}")
 	public String requestUriFilter;
 	
 	@Autowired

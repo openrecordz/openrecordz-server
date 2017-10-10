@@ -27,10 +27,10 @@ protected final Log logger = LogFactory.getLog(getClass());
 	@Autowired
 	CustomDataService customDataService;
 	
-	@Value("$shoppino{default.page}")
+	@Value("$platform{default.page}")
 	private int defaultPage = 0;
 	
-	@Value("$shoppino{default.pagesize}")
+	@Value("$platform{default.pagesize}")
 	private int defaultPageSize = 20;
 	
 	 @RequestMapping(value = "/search", method = RequestMethod.GET)  

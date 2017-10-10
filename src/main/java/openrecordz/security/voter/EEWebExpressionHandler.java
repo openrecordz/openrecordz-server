@@ -21,7 +21,7 @@ package openrecordz.security.voter;
 ////    @Autowired
 ////    TenantService tenantService;
 //    
-////    @Value("$shoppino{security.mt.enabled}")
+////    @Value("$platform{security.mt.enabled}")
 //	private boolean enableMTSecurity;
 //    
 //    @Autowired

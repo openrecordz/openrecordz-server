@@ -13,7 +13,7 @@
 
     	<!-- property placeholder fot spring security  -->
      <b:bean id="shoppinoConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-                <b:property name="placeholderPrefix" value="$shoppino{" />
+                <b:property name="placeholderPrefix" value="$platform{" />
                 <b:property name="placeholderSuffix" value="}" />
                 <b:property name="locations">
                 	<b:value>classpath:/application-${my.env}.properties
@@ -47,7 +47,7 @@
            <!-- <b:property name="tenantService" ref="tenantService"/> -->
            <b:property name="tenantSettingsSetter" ref="tenantSettingsSetter"/>
            <b:property name="tenantSetterRequest" ref="tenantSetterRequest"/>
-           <b:property name="enableMTSecurity" value="$shoppino{security.mt.enabled}"/>
+           <b:property name="enableMTSecurity" value="$platform{security.mt.enabled}"/>
            <b:property name="roleHierarchy" ref="roleHierarchy"/>
        </b:bean> 
        
@@ -55,7 +55,7 @@
        <!-- vecchia configurazione prima di tenantTypeWebSecurityExpressionHandler -->
        <!-- <b:bean id="eeWebSecurityExpressionHandler" class="openrecordz.security.voter.EEWebExpressionHandler">         
            <b:property name="tenantSetterRequest" ref="tenantSetterRequest"/>
-           <b:property name="enableMTSecurity" value="$shoppino{security.mt.enabled}"/>
+           <b:property name="enableMTSecurity" value="$platform{security.mt.enabled}"/>
        </b:bean> -->
        
        <!-- http://docs.spring.io/spring-security/site/docs/3.1.6.RELEASE/reference/authz-arch.html -->
@@ -95,7 +95,7 @@
       class="openrecordz.security.voter.TenantTypeWebSecurityExpressionRoot">              
         <b:property name="tenantSettingsSetter" ref="tenantSettingsSetter"/>
         <b:property name="tenantSetterRequest" ref="tenantSetterRequest"/>
-        <b:property name="enableMTSecurity" value="$shoppino{security.mt.enabled}"/>
+        <b:property name="enableMTSecurity" value="$platform{security.mt.enabled}"/>
        
      </b:bean> --> 
      
@@ -105,7 +105,7 @@
       class="openrecordz.security.voter.TenantTypeExpressionHandler">
         <b:property name="tenantService" ref="tenantService"/>
         <b:property name="tenantSettingsSetter" ref="tenantSettingsSetter"/>
-        <b:property name="enableMTSecurity" value="$shoppino{security.mt.enabled}"/>
+        <b:property name="enableMTSecurity" value="$platform{security.mt.enabled}"/>
         <b:property name="roleHierarchy" ref="roleHierarchy"/>
      </b:bean>
         
@@ -363,9 +363,9 @@
 	<!-- http://springinpractice.com/2010/07/06/spring-security-database-schemas-for-mysql/ -->
 	<b:bean id="mysqlDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <b:property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <b:property name="url" value="jdbc:mysql://localhost/$shoppino{database.name}"/>
-        <b:property name="username" value="$shoppino{database.user}"/>
-        <b:property name="password" value="$shoppino{database.passwd}"/>
+        <b:property name="url" value="jdbc:mysql://localhost/$platform{database.name}"/>
+        <b:property name="username" value="$platform{database.user}"/>
+        <b:property name="password" value="$platform{database.passwd}"/>
     </b:bean>
   
 	
@@ -440,7 +440,7 @@
 	<!-- v2 deprecated -->
 	 <!--  <b:bean id="mtPersistentTokenBasedRememberMeServices"
 	   class="openrecordz.security.rememberme.MTPersistentTokenBasedRememberMeServices" >
-	  	<b:property name="cookieDomain" value="$shoppino{cookie.domain}"/>
+	  	<b:property name="cookieDomain" value="$platform{cookie.domain}"/>
 	  	<b:property name="userDetailsService" ref="userDetailsService"/>
 	  	<b:property name="tokenRepository" ref="jdbcTokenRepository" />
 	    <b:property name="tokenValiditySeconds" value="31536000" /> 1 year
@@ -453,8 +453,8 @@
 	 <!--  <b:bean id="cookiesDomain" class="java.util.ArrayList">
 		    <b:constructor-arg>
 		        <b:list>
-		            <b:value>$shoppino{cookie.domain2}</b:value>
-		            <b:value>$shoppino{cookie.domain3}</b:value>
+		            <b:value>$platform{cookie.domain2}</b:value>
+		            <b:value>$platform{cookie.domain3}</b:value>
 		        </b:list>
 		    </b:constructor-arg>
 	  </b:bean>

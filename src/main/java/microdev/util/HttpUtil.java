@@ -30,10 +30,10 @@ public class HttpUtil {
 
 	private static Log log = LogFactory.getLog(HttpUtil.class);
 	
-	@Value("$shoppino{http_client.retry_attempts}")
+	@Value("$platform{http_client.retry_attempts}")
 	private static int max_attempts;
 	
-	@Value("$shoppino{http_client.timeout}")
+	@Value("$platform{http_client.timeout}")
 	private static int http_clientTimeout;
 
 //	public static String urlGETAsString(String url) {

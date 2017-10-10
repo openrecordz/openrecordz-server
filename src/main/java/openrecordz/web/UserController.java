@@ -32,10 +32,10 @@ public class UserController  {
 	
 	
 	
-	@Value("$shoppino{imagerepo.url}")
+	@Value("$platform{imagerepo.url}")
 	private String imagerepoUrl;
 	
-	@Value("$shoppino{imagerepo.search.url}")
+	@Value("$platform{imagerepo.search.url}")
 	private String imagerepoSearchUrl;
 	
 	@Autowired

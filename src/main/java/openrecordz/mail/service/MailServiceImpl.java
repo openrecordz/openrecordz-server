@@ -53,7 +53,7 @@ public class MailServiceImpl implements MailService{
 //	@Value("$mail{mail.enabled}")
 //	private String enabledString;
 	
-	@Value("$shoppino{scripting.filesystem.path}")
+	@Value("$platform{scripting.filesystem.path}")
 	public String fileSystemScriptsPath;
 	
 	private boolean enabled;
@@ -69,10 +69,10 @@ public class MailServiceImpl implements MailService{
 	@Autowired
 	private TenantService tenantService;
 	
-	@Value("$shoppino{platform.url}")
+	@Value("$platform{platform.url}")
 	private String platformUrl;
 	
-	@Value("$shoppino{platform.hostname}")
+	@Value("$platform{platform.hostname}")
 	private String platformHostname;
 	
 	@Autowired
