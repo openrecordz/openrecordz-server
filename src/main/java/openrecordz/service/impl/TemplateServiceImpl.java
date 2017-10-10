@@ -43,10 +43,10 @@ public class TemplateServiceImpl implements TemplateService {
 	
 	
 	@Value("$shoppino{openrecordz.url}")
-	private String shoppinoUrl;
+	private String platformUrl;
 	
 	@Value("$shoppino{openrecordz.hostname}")
-	private String shoppinoHostname;
+	private String platformHostname;
 	
 	
 	@Value("$shoppino{imagerepo.url}")
@@ -82,8 +82,8 @@ public class TemplateServiceImpl implements TemplateService {
 		 modelVm.put("shp", new WebTools());
 		 
          Map info = new HashMap();
-         info.put("hostname", shoppinoHostname);
-         info.put("url", shoppinoUrl);
+         info.put("hostname", platformHostname);
+         info.put("url", platformUrl);
          info.put("tenantName", tenantService.getCurrentTenantName());
          info.put("imageRepoUrl", imageRepoUrl);
          info.put("imageRepoSearchUrl", imageRepoSearchUrl);

@@ -1,6 +1,6 @@
 Ciao ${model.personTo.fullName}!!
  hai ricevuto un like da ${model.personFrom.fullName} per il tuo post ${model.product.description}
  
- Visualizza il post qui ${model.shoppinoUrl}/products/${model.product.id}
+ Visualizza il post qui ${model.platformUrl}/products/${model.product.id}
 
 Buon proseguimento su CiaoTrip!!

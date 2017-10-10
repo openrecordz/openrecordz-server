@@ -59,10 +59,10 @@ package openrecordz.service.impl;
 //
 //	
 //	@Value("$shoppino{openrecordz.url}")
-//	private String shoppinoUrl;
+//	private String platformUrl;
 //	
 //	@Value("$shoppino{openrecordz.hostname}")
-//	private String shoppinoHostname;
+//	private String platformHostname;
 //	
 //	
 ////	@Autowired
@@ -130,8 +130,8 @@ package openrecordz.service.impl;
 //        engine.put("logger", scriptLogger);
 //        
 //        Map info = new HashMap();
-//        info.put("hostname", shoppinoHostname);
-//        info.put("url", shoppinoUrl);
+//        info.put("hostname", platformHostname);
+//        info.put("url", platformUrl);
 //        engine.put("info", info);
 //      
 //        

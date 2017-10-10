@@ -16,7 +16,7 @@ public class TenantSetterRequest {
 	private Log logger = LogFactory.getLog(this.getClass());
 
 //	@Value("$shoppino{openrecordz.url}")
-//	private String shoppinoUrl;
+//	private String platformUrl;
 //	@Autowired
 	MessageSource messageSource;
 	
@@ -29,7 +29,7 @@ public class TenantSetterRequest {
 			String serverName = request.getServerName();
 			String thirdLevel = request.getServerName().substring(0, request.getServerName().indexOf("."));
 			tenant = messageSource.getMessage("tenants.mapping."+serverName, null, thirdLevel, Locale.getDefault());
-//			if (serverName.matches(shoppinoUrl)) {
+//			if (serverName.matches(platformUrl)) {
 				
 //				tenant=thirdLevel;
 //			}

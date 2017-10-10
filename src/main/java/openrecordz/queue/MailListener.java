@@ -49,7 +49,7 @@ public class MailListener implements MessageListener {
 	UrlService urlService;
 
 	@Value("$shoppino{openrecordz.url}")
-	private String shoppinoUrl;
+	private String platformUrl;
 	
 	
 //	@Autowired
@@ -88,7 +88,7 @@ public class MailListener implements MessageListener {
 					properties.put("validationEmail",url);
 					
 					
-					properties.put("shoppinoUrl",shoppinoUrl);
+					properties.put("platformUrl",platformUrl);
 					mailService.sendMail(to, subject, mailType, properties);
 					log.debug("Registration email sent from queue with to " + to + " and subject " + subject);
 				

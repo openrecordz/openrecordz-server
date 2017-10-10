@@ -18,7 +18,7 @@ public class EnvironmentServiceImpl  implements EnvironmentService {
 	TenantService tenantService;
 	
 	@Value("$shoppino{openrecordz.hostname}")
-	String shoppinoHostname;
+	String platformHostname;
 	
 	@Value("$shoppino{smart21.web.port}")
 	String port;
@@ -30,7 +30,7 @@ public class EnvironmentServiceImpl  implements EnvironmentService {
 	Environment env;
 	
 	public String getTenantUrl() {
-		String url = URL_HTTP_PROTOCOL_PREFIX + tenantService.getCurrentTenantName() + shoppinoHostname;
+		String url = URL_HTTP_PROTOCOL_PREFIX + tenantService.getCurrentTenantName() + platformHostname;
 		
 		if (port!=null && !port.equals("80"))
 			url =url+":"+port;

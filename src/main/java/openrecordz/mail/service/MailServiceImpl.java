@@ -70,10 +70,10 @@ public class MailServiceImpl implements MailService{
 	private TenantService tenantService;
 	
 	@Value("$shoppino{openrecordz.url}")
-	private String shoppinoUrl;
+	private String platformUrl;
 	
 	@Value("$shoppino{openrecordz.hostname}")
-	private String shoppinoHostname;
+	private String platformHostname;
 	
 	@Autowired
 	private EnvironmentService environmentService;
@@ -213,8 +213,8 @@ public class MailServiceImpl implements MailService{
 		              model.put("model", parameters);
 		              
 		              Map info = new HashMap();
-		              info.put("hostname", shoppinoHostname);
-		              info.put("url", shoppinoUrl);
+		              info.put("hostname", platformHostname);
+		              info.put("url", platformUrl);
 		              info.put("tenantName", tenantService.getCurrentTenantName());
 		              info.put("tenantDisplayName", tenantService.getCurrentTenantDisplayName());
 		              info.put("tenantUrl", environmentService.getTenantUrl());
