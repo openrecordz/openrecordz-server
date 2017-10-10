@@ -1,6 +1,18 @@
-## Run 
+## Prerequisites
+- Java
+- Maven
 
-run './bin/start_dev.sh'.
+## Run in development mode
+
+run 'mvn clean install tomcat7:run -Dmy.env=development'
+
+## Run in production mode
+
+run 'mvn clean install tomcat7:run -Dmy.env=production&'.
+
+
+
+
 
 
 - crea l'indice sul campo _location con:

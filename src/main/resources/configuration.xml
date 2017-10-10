@@ -124,11 +124,7 @@
 	
 	
 	
-	<!-- <bean id="notificationService" class="openrecordz.service.impl.mongo.NotificationServiceMongoImpl">
-	    <property name="gcmPushNotificationManager" ref="gcmPushNotificationManager" />
-	    <property name="apnsPushNotificationManager" ref="apnsPushNotificationManager" />
-	</bean>
-	 -->
+	
 	<bean id="environmentService" class="openrecordz.service.impl.EnvironmentServiceImpl"/>
 	
 	<bean id="fileService" class="openrecordz.service.impl.FileServiceImpl"/>
