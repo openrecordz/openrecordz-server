@@ -31,10 +31,10 @@
   <role rolename="role1"/>
   <role rolename="manager-gui"/>
   <role rolename="monitoring"/>
-  <user username="tomcat" password="shoppino" roles="tomcat,manager-gui"/>
-  <user username="both" password="shoppino" roles="tomcat,role1"/>
-  <user username="role1" password="shoppino" roles="role1"/>
-  <user username="monitoring" password="monitoring1" roles="monitoring"/>
+  <user username="tomcat" password="change_it" roles="tomcat,manager-gui"/>
+  <user username="both" password="change_it" roles="tomcat,role1"/>
+  <user username="role1" password="change_it" roles="role1"/>
+  <user username="monitoring" password="change_it" roles="monitoring"/>
 
 </tomcat-users>
   
