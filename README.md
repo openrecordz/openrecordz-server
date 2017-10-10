@@ -45,13 +45,16 @@ db.person.createIndex( { "$**": "text" }, { name: "ORPeopleTextIndex" },  { defa
 ```
 
 ## MYSQL
-Go to ./bin/dbscripts and run:
+Go to `./bin/dbscripts` and run:
+
+```
 $ mysql -uroot -proot < 1_create-schema.sql
 $ mysql -uroot -proot openrecordz < 2_tenant.sql 
 $ mysql -uroot -proot openrecordz < 3_scriptDB.sql
 $ mysql -uroot -proot openrecordz < 4_spring-security-persistent-login.sql 
 $ mysql -uroot -proot openrecordz < 5_spring-security.sql 
 $ mysql -uroot -proot openrecordz < 6_url.sql     
+```
 
 ## HornetQ 
 * Create an openrecordz-data folder on your server
