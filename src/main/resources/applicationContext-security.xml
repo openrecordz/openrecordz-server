@@ -32,7 +32,7 @@
 	 </b:bean> -->
 	 <!-- definito 2 volte qui e in shoppino-servlet -->
 	 <b:import resource="classpath:/shoppino-shared-main-security-configuration.xml"/>	 
-	  <!-- <b:bean id="tenantSetterRequest" class="shoppino.service.impl.TenantSetterRequest">
+	  <!-- <b:bean id="tenantSetterRequest" class="openrecordz.service.impl.TenantSetterRequest">
          <b:property name="messageSource" ref="messageSource"/>
      </b:bean> -->
      
@@ -43,7 +43,7 @@
      <!-- http://forum.springsource.org/archive/index.php/t-106092.html -->
      <!-- vedi giu la parte relativa al custom voter. ma eeWebSecurityExpression	 deve stare qui prima della definizione del tag http altrimenti non va -->
        <!-- v2 deprecated -->
-       <b:bean id="tenantTypeWebSecurityExpressionHandler" class="shoppino.security.voter.TenantTypeWebExpressionHandler">
+       <b:bean id="tenantTypeWebSecurityExpressionHandler" class="openrecordz.security.voter.TenantTypeWebExpressionHandler">
            <!-- <b:property name="tenantService" ref="tenantService"/> -->
            <b:property name="tenantSettingsSetter" ref="tenantSettingsSetter"/>
            <b:property name="tenantSetterRequest" ref="tenantSetterRequest"/>
@@ -53,7 +53,7 @@
        
        
        <!-- vecchia configurazione prima di tenantTypeWebSecurityExpressionHandler -->
-       <!-- <b:bean id="eeWebSecurityExpressionHandler" class="shoppino.security.voter.EEWebExpressionHandler">         
+       <!-- <b:bean id="eeWebSecurityExpressionHandler" class="openrecordz.security.voter.EEWebExpressionHandler">         
            <b:property name="tenantSetterRequest" ref="tenantSetterRequest"/>
            <b:property name="enableMTSecurity" value="$shoppino{security.mt.enabled}"/>
        </b:bean> -->
@@ -92,7 +92,7 @@
      </b:bean>  -->
      <!-- used by method security exp handler and not by websecurityexprhandler -->
      <!-- <b:bean id="tenantTypeSecurityExpressionRoot"
-      class="shoppino.security.voter.TenantTypeWebSecurityExpressionRoot">              
+      class="openrecordz.security.voter.TenantTypeWebSecurityExpressionRoot">              
         <b:property name="tenantSettingsSetter" ref="tenantSettingsSetter"/>
         <b:property name="tenantSetterRequest" ref="tenantSetterRequest"/>
         <b:property name="enableMTSecurity" value="$shoppino{security.mt.enabled}"/>
@@ -100,9 +100,9 @@
      </b:bean> --> 
      
      <!-- TODO remove tenantService from here. already registered into configuration.xml -->
-     <b:bean id="tenantService" class="shoppino.service.impl.TenantServiceImpl"/>
+     <b:bean id="tenantService" class="openrecordz.service.impl.TenantServiceImpl"/>
      <b:bean id="tenantTypeExpressionHandler"
-      class="shoppino.security.voter.TenantTypeExpressionHandler">
+      class="openrecordz.security.voter.TenantTypeExpressionHandler">
         <b:property name="tenantService" ref="tenantService"/>
         <b:property name="tenantSettingsSetter" ref="tenantSettingsSetter"/>
         <b:property name="enableMTSecurity" value="$shoppino{security.mt.enabled}"/>
@@ -260,7 +260,7 @@
   	 <!-- spring security ajax returning 403  
   	 http://stackoverflow.com/questions/8171256/use-spring-security-to-tell-ajax-requests-where-the-login-page-is -->
   	 
-  	 <b:bean id="authEntryPoint" class="shoppino.security.web.authentication.AjaxAwareLoginUrlAuthenticationEntryPoint" scope="singleton">
+  	 <b:bean id="authEntryPoint" class="openrecordz.security.web.authentication.AjaxAwareLoginUrlAuthenticationEntryPoint" scope="singleton">
     	<b:property name="loginFormUrl" value="/signin" />
 	</b:bean>
   	 
@@ -343,7 +343,7 @@
 
 	  
 	<!-- user service -->
-	<b:bean id="userService" class="shoppino.security.service.impl.UserServiceRDBMSImpl">
+	<b:bean id="userService" class="openrecordz.security.service.impl.UserServiceRDBMSImpl">
 	    <b:property name="dataSource" ref="mysqlDataSource"></b:property>
 	    <!-- <b:property name="userDetailsService" ref="userDetailsService"/> -->
 		<!-- <b:property name="userDetailsManager" ref="userDetailsManager"></b:property> -->
@@ -376,7 +376,7 @@
 	
 	
 	<!-- populate db -->
-<!-- 	 <b:bean  id="dataSourcePopulator" class="shoppino.security.DataSourcePopulator">
+<!-- 	 <b:bean  id="dataSourcePopulator" class="openrecordz.security.DataSourcePopulator">
          <b:property name="dataSource" ref="mysqlDataSource"/>
          <b:property name="mutableAclService" ref="aclService"/>
         <b:property name="platformTransactionManager" ref="transactionManager"/>
@@ -386,7 +386,7 @@
 	 
     
     <!-- authentication service -->
-	<b:bean id="authenticationService" class="shoppino.security.service.impl.AuthenticationServiceImpl">
+	<b:bean id="authenticationService" class="openrecordz.security.service.impl.AuthenticationServiceImpl">
 	    <b:property name="userDetailsService" ref="userDetailsService"></b:property>
 	    <b:property name="authenticationManager" ref="authenticationManager"></b:property>  
 	</b:bean>
@@ -402,7 +402,7 @@
 	<!-- modificato anche  -->	
 
 	<!-- <b:bean id="mtRoleVoter"
-	   class="shoppino.security.voter.MTRoleVoter ">
+	   class="openrecordz.security.voter.MTRoleVoter ">
 	  <b:property name="rolePrefix" value="MTROLE_" />
 	</b:bean> -->
 		
@@ -414,10 +414,10 @@
 	</b:bean> -->
 	
 	<!-- <b:bean id="eeWebExpressionVoter"
-	   class="shoppino.security.voter.EEWebExpressionVoter" /> -->
+	   class="openrecordz.security.voter.EEWebExpressionVoter" /> -->
 	   
 	 <!--   <b:bean id="eeWebSecurityExpressionHandler"
-	   class="shoppino.security.voter.EEWebExpressionHandler" /> -->
+	   class="openrecordz.security.voter.EEWebExpressionHandler" /> -->
 	
 	<!-- <b:bean id="accessDecisionManager"
 	   class="org.springframework.security.access.vote.AffirmativeBased">
@@ -439,7 +439,7 @@
 	<!-- modifica il cookie domain per mt. modificata anche parte in alto remember-me -->
 	<!-- v2 deprecated -->
 	 <!--  <b:bean id="mtPersistentTokenBasedRememberMeServices"
-	   class="shoppino.security.rememberme.MTPersistentTokenBasedRememberMeServices" >
+	   class="openrecordz.security.rememberme.MTPersistentTokenBasedRememberMeServices" >
 	  	<b:property name="cookieDomain" value="$shoppino{cookie.domain}"/>
 	  	<b:property name="userDetailsService" ref="userDetailsService"/>
 	  	<b:property name="tokenRepository" ref="jdbcTokenRepository" />
@@ -467,7 +467,7 @@
 	
 	  
 	   <!-- authorization service -->
-	<b:bean id="authorizationService" class="shoppino.security.service.impl.AuthorizationServiceImpl">
+	<b:bean id="authorizationService" class="openrecordz.security.service.impl.AuthorizationServiceImpl">
 	    <!-- <b:property name="userDetailsService" ref="userDetailsService"></b:property>
 	    <b:property name="authenticationManager" ref="authenticationManager"></b:property>   -->
 	</b:bean>

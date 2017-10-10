@@ -6,7 +6,7 @@
        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
 	   default-autowire="byName">
 	
-    <bean id="urlService" class="shoppino.service.impl.UrlServiceImpl"/>        
+    <bean id="urlService" class="openrecordz.service.impl.UrlServiceImpl"/>        
     
     <bean id="urlDAO" class="urlhandler.url.JdbcUrlDAOImpl">
         <property name="dataSource" ref="mysqlUrlDataSource"/>

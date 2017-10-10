@@ -65,7 +65,7 @@
 	 
 	 <!-- Caused by: java.lang.IllegalStateException: ApplicationEventMulticaster not initialized - call 'refresh' before multicasting events via the context: Root WebApplicationContext: startup date [Tue Nov 25 12:22:03 CET 2014]; root of context hierarchy -->
 	  <!-- <bean id="messageSource"
-		class="shoppino.messagesource.customdata.mongodb.CustomDataMessageSource" >
+		class="openrecordz.messagesource.customdata.mongodb.CustomDataMessageSource" >
 		<property name="parentMessageSource" ref="reloadableResourceBundleMessageSource" />
 		<property name="customDataService" ref="customDataServiceWithCheckDisabled" />	
 		
@@ -83,10 +83,10 @@
 	
 	  <!-- import tenant service -->
   	<import resource="classpath:/shoppino-tenant-configuration.xml"/>
-	<!-- <bean id="tenantService" class="shoppino.service.impl.TenantServiceImpl"/> -->
+	<!-- <bean id="tenantService" class="openrecordz.service.impl.TenantServiceImpl"/> -->
 	
 	
-	<bean id="imageService" class="shoppino.service.impl.ImageServiceImpl">
+	<bean id="imageService" class="openrecordz.service.impl.ImageServiceImpl">
 		<property name="imagerepoUrl" value="$shoppino{imagerepo.url}"/>
 		<property name="addUrl" value="$shoppino{imagerepo.add.url}"/>
 		<property name="getSizeUrl" value="$shoppino{imagerepo.getsize.url}"/>
@@ -95,16 +95,16 @@
 	</bean>	
 	
 	
-	<bean id="personService" class="shoppino.service.impl.mongo.PersonServiceMongoImpl"/>
-	<!-- <bean id="personSearchService" class="shoppino.service.impl.PersonSearchServiceImpl"/> -->
+	<bean id="personService" class="openrecordz.service.impl.mongo.PersonServiceMongoImpl"/>
+	<!-- <bean id="personSearchService" class="openrecordz.service.impl.PersonSearchServiceImpl"/> -->
 	
-	<bean id="registrationService" class="shoppino.service.impl.RegistrationServiceImpl"/>
-	<!-- <bean id="socialService" class="shoppino.service.impl.SocialServiceImpl"/> --> 
+	<bean id="registrationService" class="openrecordz.service.impl.RegistrationServiceImpl"/>
+	<!-- <bean id="socialService" class="openrecordz.service.impl.SocialServiceImpl"/> --> 
 	
 	
 	
 	<bean id="categoryMessageSource"
-		class="shoppino.messagesource.customdata.mongodb.CustomDataMessageSource" >
+		class="openrecordz.messagesource.customdata.mongodb.CustomDataMessageSource" >
 		<property name="parentMessageSource" ref="categoryReloadableResourceBundleMessageSource" />
 		<property name="customDataService" ref="customDataServiceWithCheckDisabled" />	
 		
@@ -118,21 +118,21 @@
 		<property name="cacheSeconds" value="1"/> 
 	 </bean>
 	 
-	<bean id="categoryService" class="shoppino.service.impl.mongo.CategoryServiceMongoImpl">
+	<bean id="categoryService" class="openrecordz.service.impl.mongo.CategoryServiceMongoImpl">
 	   <!-- <property name="messageSource" ref="categoryMessageSource"/> -->
 	</bean>
 	
 	
 	
-	<!-- <bean id="notificationService" class="shoppino.service.impl.mongo.NotificationServiceMongoImpl">
+	<!-- <bean id="notificationService" class="openrecordz.service.impl.mongo.NotificationServiceMongoImpl">
 	    <property name="gcmPushNotificationManager" ref="gcmPushNotificationManager" />
 	    <property name="apnsPushNotificationManager" ref="apnsPushNotificationManager" />
 	</bean>
 	 -->
-	<bean id="environmentService" class="shoppino.service.impl.EnvironmentServiceImpl"/>
+	<bean id="environmentService" class="openrecordz.service.impl.EnvironmentServiceImpl"/>
 	
-	<bean id="fileService" class="shoppino.service.impl.FileServiceImpl"/>
-	<bean id="rdbService" class="shoppino.service.impl.RDBServiceImpl"/>
+	<bean id="fileService" class="openrecordz.service.impl.FileServiceImpl"/>
+	<bean id="rdbService" class="openrecordz.service.impl.RDBServiceImpl"/>
 	
 	<!-- used by shopSearcherGooglePlacesImpl. must be here -->
 	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">

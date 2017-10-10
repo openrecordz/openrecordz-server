@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import openrecordz.exception.ShoppinoException;
-import shoppino.service.PersonService;
+import openrecordz.service.PersonService;
 
 @Controller
 public class CacheController implements BaseAdminController {

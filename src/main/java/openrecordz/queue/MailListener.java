@@ -22,9 +22,9 @@ import openrecordz.domain.Tenant;
 import openrecordz.exception.ResourceNotFoundException;
 import openrecordz.mail.service.EmailMessageType;
 import openrecordz.mail.service.MailService;
-import shoppino.service.PersonService;
-import shoppino.service.TenantService;
-import shoppino.service.UrlService;
+import openrecordz.service.PersonService;
+import openrecordz.service.TenantService;
+import openrecordz.service.UrlService;
 
 
 

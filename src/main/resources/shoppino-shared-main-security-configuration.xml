@@ -28,7 +28,7 @@
 		<property name="cacheSeconds" value="1"/> 
 	 </bean>
 	 <!-- definito 2 volte qui e in shoppino-servlet -->
-	  <bean id="tenantSetterRequest" class="shoppino.service.impl.TenantSetterRequest">
+	  <bean id="tenantSetterRequest" class="openrecordz.service.impl.TenantSetterRequest">
          <property name="messageSource" ref="tenantMappingMessageSource"/>
      </bean>
      
@@ -40,7 +40,7 @@
 	  <!-- <import resource="classpath:/shoppino-customdata-configuration.xml"/> -->
 	    
 	   <bean id="tenantSettingMappingCustomDataMessageSource"
-		class="shoppino.messagesource.customdata.mongodb.CustomDataMessageSource" >
+		class="openrecordz.messagesource.customdata.mongodb.CustomDataMessageSource" >
 		<property name="parentMessageSource" ref="tenantSettingMappingMessageSource" />
 		<property name="customDataService" ref="customDataServiceWithCheckDisabled" />	
 		
@@ -54,7 +54,7 @@
 		<property name="cacheSeconds" value="1"/> 
 	 </bean>
 	 <!-- definito 2 volte qui e in shoppino-servlet -->
-	  <bean id="tenantSettingsSetter" class="shoppino.service.impl.TenantSettingsSetter">
+	  <bean id="tenantSettingsSetter" class="openrecordz.service.impl.TenantSettingsSetter">
          <property name="messageSource" ref="tenantSettingMappingCustomDataMessageSource"/>
          <!-- <property name="messageSource" ref="tenantSettingMappingMessageSource"/> --> 
          

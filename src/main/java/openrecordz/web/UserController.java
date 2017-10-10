@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import openrecordz.domain.Person;
 import openrecordz.exception.ResourceNotFoundException;
-import shoppino.security.exception.AuthenticationException;
-import shoppino.security.service.AuthenticationService;
-import shoppino.security.service.UserService;
-import shoppino.security.web.authentication.UsernameUtils;
-import shoppino.service.PersonService;
+import openrecordz.security.exception.AuthenticationException;
+import openrecordz.security.service.AuthenticationService;
+import openrecordz.security.service.UserService;
+import openrecordz.security.web.authentication.UsernameUtils;
+import openrecordz.service.PersonService;
 
 @Controller
 public class UserController  {

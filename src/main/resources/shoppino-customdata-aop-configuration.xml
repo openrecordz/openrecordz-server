@@ -30,14 +30,14 @@
        	   <!-- public String add(String className, String json); -->
 	        	       
 	        <aop:pointcut id="addCustomDataScriptingPointcut"  
-	        	expression="execution(* shoppino.service.CustomDataService.add(java.lang.String, java.lang.String)) and args(className, json)"/>		  	   		
+	        	expression="execution(* openrecordz.service.CustomDataService.add(java.lang.String, java.lang.String)) and args(className, json)"/>		  	   		
 	        	
 	        
 	         <!--  update -->
 	         
 	        	<!-- public String update(String id, String className, String json) throws ResourceNotFoundException; -->
 	         <aop:pointcut id="updateCustomDataScriptingPointcut"  
-	        	expression="execution(* shoppino.service.CustomDataService.update(java.lang.String, java.lang.String, java.lang.String)) and args(id, className, json)"/>		  
+	        	expression="execution(* openrecordz.service.CustomDataService.update(java.lang.String, java.lang.String, java.lang.String)) and args(id, className, json)"/>		  
 	  	
       
 	        

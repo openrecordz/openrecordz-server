@@ -172,12 +172,12 @@
                 <property name="exceptionMappingDefinitions">
                     <map>
                         <!-- 401 -->
-                        <entry key="shoppino.security.exception.AuthenticationException" value="401, _exmsg"/>
+                        <entry key="openrecordz.security.exception.AuthenticationException" value="401, _exmsg"/>
                         
                         <!-- 403 -->
                         <entry key="org.springframework.security.access.AccessDeniedException" value="403, _exmsg"/>
-                        <entry key="shoppino.security.exception.AuthorizationException" value="403, _exmsg"/>
-                        <entry key="shoppino.scripting.JSAuthorizationException" value="403, _exmsg"/>
+                        <entry key="openrecordz.security.exception.AuthorizationException" value="403, _exmsg"/>
+                        <entry key="openrecordz.scripting.JSAuthorizationException" value="403, _exmsg"/>
                         
                         
                         <!-- 404 -->
@@ -188,7 +188,7 @@
                         <entry key="openrecordz.web.exception.ValidationException" value="406, _exmsg"/>
                         
                         <!-- 409 conflict -->
-                        <entry key="shoppino.security.exception.UsernameAlreadyInUseException" value="409, _exmsg"/>
+                        <entry key="openrecordz.security.exception.UsernameAlreadyInUseException" value="409, _exmsg"/>
                         
                          <!-- 410 -->
                         <entry key="openrecordz.exception.EmailAlreadyInUseException" value="410, _exmsg"/>
@@ -319,7 +319,7 @@
     <!-- 
 	<bean id="tenantFilter" class="openrecordz.web.filter.TenantFilter"/> -->
 	
-	<!-- <bean id="tenantSetterRequest" class="shoppino.service.impl.TenantSetterRequest"/> -->
+	<!-- <bean id="tenantSetterRequest" class="openrecordz.service.impl.TenantSetterRequest"/> -->
 	<!-- <import resource="classpath:/shoppino-shared-main-security-configuration.xml"/> -->
 	
 	
@@ -336,7 +336,7 @@
 <!--  	<bean class="shoppino.social.SocialConfig" >
  	</bean> -->
  	<!-- must be here not in configuration.xml -->
- 	<!-- <bean id="socialService" class="shoppino.service.impl.SocialServiceImpl"/> -->
+ 	<!-- <bean id="socialService" class="openrecordz.service.impl.SocialServiceImpl"/> -->
  	
  	
  	<!-- <context:annotation-config />

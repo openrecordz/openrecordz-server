@@ -12,10 +12,10 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import openrecordz.exception.ResourceNotFoundException;
-import shoppino.security.exception.UserNotExistsException;
-import shoppino.security.service.UserService;
-import shoppino.service.PersonService;
-import shoppino.service.ScriptService;
+import openrecordz.security.exception.UserNotExistsException;
+import openrecordz.security.service.UserService;
+import openrecordz.service.PersonService;
+import openrecordz.service.ScriptService;
 
 public class RegisterScriptingHandler {
 	

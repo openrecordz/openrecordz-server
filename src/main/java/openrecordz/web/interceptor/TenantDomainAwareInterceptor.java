@@ -12,8 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ModelAndViewDefiningException;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import shoppino.service.TenantService;
-import shoppino.service.impl.TenantSetterRequest;
+import openrecordz.service.TenantService;
+import openrecordz.service.impl.TenantSetterRequest;
 
 @Component("tenantDomainAwareInterceptor")
 public class TenantDomainAwareInterceptor extends HandlerInterceptorAdapter {

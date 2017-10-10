@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import openrecordz.exception.ShoppinoException;
-import shoppino.service.impl.ScriptServiceMultiEngineImpl;
+import openrecordz.service.impl.ScriptServiceMultiEngineImpl;
 
 @Controller
 public class ScriptAdminController implements BaseAdminController {

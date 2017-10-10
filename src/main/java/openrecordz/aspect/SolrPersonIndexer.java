@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import openrecordz.domain.Person;
 import openrecordz.exception.ResourceNotFoundException;
-import shoppino.service.PersonSearchService;
-import shoppino.service.PersonService;
+import openrecordz.service.PersonSearchService;
+import openrecordz.service.PersonService;
 
 public class SolrPersonIndexer {
 	

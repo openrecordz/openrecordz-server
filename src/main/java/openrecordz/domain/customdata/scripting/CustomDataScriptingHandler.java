@@ -13,8 +13,8 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import openrecordz.exception.ResourceNotFoundException;
-import shoppino.service.CustomDataService;
-import shoppino.service.ScriptService;
+import openrecordz.service.CustomDataService;
+import openrecordz.service.ScriptService;
 
 public class CustomDataScriptingHandler {
 	

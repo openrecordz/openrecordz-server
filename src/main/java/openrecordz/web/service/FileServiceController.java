@@ -30,8 +30,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import openrecordz.exception.ResourceNotFoundException;
 import openrecordz.exception.ShoppinoException;
-import shoppino.security.exception.AuthorizationException;
-import shoppino.service.FileService;
+import openrecordz.security.exception.AuthorizationException;
+import openrecordz.service.FileService;
 
 @Controller
 public class FileServiceController implements BaseServiceController {

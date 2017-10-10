@@ -21,14 +21,14 @@ import openrecordz.domain.Person;
 import openrecordz.domain.Tenant;
 import openrecordz.exception.ResourceNotFoundException;
 import openrecordz.mail.service.MailService;
-import shoppino.security.exception.AuthenticationException;
-import shoppino.security.exception.UserNotExistsException;
-import shoppino.security.service.AuthenticationService;
-import shoppino.security.service.AuthorizationService;
-import shoppino.security.service.UserService;
-import shoppino.service.PersonService;
-import shoppino.service.TenantService;
-import shoppino.service.impl.TenantSettingsSetter;
+import openrecordz.security.exception.AuthenticationException;
+import openrecordz.security.exception.UserNotExistsException;
+import openrecordz.security.service.AuthenticationService;
+import openrecordz.security.service.AuthorizationService;
+import openrecordz.security.service.UserService;
+import openrecordz.service.PersonService;
+import openrecordz.service.TenantService;
+import openrecordz.service.impl.TenantSettingsSetter;
 
 @Controller
 public class UserServiceController  implements BaseServiceController {

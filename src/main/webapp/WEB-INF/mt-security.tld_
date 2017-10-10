@@ -16,7 +16,7 @@
             evaluates to true for the currently authenticated principal.
         </description>
         <name>mt-authorize</name>
-        <tag-class>shoppino.security.tags.MTJspAuthorizeTag</tag-class>
+        <tag-class>openrecordz.security.tags.MTJspAuthorizeTag</tag-class>
         <body-content>JSP</body-content>
 
         <attribute>

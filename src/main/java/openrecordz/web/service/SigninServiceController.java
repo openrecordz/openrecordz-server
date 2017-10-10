@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import openrecordz.exception.ResourceNotFoundException;
-import shoppino.security.exception.AuthenticationException;
-import shoppino.security.service.AuthenticationService;
-import shoppino.service.PersonService;
-import shoppino.service.TenantService;
+import openrecordz.security.exception.AuthenticationException;
+import openrecordz.security.service.AuthenticationService;
+import openrecordz.service.PersonService;
+import openrecordz.service.TenantService;
 
 /**
  * @author andrea leo

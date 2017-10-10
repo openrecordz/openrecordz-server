@@ -32,25 +32,25 @@
         	 <!-- user registration -->
 	        
         	<aop:pointcut id="registerRegistrationServiceScriptingPointcut" 
-	        	expression="execution(* shoppino.service.RegistrationService.register(..))"/>
+	        	expression="execution(* openrecordz.service.RegistrationService.register(..))"/>
         	<!-- <aop:pointcut id="registerRegistrationServiceScriptingPointcut" 
-	        	expression="execution(* shoppino.service.RegistrationService.register(java.lang.String, java.lang.String, java.lang.String, java.lang.String)) and args(username, fullName, email, password)"/> -->
+	        	expression="execution(* openrecordz.service.RegistrationService.register(java.lang.String, java.lang.String, java.lang.String, java.lang.String)) and args(username, fullName, email, password)"/> -->
 	        
 	        
 	        <!-- content  -->
 	         <aop:pointcut id="addContentScriptingPointcut"  
-	        	expression="execution(* shoppino.service.ContentService.add(java.lang.String, java.lang.String, java.util.List, java.lang.Float, java.lang.Float, java.lang.String,  java.util.Date, java.util.Date, java.lang.Double[], java.lang.String)) and args(title, description, categories, startPrice, price, shop, startDate, endDate, location, oType)"/>		  
+	        	expression="execution(* openrecordz.service.ContentService.add(java.lang.String, java.lang.String, java.util.List, java.lang.Float, java.lang.Float, java.lang.String,  java.util.Date, java.util.Date, java.lang.Double[], java.lang.String)) and args(title, description, categories, startPrice, price, shop, startDate, endDate, location, oType)"/>		  
 	  	
 	        <aop:pointcut id="addContentScriptingPointcutForAfter" 
-	        	expression="execution(* shoppino.service.ContentService.add(..))"/>  		 
+	        	expression="execution(* openrecordz.service.ContentService.add(..))"/>  		 
 	        
 	        <!-- 	public String update(String id, String title, String description, List<String> categories, Float startPrice, Float price, String shop, Date startDate, Date endDate, Double[] location) throws ShoppinoException, AuthorizationException; -->
 	        
 	        <aop:pointcut id="updateContentScriptingPointcut"  
-	        	expression="execution(* shoppino.service.ContentService.update(java.lang.String, java.lang.String, java.lang.String,  java.util.List, java.lang.Float, java.lang.Float, java.lang.String,  java.util.Date, java.util.Date, java.lang.Double[], java.lang.String)) and args(id, title, description, categories, startPrice, price, shop, startDate, endDate, location, oType)"/>		  
+	        	expression="execution(* openrecordz.service.ContentService.update(java.lang.String, java.lang.String, java.lang.String,  java.util.List, java.lang.Float, java.lang.Float, java.lang.String,  java.util.Date, java.util.Date, java.lang.Double[], java.lang.String)) and args(id, title, description, categories, startPrice, price, shop, startDate, endDate, location, oType)"/>		  
 	  	
 	        <aop:pointcut id="updateContentScriptingPointcutForAfter" 
-	        	expression="execution(* shoppino.service.ContentService.update(..))"/>  		  
+	        	expression="execution(* openrecordz.service.ContentService.update(..))"/>  		  
 	        		   			
 	        
 	        

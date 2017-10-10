@@ -28,7 +28,7 @@
             
        	   <!-- CustomData -->
 	        <aop:pointcut id="addCustomDataPointcut" 
-	        	expression="execution(* shoppino.service.CustomDataService.add(..))"/>		        	   
+	        	expression="execution(* openrecordz.service.CustomDataService.add(..))"/>		        	   
 			
 			
 			

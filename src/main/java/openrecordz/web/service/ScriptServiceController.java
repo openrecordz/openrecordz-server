@@ -25,8 +25,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.MultipartResolver;
 
 import openrecordz.exception.ShoppinoRuntimeException;
-import shoppino.service.ScriptService;
-import shoppino.service.TemplateService;
+import openrecordz.service.ScriptService;
+import openrecordz.service.TemplateService;
 
 
 @Controller

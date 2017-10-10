@@ -6,11 +6,11 @@
        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
 	   default-autowire="byName">
 	
-    <bean id="customDataService" class="shoppino.service.impl.CustomDataServiceImpl">      
+    <bean id="customDataService" class="openrecordz.service.impl.CustomDataServiceImpl">      
         <property name="checkReservedCharsEnabled" value="true" />
     </bean>        
        
-     <bean id="customDataServiceWithCheckDisabled" class="shoppino.service.impl.CustomDataServiceImpl">      
+     <bean id="customDataServiceWithCheckDisabled" class="openrecordz.service.impl.CustomDataServiceImpl">      
         <property name="checkReservedCharsEnabled" value="false" />
     </bean>      
     
@@ -18,7 +18,7 @@
     <property name="solrOperations" ref="solrTemplate" />
   </bean>
   
-     <bean id="customDataSearchService" class="shoppino.service.impl.CustomDataSearchServiceImpl"/>
+     <bean id="customDataSearchService" class="openrecordz.service.impl.CustomDataSearchServiceImpl"/>
      -->
     <!-- https://github.com/synyx/messagesource -->
   <!--   <bean id="cdmessageSource" class="org.synyx.messagesource.InitializableMessageSource">

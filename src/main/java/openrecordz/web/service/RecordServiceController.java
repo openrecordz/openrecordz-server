@@ -27,8 +27,8 @@ import org.supercsv.prefs.CsvPreference;
 import openrecordz.domain.customdata.CustomData;
 import openrecordz.exception.ResourceNotFoundException;
 import openrecordz.exception.ShoppinoException;
-import shoppino.service.CustomDataService;
-import shoppino.service.RecordDataService;
+import openrecordz.service.CustomDataService;
+import openrecordz.service.RecordDataService;
 
 
 

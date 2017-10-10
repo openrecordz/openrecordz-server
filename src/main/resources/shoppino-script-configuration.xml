@@ -6,8 +6,8 @@
        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
 	   default-autowire="byName">
 	
-    <!-- <bean id="scriptService" class="shoppino.service.impl.ScriptServiceImpl"> -->
-    <bean id="scriptService" class="shoppino.service.impl.ScriptServiceMultiEngineImpl">
+    <!-- <bean id="scriptService" class="openrecordz.service.impl.ScriptServiceImpl"> -->
+    <bean id="scriptService" class="openrecordz.service.impl.ScriptServiceMultiEngineImpl">
        
          <constructor-arg ref="authenticationService" />
          <constructor-arg ref="tenantService" />
@@ -32,9 +32,9 @@
     
       <import resource="classpath:/shoppino-script-aop-configuration.xml"/>    
      
-      <bean id="jsRestOperation" class="shoppino.scripting.JSRestOperation"/>
+      <bean id="jsRestOperation" class="openrecordz.scripting.JSRestOperation"/>
       
-      <bean id="jsAuthorizationService" class="shoppino.scripting.JSAuthorizationService"/>
+      <bean id="jsAuthorizationService" class="openrecordz.scripting.JSAuthorizationService"/>
       
       
           

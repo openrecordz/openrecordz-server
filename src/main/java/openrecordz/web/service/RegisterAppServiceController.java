@@ -30,21 +30,21 @@ import openrecordz.exception.EmailAlreadyInUseException;
 import openrecordz.exception.ResourceNotFoundException;
 import openrecordz.exception.ShoppinoException;
 import openrecordz.exception.TenantAlreadyInUseException;
+import openrecordz.security.domain.User;
+import openrecordz.security.exception.AuthenticationException;
+import openrecordz.security.exception.UserNotExistsException;
+import openrecordz.security.exception.UsernameAlreadyInUseException;
+import openrecordz.security.service.AuthenticationService;
+import openrecordz.security.service.AuthorizationService;
+import openrecordz.security.service.UserService;
+import openrecordz.service.CustomDataService;
+import openrecordz.service.EnvironmentService;
+import openrecordz.service.PersonService;
+import openrecordz.service.RDBService;
+import openrecordz.service.RegistrationService;
+import openrecordz.service.TenantService;
 import openrecordz.web.exception.ValidationException;
 import openrecordz.web.form.UserRegistrationForm;
-import shoppino.security.domain.User;
-import shoppino.security.exception.AuthenticationException;
-import shoppino.security.exception.UserNotExistsException;
-import shoppino.security.exception.UsernameAlreadyInUseException;
-import shoppino.security.service.AuthenticationService;
-import shoppino.security.service.AuthorizationService;
-import shoppino.security.service.UserService;
-import shoppino.service.CustomDataService;
-import shoppino.service.EnvironmentService;
-import shoppino.service.PersonService;
-import shoppino.service.RDBService;
-import shoppino.service.RegistrationService;
-import shoppino.service.TenantService;
 
 @Controller
 public class RegisterAppServiceController implements BaseServiceController {

@@ -6,6 +6,6 @@
        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
 	   default-autowire="byName">
 	
-   <bean id="tenantService" class="shoppino.service.impl.TenantServiceImpl"/>
+   <bean id="tenantService" class="openrecordz.service.impl.TenantServiceImpl"/>
      
 </beans>

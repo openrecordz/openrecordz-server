@@ -17,8 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import openrecordz.domain.Category;
-import shoppino.service.CategoryService;
-import shoppino.service.TenantService;
+import openrecordz.service.CategoryService;
+import openrecordz.service.TenantService;
 
 
 

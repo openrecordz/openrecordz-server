@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import openrecordz.domain.customdata.CustomData;
 import openrecordz.exception.ShoppinoException;
-import shoppino.service.CustomDataService;
+import openrecordz.service.CustomDataService;
 
 @Controller
 public class SearchServiceController implements BaseServiceController {

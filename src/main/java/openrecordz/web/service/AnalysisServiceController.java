@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import openrecordz.exception.ShoppinoException;
-import shoppino.security.service.AuthenticationService;
+import openrecordz.security.service.AuthenticationService;
 
 
 @Controller

@@ -10,7 +10,7 @@ import javax.sql.DataSource;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import shoppino.ApplicationSettings;
+import microdev.util.ApplicationSettings;
 
 
 

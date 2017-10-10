@@ -20,8 +20,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import shoppino.service.ScriptService;
-import shoppino.service.TenantService;
+import openrecordz.service.ScriptService;
+import openrecordz.service.TenantService;
 
 @Component("scriptingInterceptor")
 public class ScriptingInterceptor extends HandlerInterceptorAdapter {

@@ -2,6 +2,8 @@ package openrecordz.web.interceptor;
 
 import it.f21.accessLog.AccessLog;
 import it.f21.accessLog.AccessLogManager;
+import openrecordz.security.service.AuthenticationService;
+import openrecordz.service.TenantService;
 
 import java.util.Date;
 import java.util.Locale;
@@ -16,9 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-
-import shoppino.security.service.AuthenticationService;
-import shoppino.service.TenantService;
 
 
 

@@ -28,7 +28,7 @@
 	        	expression="execution(* openrecordz.web.SigninController.passwordForgot(java.lang.String)) and args(id)"/>		        	   
  			-->					   			
 			<aop:pointcut id="registrationServicePointcut" 
-	        	expression="execution(* shoppino.service.RegistrationService.register(java.lang.String, java.lang.String, java.lang.String, java.lang.String)) and args(username, fullName, email, password)"/>
+	        	expression="execution(* openrecordz.service.RegistrationService.register(java.lang.String, java.lang.String, java.lang.String, java.lang.String)) and args(username, fullName, email, password)"/>
 				        	
         	
 			<!-- da finire -->

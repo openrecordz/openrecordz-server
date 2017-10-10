@@ -21,7 +21,7 @@
     </bean>
      
     <bean id="notificationMessageSource"
-		class="shoppino.messagesource.customdata.mongodb.CustomDataMessageSource" >
+		class="openrecordz.messagesource.customdata.mongodb.CustomDataMessageSource" >
 		<property name="parentMessageSource" ref="notificationReloadableResourceBundleMessageSource" />
 		<property name="customDataService" ref="customDataServiceWithCheckDisabled" />	
 		

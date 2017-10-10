@@ -6,7 +6,7 @@
        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
 	   default-autowire="byName">
 	
-    <bean id="templateService" class="shoppino.service.impl.TemplateServiceImpl">
+    <bean id="templateService" class="openrecordz.service.impl.TemplateServiceImpl">
     </bean>        
     
      

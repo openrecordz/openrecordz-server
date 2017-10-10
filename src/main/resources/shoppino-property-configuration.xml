@@ -7,7 +7,7 @@
 	   default-autowire="byName">
 	
    
-   <bean id="propertyService" class="shoppino.service.impl.mongo.PropertyServiceImpl">
+   <bean id="propertyService" class="openrecordz.service.impl.mongo.PropertyServiceImpl">
    </bean>
    
  

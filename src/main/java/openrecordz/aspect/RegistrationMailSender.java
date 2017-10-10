@@ -15,10 +15,10 @@ import openrecordz.domain.Person;
 import openrecordz.exception.ResourceNotFoundException;
 import openrecordz.mail.service.EmailSettingsConstant;
 import openrecordz.mail.service.MailService;
-import shoppino.service.PersonService;
-import shoppino.service.TenantService;
-import shoppino.service.UrlService;
-import shoppino.service.impl.TenantSettingsSetter;
+import openrecordz.service.PersonService;
+import openrecordz.service.TenantService;
+import openrecordz.service.UrlService;
+import openrecordz.service.impl.TenantSettingsSetter;
 
 public class RegistrationMailSender {
 	

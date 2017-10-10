@@ -28,9 +28,9 @@ import org.springframework.ui.velocity.VelocityEngineUtils;
 
 import openrecordz.exception.ResourceNotFoundException;
 import openrecordz.queue.JmsEmailQueueSender;
-import shoppino.service.EnvironmentService;
-import shoppino.service.TenantService;
-import shoppino.service.impl.ConfigThreadLocal;
+import openrecordz.service.EnvironmentService;
+import openrecordz.service.TenantService;
+import openrecordz.service.impl.ConfigThreadLocal;
 
 public class MailServiceImpl implements MailService{
 

@@ -28,18 +28,18 @@ import openrecordz.domain.Person;
 import openrecordz.domain.validator.UserRegistrationServiceValidation;
 import openrecordz.exception.EmailAlreadyInUseException;
 import openrecordz.exception.ShoppinoException;
+import openrecordz.security.domain.User;
+import openrecordz.security.exception.AuthenticationException;
+import openrecordz.security.exception.UserNotExistsException;
+import openrecordz.security.exception.UsernameAlreadyInUseException;
+import openrecordz.security.service.AuthenticationService;
+import openrecordz.security.service.UserService;
+import openrecordz.service.ImageService;
+import openrecordz.service.PersonService;
+import openrecordz.service.RegistrationService;
+import openrecordz.service.TenantService;
 import openrecordz.web.exception.ValidationException;
 import openrecordz.web.form.UserRegistrationForm;
-import shoppino.security.domain.User;
-import shoppino.security.exception.AuthenticationException;
-import shoppino.security.exception.UserNotExistsException;
-import shoppino.security.exception.UsernameAlreadyInUseException;
-import shoppino.security.service.AuthenticationService;
-import shoppino.security.service.UserService;
-import shoppino.service.ImageService;
-import shoppino.service.PersonService;
-import shoppino.service.RegistrationService;
-import shoppino.service.TenantService;
 
 @Controller
 //@RequestMapping("/{tenant}/service/v1")

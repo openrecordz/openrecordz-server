@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import shoppino.security.service.AuthenticationService;
+import openrecordz.security.service.AuthenticationService;
 
 @Component("authenticationInterceptor")
 public class AuthenticationInterceptor extends HandlerInterceptorAdapter {

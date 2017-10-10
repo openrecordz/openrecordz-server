@@ -32,10 +32,10 @@ import org.springframework.web.client.ResponseExtractor;
 import org.springframework.web.client.RestOperations;
 
 import openrecordz.exception.ShoppinoException;
-import shoppino.security.exception.UserNotExistsException;
-import shoppino.security.service.UserService;
-import shoppino.service.EnvironmentService;
-import shoppino.service.UrlService;
+import openrecordz.security.exception.UserNotExistsException;
+import openrecordz.security.service.UserService;
+import openrecordz.service.EnvironmentService;
+import openrecordz.service.UrlService;
 
 @Controller
 public class UrlController {

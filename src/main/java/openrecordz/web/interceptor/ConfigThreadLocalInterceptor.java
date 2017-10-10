@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import shoppino.service.impl.ConfigThreadLocal;
-import shoppino.service.impl.ScriptServiceMultiEngineImpl;
+import openrecordz.service.impl.ConfigThreadLocal;
+import openrecordz.service.impl.ScriptServiceMultiEngineImpl;
 
 
 

@@ -24,12 +24,12 @@ import openrecordz.domain.Person;
 import openrecordz.domain.validator.UserRegistrationServiceValidation;
 import openrecordz.exception.ResourceNotFoundException;
 import openrecordz.exception.ShoppinoException;
-import shoppino.security.exception.UserNotExistsException;
-import shoppino.security.service.AuthenticationService;
-import shoppino.security.service.UserService;
-import shoppino.security.web.authentication.UsernameUtils;
-import shoppino.service.PersonService;
-import shoppino.service.TenantService;
+import openrecordz.security.exception.UserNotExistsException;
+import openrecordz.security.service.AuthenticationService;
+import openrecordz.security.service.UserService;
+import openrecordz.security.web.authentication.UsernameUtils;
+import openrecordz.service.PersonService;
+import openrecordz.service.TenantService;
 
 @Controller
 public class PersonServiceController  implements BaseServiceController {

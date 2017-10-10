@@ -26,7 +26,7 @@ import org.supercsv.prefs.CsvPreference;
 
 import openrecordz.domain.customdata.CustomData;
 import openrecordz.exception.ShoppinoException;
-import shoppino.service.CustomDataService;
+import openrecordz.service.CustomDataService;
 
 
 @Controller

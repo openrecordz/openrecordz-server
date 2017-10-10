@@ -13,8 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import openrecordz.domain.Tenant;
-import shoppino.service.TenantService;
-import shoppino.service.impl.TenantThreadLocal;
+import openrecordz.service.TenantService;
+import openrecordz.service.impl.TenantThreadLocal;
 
 @Deprecated
 @Component("tenantInterceptor")
