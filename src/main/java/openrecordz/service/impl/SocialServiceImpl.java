@@ -7,7 +7,7 @@ import javax.inject.Inject;
 
 import microdev.util.HttpUtil;
 import openrecordz.domain.Person;
-import openrecordz.exception.ShoppinoException;
+import openrecordz.exception.OpenRecordzException;
 import openrecordz.service.PersonService;
 import openrecordz.service.SocialService;
 
@@ -59,7 +59,7 @@ public class SocialServiceImpl implements SocialService{
 //	}
 	
 	
-	public void updatePhotoFromSocial(String username) throws ShoppinoException {
+	public void updatePhotoFromSocial(String username) throws OpenRecordzException {
 		
 //		Find all connections the current user has across all providers. The returned map contains an entry for each provider the user is connected to. The key for each entry is the providerId, and the value is the list of Connections that exist between the user and that provider. For example, if the user is connected once to Facebook and twice to Twitter, the returned map would contain two entries with the following structure:
 //

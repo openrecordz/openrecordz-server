@@ -5,7 +5,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import openrecordz.exception.EmailAlreadyInUseException;
-import openrecordz.exception.ShoppinoException;
+import openrecordz.exception.OpenRecordzException;
 import openrecordz.security.exception.UserNotExistsException;
 import openrecordz.security.exception.UsernameAlreadyInUseException;
 import openrecordz.security.service.UserService;
@@ -25,7 +25,7 @@ public class RegistrationServiceImpl implements RegistrationService{
 	protected Log logger = LogFactory.getLog(getClass());
 	
 	
-	public String register(String username, String fullName, String email, String password) throws UsernameAlreadyInUseException,EmailAlreadyInUseException, ShoppinoException {
+	public String register(String username, String fullName, String email, String password) throws UsernameAlreadyInUseException,EmailAlreadyInUseException, OpenRecordzException {
 //	public void register(String username, String fullName, String email, String password) throws UsernameAlreadyInUseException,EmailAlreadyInUseException, ShoppinoException {
 		if (userService.exists(username))
 			throw new UsernameAlreadyInUseException(username);
@@ -42,7 +42,7 @@ public class RegistrationServiceImpl implements RegistrationService{
 		try {
 			id =personService.add(username, fullName, email);
 			
-		}catch (ShoppinoException e) {
+		}catch (OpenRecordzException e) {
 			try {
 				userService.delete(username);
 			} catch (UserNotExistsException e1) {}

@@ -5,7 +5,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import openrecordz.exception.ShoppinoException;
+import openrecordz.exception.OpenRecordzException;
 import openrecordz.util.UsernameValidator;
 import openrecordz.web.form.UserRegistrationForm;
 
@@ -63,33 +63,33 @@ public class UserRegistrationServiceValidation implements Validator {
 	
 	
 	
-	public void validate(String username, String fullName, String email) throws ShoppinoException { 
+	public void validate(String username, String fullName, String email) throws OpenRecordzException { 
 		
 		if (fullName==null || fullName.equals(""))
-			throw new ShoppinoException("Field fullName is required");
+			throw new OpenRecordzException("Field fullName is required");
 		
 		
 		
 		if (username==null || username.equals(""))
-			throw new ShoppinoException("Field username is required");
+			throw new OpenRecordzException("Field username is required");
 		
 		
 		
 		UsernameValidator usernameValidator = new UsernameValidator();
 		boolean isUsernameValid = usernameValidator.validate(username);
 		if (!username.equals("") && !isUsernameValid)
-			throw new ShoppinoException("Username is not valid");
+			throw new OpenRecordzException("Username is not valid");
 		
 		
 		
 		
 		if (email==null || email.equals(""))
-			throw new ShoppinoException("Field email is required");
+			throw new OpenRecordzException("Field email is required");
 		
 		boolean isEmail = EmailValidator.getInstance().isValid(email);
 		
 		if (!email.equals("") && !isEmail)
-			throw new ShoppinoException("Not an email");
+			throw new OpenRecordzException("Not an email");
 		 
 	
 			

@@ -2,7 +2,7 @@ package openrecordz.exception;
 
 
 
-public final class ResourceNotFoundException extends ShoppinoException{
+public final class ResourceNotFoundException extends OpenRecordzException{
 
 	public ResourceNotFoundException(String message ){
 		super(message);

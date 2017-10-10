@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import openrecordz.exception.ShoppinoException;
+import openrecordz.exception.OpenRecordzException;
 import openrecordz.security.service.AuthenticationService;
 
 
@@ -41,7 +41,7 @@ public class AnalysisServiceController implements BaseServiceController {
     
     
     @RequestMapping(value = "/analytics", method = RequestMethod.GET)  
-	 public @ResponseBody List<Map<String, String>> analytics(Model model, HttpServletRequest request) throws ShoppinoException {
+	 public @ResponseBody List<Map<String, String>> analytics(Model model, HttpServletRequest request) throws OpenRecordzException {
    	
     	List<Map<String, String>> list = new ArrayList<Map<String, String>>();
     	

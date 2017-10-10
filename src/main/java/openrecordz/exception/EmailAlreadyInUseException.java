@@ -18,7 +18,7 @@ package openrecordz.exception;
 
 
 
-public class EmailAlreadyInUseException extends ShoppinoException {
+public class EmailAlreadyInUseException extends OpenRecordzException {
 	/**
 	 * 
 	 */

@@ -25,7 +25,7 @@ import org.supercsv.io.CsvMapWriter;
 import org.supercsv.prefs.CsvPreference;
 
 import openrecordz.domain.customdata.CustomData;
-import openrecordz.exception.ShoppinoException;
+import openrecordz.exception.OpenRecordzException;
 import openrecordz.service.CustomDataService;
 
 
@@ -55,7 +55,7 @@ public class CustomDataServiceController implements BaseServiceController {
 	 public @ResponseBody CustomData create(Model model, @PathVariable String className, 
 //			 @RequestParam("json") String json
 			 @RequestBody String jsonStr
-			 ) throws ShoppinoException {
+			 ) throws OpenRecordzException {
    	
     	String cdataId = customDataService.add(className, jsonStr);
     	CustomData cdata = customDataService.getById(cdataId);
@@ -67,7 +67,7 @@ public class CustomDataServiceController implements BaseServiceController {
     @RequestMapping(value = "/cdata/", method = RequestMethod.GET)  
 	 public @ResponseBody CustomData get(Model model,
 			 @RequestParam(value = "_id", required=true) String id, 
-			 HttpServletRequest request) throws ShoppinoException {
+			 HttpServletRequest request) throws OpenRecordzException {
  	
     	CustomData cdata = customDataService.getByIdInternal(id);
           
@@ -76,7 +76,7 @@ public class CustomDataServiceController implements BaseServiceController {
     
     @RequestMapping(value = "/cdata/{className}/{id}", method = RequestMethod.GET)  
 	 public @ResponseBody CustomData get(Model model, @PathVariable String className, 
-			 @PathVariable("id") String id, HttpServletRequest request) throws ShoppinoException {
+			 @PathVariable("id") String id, HttpServletRequest request) throws OpenRecordzException {
   	
     	CustomData cdata = customDataService.getByIdInternal(id);
            
@@ -86,7 +86,7 @@ public class CustomDataServiceController implements BaseServiceController {
     
     @RequestMapping(value = "/cdata/{className}/{id}", method = RequestMethod.DELETE)  
 	 public @ResponseBody String delete(Model model, @PathVariable String className, 
-			 @PathVariable("id") String id, HttpServletRequest request) throws ShoppinoException {
+			 @PathVariable("id") String id, HttpServletRequest request) throws OpenRecordzException {
  	
     	customDataService.remove(id);
           
@@ -97,7 +97,7 @@ public class CustomDataServiceController implements BaseServiceController {
     
     @RequestMapping(value = "/cdata/{className}", method = RequestMethod.DELETE)  
 	 public @ResponseBody String deleteAllByClassName(Model model, @PathVariable String className, 
-			 HttpServletRequest request) throws ShoppinoException {
+			 HttpServletRequest request) throws OpenRecordzException {
 	
    	customDataService.removeAll(className);
          
@@ -110,7 +110,7 @@ public class CustomDataServiceController implements BaseServiceController {
   			@PathVariable("id") String id,  
 //  			@RequestParam("json") String json, 
   			@RequestBody String jsonStr,
-  			HttpServletRequest request) throws ShoppinoException {
+  			HttpServletRequest request) throws OpenRecordzException {
     	
     	String cdataId = customDataService.update(id, className, jsonStr);
     	CustomData cdata = customDataService.getById(cdataId);    
@@ -123,7 +123,7 @@ public class CustomDataServiceController implements BaseServiceController {
  			@PathVariable("id") String id,  
 // 			@RequestParam("json") String json, 
  			@RequestBody String jsonStr,
- 			HttpServletRequest request) throws ShoppinoException {
+ 			HttpServletRequest request) throws OpenRecordzException {
    	
    	String cdataId = customDataService.patch(id, className, jsonStr);
    	CustomData cdata = customDataService.getById(cdataId);    
@@ -147,7 +147,7 @@ public class CustomDataServiceController implements BaseServiceController {
 			 @RequestParam(value = "direction", required=false) String direction, 
 			 @RequestParam(value = "status", required=false) Integer status,
 			 
-			 HttpServletRequest request) throws ShoppinoException {
+			 HttpServletRequest request) throws OpenRecordzException {
  	
     	int page = defaultPage;
     	int pageSize = defaultPageSize;
@@ -212,7 +212,7 @@ public class CustomDataServiceController implements BaseServiceController {
 			 @RequestParam(value = "direction", required=false) String direction, 
 			 @RequestParam(value = "status", required=false) Integer status,
 			 
-			 HttpServletRequest request) throws ShoppinoException {
+			 HttpServletRequest request) throws OpenRecordzException {
     	
     	
 //    	List<CustomData> ret=this.query(model, className, query, text, near, null, sortFields, direction, status, request);
@@ -235,7 +235,7 @@ public class CustomDataServiceController implements BaseServiceController {
 			 @RequestParam(value = "sort", required=false) String sort, 
 			 @RequestParam(value = "direction", required=false) String direction, 
 			 @RequestParam(value = "status", required=false) Integer status,
-			 HttpServletRequest request, HttpServletResponse response) throws ShoppinoException, IOException {
+			 HttpServletRequest request, HttpServletResponse response) throws OpenRecordzException, IOException {
  
         String csvFileName = className+".csv";
  

@@ -1,6 +1,6 @@
 package openrecordz.exception;
 
-public class TooManyNotificationException extends ShoppinoException {
+public class TooManyNotificationException extends OpenRecordzException {
 
 	/**
 	 * 

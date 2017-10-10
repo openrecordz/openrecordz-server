@@ -23,7 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import openrecordz.domain.Person;
 import openrecordz.domain.validator.UserRegistrationServiceValidation;
 import openrecordz.exception.ResourceNotFoundException;
-import openrecordz.exception.ShoppinoException;
+import openrecordz.exception.OpenRecordzException;
 import openrecordz.security.exception.UserNotExistsException;
 import openrecordz.security.service.AuthenticationService;
 import openrecordz.security.service.UserService;
@@ -72,7 +72,7 @@ public class PersonServiceController  implements BaseServiceController {
     		 @RequestParam(value = "q", required=false, defaultValue="{}") String query,
     		 @RequestParam(value = "text", required=false) String text,
     		@RequestParam(value = "sort", required=false) String sortFields, 
-			 @RequestParam(value = "direction", required=false) String direction) throws ShoppinoException {        
+			 @RequestParam(value = "direction", required=false) String direction) throws OpenRecordzException {        
         
         int page = defaultPage;
     	int pageSize = defaultPageSize;
@@ -177,7 +177,7 @@ public class PersonServiceController  implements BaseServiceController {
     
     @RequestMapping(value = "/people/me/updatephoto", method = RequestMethod.POST)
     public @ResponseBody String updateMephoto(@RequestParam(value="photo_file", required=false) MultipartFile photo
-    					) throws ShoppinoException, IOException {
+    					) throws OpenRecordzException, IOException {
     	    	        
     	
     	if (photo!=null && !photo.isEmpty())
@@ -197,7 +197,7 @@ public class PersonServiceController  implements BaseServiceController {
 		 	@RequestParam("email") String email,
     		@RequestParam(value="properties", required=false) String properties
     		) 
-    				throws ShoppinoException, IOException {
+    				throws OpenRecordzException, IOException {
     	
     	 logger.debug("username : " + authenticationService.getCurrentLoggedUsername());
 		 logger.debug("fullName : " + fullName);
@@ -222,7 +222,7 @@ public class PersonServiceController  implements BaseServiceController {
 		 	@RequestParam(value="email",required=false) String email,
     		@RequestParam(value="properties", required=false) String properties
     		) 
-    				throws ShoppinoException, IOException {
+    				throws OpenRecordzException, IOException {
     	
     	 logger.debug("username : " + authenticationService.getCurrentLoggedUsername());
 		 logger.debug("fullName : " + fullName);
@@ -262,7 +262,7 @@ public class PersonServiceController  implements BaseServiceController {
 		 	@RequestParam("email") String email,
     		@RequestParam(value="properties", required=false) String properties
     		) 
-    				throws ShoppinoException, IOException {
+    				throws OpenRecordzException, IOException {
     	
     	 logger.debug("username : " + username);
 		 logger.debug("fullName : " + fullName);
@@ -300,7 +300,7 @@ public class PersonServiceController  implements BaseServiceController {
     
     @RequestMapping(value = "/people/updatephoto", method = RequestMethod.POST)
     public @ResponseBody String updatephoto(@RequestParam("username") String username, @RequestParam(value="photo_file", required=false) MultipartFile photo
-    					) throws ShoppinoException, IOException {
+    					) throws OpenRecordzException, IOException {
     	    	        
     	
     	if (photo!=null && !photo.isEmpty())
@@ -341,7 +341,7 @@ public class PersonServiceController  implements BaseServiceController {
     
     @RequestMapping(value = "/people/join", method = RequestMethod.POST)
     public @ResponseBody String join(@RequestParam("username") String username
-    					) throws ShoppinoException, IOException {
+    					) throws OpenRecordzException, IOException {
     	
     	  personService.joinCurrentTenant(username);
     	
@@ -353,7 +353,7 @@ public class PersonServiceController  implements BaseServiceController {
     
     @RequestMapping(value = "/people/disjoin", method = RequestMethod.POST)
     public @ResponseBody String disjoin(@RequestParam("username") String username
-    					) throws ShoppinoException, IOException {
+    					) throws OpenRecordzException, IOException {
     	
     	  personService.disjoinCurrentTenant(username);
     	    	   

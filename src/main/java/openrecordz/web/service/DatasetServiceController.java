@@ -27,7 +27,7 @@ import com.mongodb.util.JSON;
 
 import openrecordz.domain.customdata.CustomData;
 import openrecordz.exception.ResourceNotFoundException;
-import openrecordz.exception.ShoppinoException;
+import openrecordz.exception.OpenRecordzException;
 import openrecordz.service.CustomDataService;
 
 
@@ -60,15 +60,15 @@ public class DatasetServiceController implements BaseServiceController {
 	//MessageSource cdmessageSource;
 //    https://www.parse.com/docs/rest#objects-types
     
-	public void validate (String datasetJson) throws ShoppinoException {
+	public void validate (String datasetJson) throws OpenRecordzException {
 		Map json=(Map) JSON.parse(datasetJson);
     	if (json!=null && json.containsKey("_slug")) {
     		String dsSlug = (String) json.get("_slug");
     		List<CustomData> resuls=customDataService.findByQuery("{\"_slug\":\"" +dsSlug+"\"}", "dataset");
     		if (resuls!=null && resuls.size()>=1)
-    			throw new ShoppinoException("Dataset slug already exists");    		    			
+    			throw new OpenRecordzException("Dataset slug already exists");    		    			
     	}else {
-    		throw new ShoppinoException("Dataset doesn't contains slug field");
+    		throw new OpenRecordzException("Dataset doesn't contains slug field");
     	}
 	}
 	
@@ -78,7 +78,7 @@ public class DatasetServiceController implements BaseServiceController {
 //			 @PathVariable String datasetname, 
 //			 @RequestParam("json") String json
 			 @RequestBody String jsonStr
-			 ) throws ShoppinoException {
+			 ) throws OpenRecordzException {
    	
     	validate(jsonStr);
     	
@@ -93,7 +93,7 @@ public class DatasetServiceController implements BaseServiceController {
 	 public @ResponseBody CustomData get(Model model, 
 //			 @PathVariable String className, 
 			 @PathVariable("id") String id,
-			 HttpServletRequest request) throws ShoppinoException {
+			 HttpServletRequest request) throws OpenRecordzException {
  	
     	CustomData cdata=null;
     	try {
@@ -118,7 +118,7 @@ public class DatasetServiceController implements BaseServiceController {
  			@PathVariable("id") String id,  
 // 			@RequestParam("json") String json, 
  			@RequestBody String jsonStr,
- 			HttpServletRequest request) throws ShoppinoException {
+ 			HttpServletRequest request) throws OpenRecordzException {
    	
     	
     	CustomData cdataOld = customDataService.getById(id); 
@@ -141,7 +141,7 @@ public class DatasetServiceController implements BaseServiceController {
 			@PathVariable("id") String id,  
 //			@RequestParam("json") String json, 
 			@RequestBody String jsonStr,
-			HttpServletRequest request) throws ShoppinoException {
+			HttpServletRequest request) throws OpenRecordzException {
   	
     	
     	CustomData cdataOld = customDataService.getById(id); 
@@ -162,7 +162,7 @@ public class DatasetServiceController implements BaseServiceController {
     @RequestMapping(value = "/datasets/{id}", method = RequestMethod.DELETE)  
 	 public @ResponseBody String delete(Model model,
 //			 @PathVariable String className, 
-			 @PathVariable("id") String id, HttpServletRequest request) throws ShoppinoException {
+			 @PathVariable("id") String id, HttpServletRequest request) throws OpenRecordzException {
 	
    	customDataService.remove(id);
          
@@ -182,7 +182,7 @@ public class DatasetServiceController implements BaseServiceController {
 			 @RequestParam(value = "sort", required=false) String sortFields, 
 			 @RequestParam(value = "direction", required=false) String direction, 
 			 @RequestParam(value = "status", required=false) Integer status,
-			 HttpServletRequest request) throws ShoppinoException {
+			 HttpServletRequest request) throws OpenRecordzException {
 	
     	String className="dataset";
     	
@@ -227,7 +227,7 @@ public class DatasetServiceController implements BaseServiceController {
 			 @RequestParam(value = "sort", required=false) String sort, 
 			 @RequestParam(value = "direction", required=false) String direction, 
 			 @RequestParam(value = "status", required=false) Integer status,
-			 HttpServletRequest request, HttpServletResponse response) throws ShoppinoException, IOException {
+			 HttpServletRequest request, HttpServletResponse response) throws OpenRecordzException, IOException {
 
        String csvFileName = "datasets"+".csv";
 

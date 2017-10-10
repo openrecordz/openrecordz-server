@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import openrecordz.exception.ShoppinoException;
+import openrecordz.exception.OpenRecordzException;
 import openrecordz.service.PersonService;
 
 @Controller
@@ -36,7 +36,7 @@ public class CacheController implements BaseAdminController {
 //	aggiungi cusotm data
 	
     @RequestMapping(value = {"/cache/people/evict"})
-    public @ResponseBody String evictPersonCache(Model model, HttpServletRequest request) throws ShoppinoException {    	
+    public @ResponseBody String evictPersonCache(Model model, HttpServletRequest request) throws OpenRecordzException {    	
     	
     	personService.clearCache();
     	
@@ -44,7 +44,7 @@ public class CacheController implements BaseAdminController {
     }    
     
     @RequestMapping(value = {"/cache/evict"})
-    public @ResponseBody String evictCache(Model model, HttpServletRequest request) throws ShoppinoException {    	
+    public @ResponseBody String evictCache(Model model, HttpServletRequest request) throws OpenRecordzException {    	
     	
 //    	productService.clearCache();
     	personService.clearCache();

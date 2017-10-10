@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import openrecordz.exception.ResourceNotFoundException;
-import openrecordz.exception.ShoppinoException;
+import openrecordz.exception.OpenRecordzException;
 import openrecordz.security.exception.AuthorizationException;
 import openrecordz.service.FileService;
 
@@ -92,7 +92,7 @@ public class FileServiceController implements BaseServiceController {
     
     
     @RequestMapping(value = "/files", method = RequestMethod.DELETE)
-    public @ResponseBody String delete(@RequestParam("path") String path,Model model, HttpServletRequest request) throws AuthorizationException, ShoppinoException {    	
+    public @ResponseBody String delete(@RequestParam("path") String path,Model model, HttpServletRequest request) throws AuthorizationException, OpenRecordzException {    	
 	  
     	fileService.delete(path);
 	  	
@@ -103,7 +103,7 @@ public class FileServiceController implements BaseServiceController {
     
     
     @RequestMapping(value = "/files", method = RequestMethod.GET)
-    public @ResponseBody Map get(@RequestParam("path") String path,Model model, HttpServletRequest request) throws AuthorizationException, ShoppinoException {    	
+    public @ResponseBody Map get(@RequestParam("path") String path,Model model, HttpServletRequest request) throws AuthorizationException, OpenRecordzException {    	
 	  
     	logger.info("path: " + path );
     	

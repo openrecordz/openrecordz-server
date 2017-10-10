@@ -5,7 +5,7 @@ import java.util.Map;
 
 import openrecordz.domain.Notification;
 import openrecordz.exception.ResourceNotFoundException;
-import openrecordz.exception.ShoppinoException;
+import openrecordz.exception.OpenRecordzException;
 import openrecordz.exception.TooManyNotificationException;
 
 public interface NotificationService {
@@ -77,7 +77,7 @@ public interface NotificationService {
 	
 //	public List<Notification> findByFromAndToAndRefId(String from, String to, String refId);
 	
-	public void delete(String id) throws ShoppinoException;
+	public void delete(String id) throws OpenRecordzException;
 
 
 }

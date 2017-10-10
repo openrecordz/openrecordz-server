@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import openrecordz.exception.ShoppinoException;
+import openrecordz.exception.OpenRecordzException;
 import openrecordz.service.impl.ScriptServiceMultiEngineImpl;
 
 @Controller
@@ -28,7 +28,7 @@ public class ScriptAdminController implements BaseAdminController {
 	
     
     @RequestMapping(value = {"/scripting/resetengines"})
-    public @ResponseBody String gcmClean(Model model, HttpServletRequest request) throws ShoppinoException {    	
+    public @ResponseBody String gcmClean(Model model, HttpServletRequest request) throws OpenRecordzException {    	
     	
     	scriptServiceMultiEngineImpl.resetEngines();
     	

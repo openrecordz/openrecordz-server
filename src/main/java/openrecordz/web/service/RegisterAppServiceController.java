@@ -28,7 +28,7 @@ import openrecordz.domain.Tenant;
 import openrecordz.domain.validator.UserRegistrationValidation;
 import openrecordz.exception.EmailAlreadyInUseException;
 import openrecordz.exception.ResourceNotFoundException;
-import openrecordz.exception.ShoppinoException;
+import openrecordz.exception.OpenRecordzException;
 import openrecordz.exception.TenantAlreadyInUseException;
 import openrecordz.security.domain.User;
 import openrecordz.security.exception.AuthenticationException;
@@ -134,7 +134,7 @@ public class RegisterAppServiceController implements BaseServiceController {
 			WebRequest webRequest,
 //			@Valid UserRegistrationForm userRegistration,
 			UserRegistrationForm userRegistration,
-		BindingResult result) throws SQLException, UserNotExistsException, ValidationException, EmailAlreadyInUseException, UsernameAlreadyInUseException,  AuthenticationException, TenantAlreadyInUseException, ShoppinoException {
+		BindingResult result) throws SQLException, UserNotExistsException, ValidationException, EmailAlreadyInUseException, UsernameAlreadyInUseException,  AuthenticationException, TenantAlreadyInUseException, OpenRecordzException {
       
 		userRegistrationValidation.validate(userRegistration, result);
 		

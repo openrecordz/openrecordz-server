@@ -26,7 +26,7 @@ import org.supercsv.prefs.CsvPreference;
 
 import openrecordz.domain.customdata.CustomData;
 import openrecordz.exception.ResourceNotFoundException;
-import openrecordz.exception.ShoppinoException;
+import openrecordz.exception.OpenRecordzException;
 import openrecordz.service.CustomDataService;
 import openrecordz.service.RecordDataService;
 
@@ -69,7 +69,7 @@ public class RecordServiceController implements BaseServiceController {
 	 public @ResponseBody CustomData create(Model model, @PathVariable String dsId, 
 			 @RequestParam(value = "type", required=false, defaultValue="record") String type,
 			 @RequestBody String jsonStr
-			 ) throws ShoppinoException {
+			 ) throws OpenRecordzException {
    	
     	
 //    	Map json=(Map) JSON.parse(jsonStr);
@@ -97,7 +97,7 @@ public class RecordServiceController implements BaseServiceController {
 			 @PathVariable String dsId, 
 			 @PathVariable("id") String id,
 			 @RequestParam(value = "byslug", required=false) Boolean searchbySlug,
-			 HttpServletRequest request) throws ShoppinoException {
+			 HttpServletRequest request) throws OpenRecordzException {
   	
     	logger.debug("searchbySlug : " + searchbySlug);
 
@@ -128,7 +128,7 @@ public class RecordServiceController implements BaseServiceController {
 			 Model model, 
 			 @PathVariable String dsId, 
 			 @PathVariable("id") String id,
-			 HttpServletRequest request) throws ShoppinoException {
+			 HttpServletRequest request) throws OpenRecordzException {
   	
     	
     	CustomData cdata = recordDataService.getByIdInternal(id);
@@ -139,7 +139,7 @@ public class RecordServiceController implements BaseServiceController {
     
     @RequestMapping(value = "/datasets/{dsId}/{id}", method = RequestMethod.DELETE)  
 	 public @ResponseBody String delete(Model model, @PathVariable String dsId, 
-			 @PathVariable("id") String id, HttpServletRequest request) throws ShoppinoException {
+			 @PathVariable("id") String id, HttpServletRequest request) throws OpenRecordzException {
  	
     	recordDataService.remove(id);
           
@@ -150,7 +150,7 @@ public class RecordServiceController implements BaseServiceController {
     
     @RequestMapping(value = "/datasets/{dsId}/onlyrecord", method = RequestMethod.DELETE)  
 	 public @ResponseBody String deleteAllByClassName(Model model, @PathVariable String dsId, 
-			 HttpServletRequest request) throws ShoppinoException {
+			 HttpServletRequest request) throws OpenRecordzException {
 	
 //   	customDataService.removeAll("record");
     	recordDataService.removeAll(dsId);
@@ -166,7 +166,7 @@ public class RecordServiceController implements BaseServiceController {
   			@RequestBody String jsonStr,
   			@RequestParam(value = "versioning", required=false, defaultValue="false") Boolean versioningEnabled,
   			
-  			HttpServletRequest request) throws ShoppinoException {
+  			HttpServletRequest request) throws OpenRecordzException {
     	
     	String cdataId = recordDataService.update(id, dsId, jsonStr, versioningEnabled);
 //    	String cdataId = customDataService.update(id, "record", jsonStr);
@@ -180,7 +180,7 @@ public class RecordServiceController implements BaseServiceController {
  			@PathVariable("id") String id,  
 // 			@RequestParam("json") String json, 
  			@RequestBody String jsonStr,
- 			HttpServletRequest request) throws ShoppinoException {
+ 			HttpServletRequest request) throws OpenRecordzException {
    	
    	String cdataId = recordDataService.patch(id, dsId, jsonStr);
 //   	String cdataId = customDataService.patch(id, "record", jsonStr);
@@ -209,7 +209,7 @@ public class RecordServiceController implements BaseServiceController {
 			 
 			 @RequestParam(value = "byslug", required=false) Boolean searchbySlug,
 			 
-			 HttpServletRequest request) throws ShoppinoException {
+			 HttpServletRequest request) throws OpenRecordzException {
  	
     	int page = defaultPage;
     	int pageSize = defaultPageSize;
@@ -301,7 +301,7 @@ public class RecordServiceController implements BaseServiceController {
 			 @RequestParam(value = "direction", required=false) String direction, 
 			 @RequestParam(value = "status", required=false) Integer status,
 			 
-			 HttpServletRequest request) throws ShoppinoException {
+			 HttpServletRequest request) throws OpenRecordzException {
     	
     	
 //    	List<CustomData> ret=this.query(model, className, query, text, near, null, sortFields, direction, status, request);
@@ -367,7 +367,7 @@ public class RecordServiceController implements BaseServiceController {
 			 @RequestParam(value = "sort", required=false) String sort, 
 			 @RequestParam(value = "direction", required=false) String direction, 
 			 @RequestParam(value = "status", required=false) Integer status,
-			 HttpServletRequest request, HttpServletResponse response) throws ShoppinoException, IOException {
+			 HttpServletRequest request, HttpServletResponse response) throws OpenRecordzException, IOException {
  
         String csvFileName = dsId+".csv";
  

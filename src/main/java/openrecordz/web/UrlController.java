@@ -31,7 +31,7 @@ import org.springframework.web.client.RequestCallback;
 import org.springframework.web.client.ResponseExtractor;
 import org.springframework.web.client.RestOperations;
 
-import openrecordz.exception.ShoppinoException;
+import openrecordz.exception.OpenRecordzException;
 import openrecordz.security.exception.UserNotExistsException;
 import openrecordz.security.service.UserService;
 import openrecordz.service.EnvironmentService;
@@ -67,7 +67,7 @@ public class UrlController {
 	 
 	 
 	 @RequestMapping(value = "/urls/{uid}/f", method = RequestMethod.GET)    
- 	 public String urlForward(Model model, @PathVariable String uid,HttpServletRequest request) throws ShoppinoException {	   	    	
+ 	 public String urlForward(Model model, @PathVariable String uid,HttpServletRequest request) throws OpenRecordzException {	   	    	
     	
 //		 String gotoUrl= null;
 //	    	
@@ -88,7 +88,7 @@ public class UrlController {
 	 
 	 
 	 @RequestMapping(value = "/urls/{uid}/g", method = RequestMethod.GET)    
- 	 public String urlGet(Model model, @PathVariable String uid) throws ShoppinoException {	   	    	
+ 	 public String urlGet(Model model, @PathVariable String uid) throws OpenRecordzException {	   	    	
     	
 		String url = urlService.getByUID(uid);
     	logger.debug("Getting to : " + url);
@@ -104,7 +104,7 @@ public class UrlController {
 //	 make a post at URL page identified by UID. I can authenticate the call with pusername parameter. The servire redirect always to homepage 
 	 
 	 @RequestMapping(value = "/urls/{uid}/p", method = RequestMethod.GET)    
- 	 public String urlPost(Model model, @PathVariable String uid) throws ShoppinoException, URISyntaxException, UserNotExistsException {	   	    	
+ 	 public String urlPost(Model model, @PathVariable String uid) throws OpenRecordzException, URISyntaxException, UserNotExistsException {	   	    	
     	
 		String url = urlService.getByUID(uid);
     	logger.debug("Posting to : " + url);
@@ -172,7 +172,7 @@ public class UrlController {
 	    
 	    
 		 @RequestMapping(value = "/urls/{uid}/r", method = RequestMethod.GET)    
-	 	 public String urlGetAndRedirectTo(Model model, @PathVariable String uid,HttpServletRequest request,  HttpServletResponse response) throws ShoppinoException, URISyntaxException, UserNotExistsException {	   	    	
+	 	 public String urlGetAndRedirectTo(Model model, @PathVariable String uid,HttpServletRequest request,  HttpServletResponse response) throws OpenRecordzException, URISyntaxException, UserNotExistsException {	   	    	
 	    	
 			String url = urlService.getByUID(uid);
 	    	logger.debug("Getting to : " + url);
@@ -263,7 +263,7 @@ public class UrlController {
 		 
 		 
 		 @RequestMapping(value = "/urls/{uid}/rext", method = RequestMethod.GET)    
-	 	 public String test(Model model, @PathVariable String uid,HttpServletRequest request,  HttpServletResponse response) throws ShoppinoException, URISyntaxException, UserNotExistsException {	   	    	
+	 	 public String test(Model model, @PathVariable String uid,HttpServletRequest request,  HttpServletResponse response) throws OpenRecordzException, URISyntaxException, UserNotExistsException {	   	    	
 	    	
 			String url = urlService.getByUID(uid);
 	    	logger.debug("Getting to : " + url);

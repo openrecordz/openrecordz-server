@@ -31,7 +31,7 @@ import openrecordz.domain.properties.Property;
 import openrecordz.domain.properties.PropertyImpl;
 import openrecordz.exception.EmailAlreadyInUseException;
 import openrecordz.exception.ResourceNotFoundException;
-import openrecordz.exception.ShoppinoException;
+import openrecordz.exception.OpenRecordzException;
 import openrecordz.persistence.mongo.PersonRepository;
 import openrecordz.security.exception.AuthorizationRuntimeException;
 import openrecordz.security.service.AuthenticationService;
@@ -165,9 +165,9 @@ public class PersonServiceMongoImpl implements PersonService {
 	}
 	
 	@Override
-	public String add(String username, String fullName, String email) throws EmailAlreadyInUseException, ShoppinoException {
+	public String add(String username, String fullName, String email) throws EmailAlreadyInUseException, OpenRecordzException {
 		if (exists(username))
-			throw new ShoppinoException("Person already exists with username : " + username);
+			throw new OpenRecordzException("Person already exists with username : " + username);
 		
 		try{
 			Person pEmail = this.getByEmail(email);
@@ -295,14 +295,14 @@ public class PersonServiceMongoImpl implements PersonService {
 	@CacheEvict(value = "person", key="#id")
 	@Override
 	public Person updateLogo(String id, String name, InputStream in)
-			throws ShoppinoException {
+			throws OpenRecordzException {
 		Person p = repository.findOne(id);
 		try{		
 			p.setPhoto(imageService.save(name, in));
 			p.setDefaultPhoto(false);
 		} catch (Exception e) {
 			log.error("Error updating person photo " + e);
-			throw new ShoppinoException(e);
+			throw new OpenRecordzException(e);
 		}
 		return repository.save(p);
 	}
@@ -321,14 +321,14 @@ public class PersonServiceMongoImpl implements PersonService {
 	@CacheEvict(value = "person", key="#id")
 	@Override
 	public void removeLogo(String id)
-		throws ShoppinoException {
+		throws OpenRecordzException {
 			Person p = repository.findOne(id);
 			try{		
 				p.setPhoto(defaultPhotoPath);
 				p.setDefaultPhoto(true);
 			} catch (Exception e) {
 				log.error("Error removing  person photo " + e);
-				throw new ShoppinoException(e);
+				throw new OpenRecordzException(e);
 			}
 			repository.save(p);
 		
@@ -381,7 +381,7 @@ public class PersonServiceMongoImpl implements PersonService {
 	@CacheEvict(value = "person", key="#personId")
 	@Override
 	public void setProperties(String personId, String propertiesAsJson)
-			throws ResourceNotFoundException, ShoppinoException {
+			throws ResourceNotFoundException, OpenRecordzException {
 		
 		Person p = this.getByUsername(personId);
 		
@@ -418,7 +418,7 @@ public class PersonServiceMongoImpl implements PersonService {
 			  catch(ParseException pe){
 			   log.error("parsing error at position: " + pe.getPosition());
 			   log.error("parsing error " + pe);
-			   throw new ShoppinoException("Parsing error", pe);
+			   throw new OpenRecordzException("Parsing error", pe);
 			  }
 			
 			}

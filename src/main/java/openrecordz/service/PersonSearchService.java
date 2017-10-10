@@ -3,7 +3,7 @@ package openrecordz.service;
 import java.util.List;
 
 import openrecordz.domain.Person;
-import openrecordz.exception.ShoppinoException;
+import openrecordz.exception.OpenRecordzException;
 
 public interface PersonSearchService {
 
@@ -17,7 +17,7 @@ public interface PersonSearchService {
 //
 	void delete(String id);
 		
-	List<Person> findByQueryPaginated(String query, int page, int size) throws ShoppinoException;
+	List<Person> findByQueryPaginated(String query, int page, int size) throws OpenRecordzException;
 
-	long countByQuery(String query) throws ShoppinoException; 
+	long countByQuery(String query) throws OpenRecordzException; 
 }

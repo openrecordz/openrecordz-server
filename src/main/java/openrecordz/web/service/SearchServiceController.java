@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import openrecordz.domain.customdata.CustomData;
-import openrecordz.exception.ShoppinoException;
+import openrecordz.exception.OpenRecordzException;
 import openrecordz.service.CustomDataService;
 
 @Controller
@@ -44,7 +44,7 @@ protected final Log logger = LogFactory.getLog(getClass());
 			 @RequestParam(value = "sort", required=false) String sortFields, 
 			 @RequestParam(value = "direction", required=false) String direction, 
 			 @RequestParam(value = "status", required=false) Integer status,
-			 HttpServletRequest request) throws ShoppinoException {
+			 HttpServletRequest request) throws OpenRecordzException {
 	
     	String className=null; //with null search datasets and records
     	

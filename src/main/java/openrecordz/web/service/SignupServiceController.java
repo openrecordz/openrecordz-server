@@ -27,7 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 import openrecordz.domain.Person;
 import openrecordz.domain.validator.UserRegistrationServiceValidation;
 import openrecordz.exception.EmailAlreadyInUseException;
-import openrecordz.exception.ShoppinoException;
+import openrecordz.exception.OpenRecordzException;
 import openrecordz.security.domain.User;
 import openrecordz.security.exception.AuthenticationException;
 import openrecordz.security.exception.UserNotExistsException;
@@ -102,7 +102,7 @@ public class SignupServiceController implements BaseServiceController {
 		Model model) 
 				throws UsernameAlreadyInUseException, EmailAlreadyInUseException, 
 		AuthenticationException, ValidationException, 
-		UserNotExistsException, ShoppinoException {
+		UserNotExistsException, OpenRecordzException {
       
 		
 		String accessToken = request.getParameter("facebookToken");
@@ -194,7 +194,7 @@ public class SignupServiceController implements BaseServiceController {
 			UserRegistrationForm userRegistration,
 			@RequestParam("photofile") MultipartFile photo,
 		BindingResult result, 
-		Model model) throws UsernameAlreadyInUseException, EmailAlreadyInUseException, AuthenticationException, ValidationException, UserNotExistsException, ShoppinoException, IOException {
+		Model model) throws UsernameAlreadyInUseException, EmailAlreadyInUseException, AuthenticationException, ValidationException, UserNotExistsException, OpenRecordzException, IOException {
       
 		logger.debug("Calling processSubmitWithPhoto");
 			
