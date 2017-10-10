@@ -1,4 +1,4 @@
-package shoppino.web;
+package openrecordz.web;
 
 
 import org.springframework.web.servlet.ModelAndView

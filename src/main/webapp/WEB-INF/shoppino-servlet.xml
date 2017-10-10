@@ -83,7 +83,7 @@
 		</bean> -->
 	</mvc:interceptors> 
 
-	<context:component-scan base-package="shoppino.web"/>
+	<context:component-scan base-package="openrecordz.web"/>
 	
 	
 		<!-- the mvc resources tag does the magic -->

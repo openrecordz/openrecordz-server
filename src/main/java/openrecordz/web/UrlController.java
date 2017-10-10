@@ -1,4 +1,4 @@
-package shoppino.web;
+package openrecordz.web;
 
 import java.net.HttpCookie;
 import java.net.URI;
