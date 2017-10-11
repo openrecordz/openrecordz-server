@@ -9,63 +9,18 @@
 
  
    <!-- development -->
-   <bindings-directory>/media/psf/Home/dev/java/workspace/openrecordz-data/hornetq/bindings</bindings-directory>
+   <bindings-directory>../openrecordz-data/hornetq/bindings</bindings-directory>
 
-   <journal-directory>/media/psf/Home/dev/java/workspace/openrecordz-data/hornetq/journal</journal-directory>
+   <journal-directory>../openrecordz-data/hornetq/journal</journal-directory>
    
    <journal-min-files>10</journal-min-files>
 
-   <large-messages-directory>/media/psf/Home/dev/java/workspace/openrecordz-data/hornetq/largemessages</large-messages-directory>
+   <large-messages-directory>../openrecordz-data/hornetq/largemessages</large-messages-directory>
    
-   <paging-directory>/media/psf/Home/dev/java/workspace/openrecordz-data/hornetq/paging</paging-directory>
+   <paging-directory>../openrecordz-data/hornetq/paging</paging-directory>
    
-   
-    <!-- production v3 -->
-  <!--  <bindings-directory>/home/ubuntu/pacchetti/smart21-server-v3-cache/data/hornetq/bindings</bindings-directory>
 
-   <journal-directory>/home/ubuntu/pacchetti/smart21-server-v3-cache/data/hornetq/journal</journal-directory>
    
-   <journal-min-files>10</journal-min-files>
-
-   <large-messages-directory>/home/ubuntu/pacchetti/smart21-server-v3-cache/data/hornetq/largemessages</large-messages-directory>
-   
-   <paging-directory>/home/ubuntu/pacchetti/smart21-server-v3-cache/data/hornetq/paging</paging-directory> -->
-   
-   
-  
-   
-   
-   
-   
-   
-   
-   
-     <!-- default -->
-<!-- <bindings-directory>${data.dir:../data}/hornetq/bindings</bindings-directory>
-
-   <journal-directory>${data.dir:../data}/hornetq/journal</journal-directory>
-   
-   <journal-min-files>10</journal-min-files>
-
-   <large-messages-directory>${data.dir:../data}/hornetq/largemessages</large-messages-directory>
-   
-   <paging-directory>${data.dir:../data}/hornetq/paging</paging-directory> -->
-   
-   <!-- production -->
-   <!-- <bindings-directory>/home/ubuntu/apps/apache-tomcat-7.0.27/data/hornetq/bindings</bindings-directory>
-
-   <journal-directory>/home/ubuntu/apps/apache-tomcat-7.0.27/data/hornetq/journal</journal-directory>
-   
-   <journal-min-files>10</journal-min-files>
-
-   <large-messages-directory>/home/ubuntu/apps/apache-tomcat-7.0.27/data/hornetq/largemessages</large-messages-directory>
-   
-   <paging-directory>/home/ubuntu/apps/apache-tomcat-7.0.27/data/hornetq/paging</paging-directory> 
-    -->
-    
-   
-    <!-- Connectors -->
-
      <!-- Connectors -->
 
    <connectors>

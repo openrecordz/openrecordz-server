@@ -57,8 +57,8 @@ $ mysql -uroot -proot openrecordz < 6_url.sql
 ```
 
 ## HornetQ 
-* Create an openrecordz-data folder on your server
-* Update the file ./src/main/resources/hornetq-configuration.xml with the path of the openrecordz-data folder
+* HornetQ data is automatically saved to ../openrecordz-data folder 
+* If you want you can change it on ./src/main/resources/hornetq-configuration.xml
 
 # Run 
 
