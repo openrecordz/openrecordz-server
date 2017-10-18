@@ -155,10 +155,10 @@
 	<bean id="startupdatapopulator" class="openrecordz.startup.StartupDataPopulator" init-method="init" lazy-init="false" />
 	
 	<!-- Default bean name is 'mongo' -->
-     <mongo:mongo host="localhost" port="27017"/> 
+     <mongo:mongo host="$platform{mongodb.database.host}" port="$platform{mongodb.database.port}"/> 
    	
 	<!-- Sets up a Mongo DB instance. Configure host, port and credentials if needed. -->
-	<mongo:db-factory dbname="$platform{database.name}"/>
+	<mongo:db-factory dbname="$platform{mongodb.database.name}"/>
 
 	<!-- http://docs.spring.io/spring-data/data-mongo/docs/1.5.2.RELEASE/reference/html/mongo.core.html#mongo.custom-converters -->
 	<!-- <mongo:mapping-converter>

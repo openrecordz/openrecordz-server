@@ -12,9 +12,9 @@
      
     <bean id="mysqlAccessLogDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost/$platform{database.name}"/>
-        <property name="username" value="$platform{database.user}"/>
-        <property name="password" value="$platform{database.passwd}"/>
+        <property name="url" value="$platform{mysql.database.uri}"/>
+<!--         <b:property name="username" value="$platform{mysql.database.user}"/> -->
+<!--         <b:property name="password" value="$platform{mysql.database.passwd}"/> -->
     </bean>
     
     

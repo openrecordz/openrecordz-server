@@ -363,9 +363,9 @@
 	<!-- http://springinpractice.com/2010/07/06/spring-security-database-schemas-for-mysql/ -->
 	<b:bean id="mysqlDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <b:property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <b:property name="url" value="jdbc:mysql://localhost/$platform{database.name}"/>
-        <b:property name="username" value="$platform{database.user}"/>
-        <b:property name="password" value="$platform{database.passwd}"/>
+        <b:property name="url" value="$platform{mysql.database.uri}"/>
+<!--         <b:property name="username" value="$platform{mysql.database.user}"/> -->
+<!--         <b:property name="password" value="$platform{mysql.database.passwd}"/> -->
     </b:bean>
   
 	
