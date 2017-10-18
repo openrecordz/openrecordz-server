@@ -10,11 +10,11 @@ platform.web.context=
 database.name=openrecordz
 
 database.user = root
-database.passwd = shoppino
+database.passwd = root
 
 bootstrap.importdata.enabled=true
 
-#used by service
+#used by services
 default.page=0
 default.pagesize=20
 
@@ -61,17 +61,17 @@ imagerepo.delete.url=images/delete?url=
 #solr
 solr.host=http://localhost:8983/solr
 
-#enable mt security
+#enable multi-tenant security
 security.mt.enabled=true
 #security.mt.enabled=false
 
 
 #scripting
-scripting.filesystem.path=/mnt/ebsvolume/repos_v3/scripts/
+scripting.filesystem.path=/var/lib/openrecordz/scripts/
 scripting.interceptor.request.uri.filter=NOMATCH
 
 #template
-templating.filesystem.path=/mnt/ebsvolume/repos_v3/scripts/
+templating.filesystem.path=/var/lib/openrecordz/scripts/
 
 #file
-file.filesystem.path=/mnt/ebsvolume/repos_v3/scripts/
+file.filesystem.path=/var/lib/openrecordz/files

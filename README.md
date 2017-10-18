@@ -24,6 +24,13 @@ You can use :
 
 # Configuration
 
+# Settings
+
+Change the open-recordz server parameters (mongodb uri, mysql, domain, urls) here application-<ENVIRONMENT>.properties 
+
+* For development application-development.properties 
+* For production application-production.properties 
+ 
 ## MongoDB
 * Create an `openrecordz` schema.
 * Create the mongodb indexes with:

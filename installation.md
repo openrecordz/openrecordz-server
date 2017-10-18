@@ -29,3 +29,13 @@ Implementare auto boot
 # MySQL - usare servizi di amazon
 
 # Apache - usare servizio di amazon 
+
+
+# Openrecordz data dir
+
+$ cd /var/lib
+$ sudo mkdir openrecordz
+$ sudo chown ubuntu:ubuntu openrecordz
+$ cd openrecordz
+$ mkdir scripts
+$ mkdir files
