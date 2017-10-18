@@ -28,6 +28,9 @@ Implementare auto boot
 
 # MySQL - usare servizi di amazon
 
+$ sudo apt-get install mysql-client
+
+
 # Apache - usare servizio di amazon 
 
 
