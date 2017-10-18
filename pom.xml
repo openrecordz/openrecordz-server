@@ -34,7 +34,7 @@
 		<!-- <org.springframework.social-version>1.0.1.RELEASE</org.springframework.social-version>
 		<org.springframework.social.facebook-version>1.0.1.RELEASE</org.springframework.social.facebook-version>
 		<org.springframework.social.twitter-version>1.0.1.RELEASE</org.springframework.social.twitter-version> -->		 
-		<sol-dock-r.version>0.3.0-SNAPSHOT</sol-dock-r.version> 
+		<!-- <sol-dock-r.version>0.3.0-SNAPSHOT</sol-dock-r.version>  -->
 		<!-- <solr.version>3.6.0</solr.version> -->		 
 <!-- 		<tomcat.version>6.0.18</tomcat.version> -->
   	</properties>
@@ -165,16 +165,16 @@
 	</build>
 	
 	<repositories>
-    <repository>
-      <id>people.apache.snapshots</id>
-      <url>http://repository.apache.org/content/groups/snapshots-group/</url>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
+<!--     <repository> -->
+<!--       <id>people.apache.snapshots</id> -->
+<!--       <url>http://repository.apache.org/content/groups/snapshots-group/</url> -->
+<!--       <releases> -->
+<!--         <enabled>false</enabled> -->
+<!--       </releases> -->
+<!--       <snapshots> -->
+<!--         <enabled>true</enabled> -->
+<!--       </snapshots> -->
+<!--     </repository> -->
     <repository>
 		<id>spring-maven-release</id>
 		<name>Spring Maven Release Repository</name>
@@ -187,18 +187,18 @@
 	</repository>
 	
 	<!-- For testing against latest Spring snapshots -->
-		<repository>
+		<!-- <repository>
 			<id>org.springframework.maven.snapshot</id>
 			<name>Spring Maven Snapshot Repository</name>
 			<url>http://repo.springsource.org/snapshot</url>
 			<releases><enabled>false</enabled></releases>
 			<snapshots><enabled>true</enabled></snapshots>
-		</repository>
+		</repository> -->
 		
   	</repositories>
 
   <pluginRepositories>
-    <pluginRepository>
+  <!--   <pluginRepository>
       <id>apache.snapshots</id>
       <name>Apache Snapshots</name>
       <url>http://repository.apache.org/content/groups/snapshots-group/</url>
@@ -208,7 +208,7 @@
       <snapshots>
         <enabled>true</enabled>
       </snapshots>
-    </pluginRepository>
+    </pluginRepository> -->
   </pluginRepositories>
 	
 	
