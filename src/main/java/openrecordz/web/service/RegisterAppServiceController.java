@@ -87,12 +87,15 @@ public class RegisterAppServiceController implements BaseServiceController {
 	@Autowired
 	UserRegistrationValidation userRegistrationValidation;
 	
-	@Value("$platform{database.name}")
-	String databaseName;
-	@Value("$platform{database.user}")
-	String databaseUser;
-	@Value("$platform{database.passwd}")
-	String databasePassword;
+//	@Value("$platform{mysql.database.name}")
+//	String databaseName;
+//	@Value("$platform{mysql.database.user}")
+//	String databaseUser;
+//	@Value("$platform{mysql.database.passwd}")
+//	String databasePassword;
+	
+	@Value("$platform{mysql.database.uri}")
+	String databaseUri;
 	
 	@RequestMapping(value = "/tenants", method = RequestMethod.GET)
 	public @ResponseBody List<String> list(WebRequest request, Model model) throws ResourceNotFoundException, UserNotExistsException {
@@ -149,7 +152,8 @@ public class RegisterAppServiceController implements BaseServiceController {
         }
 		String appName = userRegistration.getTenant();
 		
-		if (Integer.parseInt(rdbService.select("jdbc:mysql://localhost/"+databaseName+"?user="+databaseUser+"&password="+databasePassword, "select count(*) as mycount from tenant where name='"+appName+"'").get(0).get("mycount")) >=1){
+		//if (Integer.parseInt(rdbService.select("jdbc:mysql://localhost/"+databaseName+"?user="+databaseUser+"&password="+databasePassword, "select count(*) as mycount from tenant where name='"+appName+"'").get(0).get("mycount")) >=1){
+		if (Integer.parseInt(rdbService.select(databaseUri, "select count(*) as mycount from tenant where name='"+appName+"'").get(0).get("mycount")) >=1){
 //			throw new TenantAlreadyInUseException("App name : " + appName +" already in use111");
 			throw new ValidationException("App name : " + appName +" already in use");
 		}
@@ -180,7 +184,8 @@ public class RegisterAppServiceController implements BaseServiceController {
 //				rdbService.update("jdbc:mysql://localhost/shoppino?user=root&password=root", "insert into tenant values('"+appName+"')");
 				
 			
-				rdbService.update("jdbc:mysql://localhost/"+databaseName+"?user="+databaseUser+"&password="+databasePassword, "insert into tenant values('"+appName+"')");							
+				rdbService.update(databaseUri, "insert into tenant values('"+appName+"')");
+//				rdbService.update("jdbc:mysql://localhost/"+databaseName+"?user="+databaseUser+"&password="+databasePassword, "insert into tenant values('"+appName+"'⁄)");							
 				
 				final String curTenantName = tenantService.getCurrentTenantName();
 				
@@ -280,10 +285,12 @@ public class RegisterAppServiceController implements BaseServiceController {
 		if (tenantadd.matches("^[a-zA-Z0-9]*$")==false)
 			throw new ValidationException("App Name can't contains special charset");
 		
-//		if (Integer.parseInt(rdbService.select("jdbc:mysql://localhost/shoppino?user=root&password=root", "select count(*) as mycount from tenant where name='"+tenantadd+"'").get(0).get("mycount")) ==0){
-//			rdbService.update("jdbc:mysql://localhost/shoppino?user=root&password=root", "insert into tenant values('"+tenantadd+"')");
-		if (Integer.parseInt(rdbService.select("jdbc:mysql://localhost/"+databaseName+"?user="+databaseUser+"&password="+databasePassword, "select count(*) as mycount from tenant where name='"+tenantadd+"'").get(0).get("mycount")) ==0){
-			rdbService.update("jdbc:mysql://localhost/"+databaseName+"?user="+databaseUser+"&password="+databasePassword, "insert into tenant values('"+tenantadd+"')");
+		
+		if (Integer.parseInt(rdbService.select(databaseUri, "select count(*) as mycount from tenant where name='"+tenantadd+"'").get(0).get("mycount")) ==0){
+			rdbService.update(databaseUri, "insert into tenant values('"+tenantadd+"')");
+		
+//		if (Integer.parseInt(rdbService.select("jdbc:mysql://localhost/"+databaseName+"?user="+databaseUser+"&password="+databasePassword, "select count(*) as mycount from tenant where name='"+tenantadd+"'").get(0).get("mycount")) ==0){
+//			rdbService.update("jdbc:mysql://localhost/"+databaseName+"?user="+databaseUser+"&password="+databasePassword, "insert into tenant values('"+tenantadd+"')");
 			
 			final String curTenantName = tenantService.getCurrentTenantName();
 			
