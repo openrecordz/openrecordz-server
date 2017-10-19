@@ -32,7 +32,16 @@ Optionally change the open-recordz server parameters (mongodb uri, mysql, domain
 * For production application-production.properties 
  
 ## MongoDB
+With a mongo client:
+
 * Create an `openrecordz` schema.
+
+* Create the admin person data:
+
+```
+db.person.insert({ "_id" : "admin", "_class" : "openrecordz.domain.Person", "fullName" : "Administrator", "email" : "admin@address.com", "photo" : "/default/avatar/avatar.png", "defaultPhoto" : true, "createdBy" : "admin", "createdOn" : ISODate("2016-10-17T13:58:03.715Z"), "modifiedBy" : "admin", "modifiedOn" : ISODate("2016-10-17T13:58:03.716Z"), "tenant" : "_register", "tenants" : [ "_register" ], "publishOnFb" : false, "properties" : {  }, "tags" : [ ], "type" : "Person" })
+```
+
 * Create the mongodb indexes with:
 
 ```

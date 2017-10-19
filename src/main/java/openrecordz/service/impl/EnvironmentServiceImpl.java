@@ -26,6 +26,9 @@ public class EnvironmentServiceImpl  implements EnvironmentService {
 	@Value("$platform{platform.web.context}")
 	String webContext;
 	
+	@Value("$platform{file.filesystem.path}")
+	String fileFilesystemPath;
+	
 	@Autowired 
 	Environment env;
 	
@@ -61,5 +64,9 @@ public class EnvironmentServiceImpl  implements EnvironmentService {
 //	doesn't work
 	public String getSystemProperty(String propertyName){
 		return env.getProperty(propertyName);
+	}
+	
+	public String getFileFilesystemPath() {
+		return fileFilesystemPath;
 	}
 }

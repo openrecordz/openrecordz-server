@@ -250,7 +250,7 @@ public class RegisterAppServiceController implements BaseServiceController {
 //			return "redirect:/";
 //		}
 
-		logger.info("User " + username + " registered");
+		logger.info("User " + username + " registered. Tenant "+ appName + " created");
 		
 		User user = userService.getByUsername(username);
 		String httpAuth = user.getUsername() + ":" + user.getPassword();
@@ -314,6 +314,8 @@ public class RegisterAppServiceController implements BaseServiceController {
 		            return true;
 		        }
 			}, authenticationService.getCurrentLoggedUsername(),"admin");
+			
+			logger.info("Tenant "+ tenantadd + " created");
 			
 			return "{\"status\":\"success\"}";
 		}else {
