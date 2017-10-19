@@ -24,7 +24,7 @@ function previewcsv(req,res,params) {
 	logger.info("withheader: "+ withHeader); 
 
 
- 	var firstLines = _utils.get("csv").parse("/mnt/ebsvolume/repos_v3/scripts/"+info.get("tenantName")+"/"+file, withHeader ,null,java.lang.Character(charSeparator.charAt(0)), 20);
+ 	var firstLines = _utils.get("csv").parse(environmentService.getFileFilesystemPath()+info.get("tenantName")+"/"+file, withHeader ,null,java.lang.Character(charSeparator.charAt(0)), 20);
 	 logger.info("firstLines : " + firstLines);
 	model.put("firstLines",firstLines);
    return model;
@@ -62,7 +62,7 @@ function parsecsvheader(req,res,params) {
 	logger.info("withheader: "+ withHeader); 
 
 
-	 var headers = _utils.get("csv").getHeader("/mnt/ebsvolume/repos_v3/scripts/"+info.get("tenantName")+"/"+file,withHeader, java.lang.Character(charSeparator.charAt(0)));
+	 var headers = _utils.get("csv").getHeader(environmentService.getFileFilesystemPath()+info.get("tenantName")+"/"+file,withHeader, java.lang.Character(charSeparator.charAt(0)));
 
 	 logger.info("headers : " + headers);
 
@@ -140,7 +140,7 @@ function parsecsv (req,res,params) {
 
 
 //	 var results = _utils.get("csv").parse("/mnt/ebsvolume/repos/scripts/"+info.get("tenantName")+"/"+fileds,true,columnNameArray);
-	 var results = _utils.get("csv").parse("/mnt/ebsvolume/repos_v3/scripts/"+info.get("tenantName")+"/"+fileds,true,columnNameArray,java.lang.Character(charSeparator.charAt(0)));
+	 var results = _utils.get("csv").parse(environmentService.getFileFilesystemPath()+info.get("tenantName")+"/"+fileds,true,columnNameArray,java.lang.Character(charSeparator.charAt(0)));
 
 
 	 logger.info("results : " + results);
