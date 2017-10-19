@@ -12,4 +12,6 @@ public interface EnvironmentService {
 	
 //	doesn't work
 	public String getSystemProperty(String propertyName);
+	
+	public String getFileFilesystemPath();
 }
