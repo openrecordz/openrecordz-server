@@ -120,17 +120,17 @@
    		     
    		     <!-- temp setting -->   		     
    		     
-   		     <intercept-url pattern="/**/notifications" access="hasRole('ROLE_RESTUSER')" />
+   		    <!--  <intercept-url pattern="/**/notifications" access="hasRole('ROLE_RESTUSER')" />
    		     <intercept-url pattern="/**/notifications/registerdevice" access="permitAll" />
    		     <intercept-url pattern="/**/notifications/unregisterdevice" access="permitAll" />
    		     <intercept-url pattern="/**/notifications/send" access="hasMTRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')" />
    		     <intercept-url pattern="/**/notifications/usersend" access="hasRole('ROLE_RESTUSER')" />
-   		     <!-- <intercept-url pattern="/**/notifications/send" access="permitAll" /> -->
+   		     <intercept-url pattern="/**/notifications/send" access="permitAll" />
    		     <intercept-url pattern="/**/notifications/*" access="hasRole('ROLE_RESTUSER')" />
    		     
    		     <intercept-url pattern="/**/categories/add" access="hasMTRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')" />
    		     <intercept-url pattern="/**/categories/delete" access="hasMTRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')" />
-   		     <intercept-url pattern="/**/categories/deleteall" access="hasRole('ROLE_SUPERADMIN')" />
+   		     <intercept-url pattern="/**/categories/deleteall" access="hasRole('ROLE_SUPERADMIN')" /> -->
    		     
    		      <!-- <intercept-url pattern="/**/wscripts/*" access="hasMTRole('ROLE_RESTUSER') or hasRole('ROLE_SUPERADMIN')" /> -->
    		      <!-- <intercept-url pattern="/**/functions/*" access="hasMTRole('ROLE_RESTUSER') or hasRole('ROLE_SUPERADMIN')" /> -->

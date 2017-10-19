@@ -34,7 +34,7 @@ public class UserRegistrationServiceValidation implements Validator {
 		
 		UsernameValidator usernameValidator = new UsernameValidator();
 		boolean isUsernameValid = usernameValidator.validate(userRegistration.getUsername());
-		if (!userRegistration.getUsername().equals("") && !isUsernameValid)
+		if (userRegistration!=null && !userRegistration.getUsername().equals("") && !isUsernameValid)
 			e.rejectValue("username", "username.notvalid");
 		
 		

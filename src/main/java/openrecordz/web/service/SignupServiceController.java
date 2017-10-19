@@ -181,8 +181,8 @@ public class SignupServiceController implements BaseServiceController {
 	
 	
 	
-	@RequestMapping(value = "/users", method = RequestMethod.POST)
-//	@RequestMapping(value = "/signupwithphoto", method = RequestMethod.POST)
+
+	@RequestMapping(value = "/signupwithphoto", method = RequestMethod.POST)
 	public ModelAndView processSubmitWithPhoto(
 			HttpServletRequest request, HttpServletResponse response,
 			WebRequest webRequest,
