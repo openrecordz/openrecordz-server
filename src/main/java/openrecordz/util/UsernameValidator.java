@@ -22,8 +22,12 @@ public class UsernameValidator{
 	   */
 	  public boolean validate(final String username){
 
-		  matcher = pattern.matcher(username);
-		  return matcher.matches();
+		  if (username!=null) {
+			  matcher = pattern.matcher(username);
+			  return matcher.matches();
+		  }else {
+			  return false;
+		  }
 
 	  }
 }
