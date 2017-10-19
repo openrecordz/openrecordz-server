@@ -66,24 +66,26 @@ public class RecordServiceController implements BaseServiceController {
 //    https://www.parse.com/docs/rest#objects-types
     
     @RequestMapping(value = "/datasets/{dsId}", method = RequestMethod.POST)  
-	 public @ResponseBody CustomData create(Model model, @PathVariable String dsId, 
+	 public @ResponseBody CustomData create(Model model, 
+			 @PathVariable String dsId, 
 			 @RequestParam(value = "type", required=false, defaultValue="record") String type,
+			 @RequestParam(value = "byslug", required=false) Boolean searchbySlug,
 			 @RequestBody String jsonStr
 			 ) throws OpenRecordzException {
    	
+    //search by slug
+    CustomData ds =null;
+    	if (searchbySlug!=null && searchbySlug==true) {
+    		List<CustomData> dsArrayAsSlug = customDataService.findByQueryInternal("{\"_slug\":\"" +dsId+"\"}","dataset");
+    		if (dsArrayAsSlug!=null && dsArrayAsSlug.size()>0){
+    			ds=dsArrayAsSlug.get(0);
+    			dsId=ds.getId();
+    		} else
+    			throw new ResourceNotFoundException("Dataset not found with slug : " + dsId);
+    	}
+    	//end search by slug
     	
-//    	Map json=(Map) JSON.parse(jsonStr);
-//    	if (json!=null && json.containsKey("_slug")) {
-//    		String dsSlug = (String) json.get("_slug");
-//    		List<CustomData> resuls=customDataService.findByQuery("{\"_slug\":\"" +dsSlug+"\"}", "dataset");
-//    		if (resuls!=null && resuls.size()>=1)
-//    			throw new ShoppinoException("Dataset slug already exists");    		    			
-//    	}else {
-//    		throw new ShoppinoException("Dataset doesn't contains slug field");
-//    	}
     	
-    	
-//    	String cdataId = customDataService.add("record", jsonStr);
     	String cdataId = recordDataService.add(dsId,type, jsonStr);
     	CustomData cdata = recordDataService.getById(cdataId);
             
