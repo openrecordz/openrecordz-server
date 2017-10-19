@@ -26,7 +26,7 @@ You can use :
 
 # Settings
 
-Change the open-recordz server parameters (mongodb uri, mysql, domain, urls) here application-<ENVIRONMENT>.properties 
+Optionally change the open-recordz server parameters (mongodb uri, mysql, domain, urls) here application-<ENVIRONMENT>.properties 
 
 * For development application-development.properties 
 * For production application-production.properties 
@@ -77,9 +77,47 @@ run $ `mvn clean install tomcat7:run -Dmy.env=development`
 
 run $ `mvn clean install tomcat7:run -Dmy.env=production&`
 
+# Verify
+
+Open the browser to : `http://localhost:9090/service/v1/datasets`. The server must reply with '[]' json data.
+
 # Usage
 
-Open the browser to : `http://localhost:9090/service/v1/datasets`
+## Create a user
+
+```
+curl -X POST -d 'fullName=Andrea Leo&username=andrealeo&email=andrealeo@address.com&password=123456' http://localhost:9090/service/v1/signup
+```
+
+## Create a new dataset
+
+```
+curl -H "Content-Type: application/json" -X POST -u andrealeo:123456 -d '{"_slug":"city-monuments"}' http://localhost:9090/service/v1/datasets
+```
+
+## Add records to the datasets
+
+```
+curl -H "Content-Type: application/json" -X POST -u andrealeo:123456 -d '{"name":"Colosseo","city":"Rome", "address": "Via dei Fori Imperiali"}' http://localhost:9090/service/v1/datasets/city-monuments?byslug=true
+```
+
+and 
+
+```
+curl -H "Content-Type: application/json" -X POST -u andrealeo:123456 -d '{"name":"San Pietro","city":"Rome", "address": "Piazza san Pietro"}' http://localhost:9090/service/v1/datasets/city-monuments?byslug=true
+```
+
+## Retrieve the datasets
+
+```
+curl -H "Content-Type: application/json" http://localhost:9090/service/v1/datasets
+```
+
+## Retrieve the records of the dataset
+
+```
+curl -H "Content-Type: application/json" http://localhost:9090/service/v1/datasets/city-monuments.map?byslug=true
+```
 
 Read REST API documentation here: http://www.openrecordz.com/documentazione/api/
 
