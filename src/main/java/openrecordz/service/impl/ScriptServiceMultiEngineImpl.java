@@ -152,8 +152,8 @@ public class ScriptServiceMultiEngineImpl implements ScriptService {
         
         List<ScriptEngineFactory> factories = scriptEngineManager.getEngineFactories();
         for ( ScriptEngineFactory factory : factories ) {
-            logger.debug("Full name = " + factory.getEngineName ());
-            logger.debug("Version = " + factory.getEngineVersion ());
+            logger.info("Full name = " + factory.getEngineName ());
+            logger.info("Version = " + factory.getEngineVersion ());
             String [] params =
             {
                ScriptEngine.ENGINE,
@@ -166,11 +166,11 @@ public class ScriptServiceMultiEngineImpl implements ScriptService {
         
             for (String param: params)
             {
-            	logger.debug("Parameter " + param + "" +
+            	logger.info("Parameter " + param + "" +
                                     factory.getParameter (param));
             }
                 
-            logger.debug( String.format(
+            logger.info( String.format(
                     "engineName: %s, THREADING: %s",
                     factory.getEngineName(),
                     factory.getParameter( "THREADING" ) ) );
