@@ -6,7 +6,7 @@ function g_getalltenants(req,res,params) {
 
 
 function previewcsv(req,res,params) {
-	importClass(Packages.java.lang.Character);
+	//importClass(Packages.java.lang.Character);
 //importClass(Packages.java.lang.Boolean)
 	
 	var charSeparator = ",";
@@ -25,9 +25,10 @@ function previewcsv(req,res,params) {
 //withHeader=false;
 	logger.info("withheader: "+ withHeader); 
 
-
+	var Character = Java.type("java.lang.Character");
+	
  	//var firstLines = _utils.get("csv").parse(environmentService.getFileFilesystemPath()+info.get("tenantName")+"/"+file, withHeader ,null,java.lang.Character(charSeparator.charAt(0)), 20);
-	var firstLines = _utils.get("csv").parse("/var/lib/openrecordz/files/"+info.get("tenantName")+"/"+file, withHeader ,null,java.lang.Character(charSeparator.charAt(0)), 20);
+	var firstLines = _utils.get("csv").parse("/var/lib/openrecordz/files/"+info.get("tenantName")+"/"+file, withHeader ,null,Character(charSeparator.charAt(0)), 20);
 	 logger.info("firstLines : " + firstLines);
 	model.put("firstLines",firstLines);
    return model;
