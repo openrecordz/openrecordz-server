@@ -467,65 +467,65 @@ public class RecordServiceController implements BaseServiceController {
     
     
     
-    @RequestMapping(value = "/datasets/{dsId}.rdf", method = RequestMethod.GET)  
-	 public String queryRDF(Model model, @PathVariable String dsId, 
-			 @RequestParam(value = "q", required=false, defaultValue="{}") String query,
-			 
-			 @RequestParam(value = "text", required=false) String text,
-			 @RequestParam(value = "near", required=false) String near,
-			 @RequestParam(value = "type", required=false) String type,
-			 
-			 @RequestParam(value = "sort", required=false) String sort, 
-			 @RequestParam(value = "direction", required=false) String direction, 
-			 @RequestParam(value = "status", required=false) Integer status,
-			 HttpServletRequest request, HttpServletResponse response) throws OpenRecordzException, IOException {
-
-//       String filename = dsId+".rdf";
+//    @RequestMapping(value = "/datasets/{dsId}.rdf", method = RequestMethod.GET)  
+//	 public String queryRDF(Model model, @PathVariable String dsId, 
+//			 @RequestParam(value = "q", required=false, defaultValue="{}") String query,
+//			 
+//			 @RequestParam(value = "text", required=false) String text,
+//			 @RequestParam(value = "near", required=false) String near,
+//			 @RequestParam(value = "type", required=false) String type,
+//			 
+//			 @RequestParam(value = "sort", required=false) String sort, 
+//			 @RequestParam(value = "direction", required=false) String direction, 
+//			 @RequestParam(value = "status", required=false) Integer status,
+//			 HttpServletRequest request, HttpServletResponse response) throws OpenRecordzException, IOException {
 //
-//       response.setContentType("text/csv");
+////       String filename = dsId+".rdf";
+////
+////       response.setContentType("text/csv");
+////
+////       // creates mock data
+////       String headerKey = "Content-Disposition";
+////       String headerValue = String.format("attachment; filename=\"%s\"",
+////    		   filename);
+////       response.setHeader(headerKey, headerValue);
 //
-//       // creates mock data
-//       String headerKey = "Content-Disposition";
-//       String headerValue = String.format("attachment; filename=\"%s\"",
-//    		   filename);
-//       response.setHeader(headerKey, headerValue);
-
-       List<CustomData> cdatas = this.query(model, dsId, query, text, near, type, sort, direction, status, request);
-
-       
-       org.apache.jena.rdf.model.Model modelrdf=null;
-       Resource resource;
-       
-          	
-   	        
-   	     for (int j = 0 ; j < cdatas.size(); j++) {
-   	    	 	CustomData cdata = cdatas.get(j);
-   	    	 	
-   	    	 	resource = modelrdf.createResource("http://www.openrecordz.com/pippo");
-   	    	 	modelrdf = ModelFactory.createDefaultModel();
-
-	   	       	int i=0;
-		        String[] header = new String[cdatas.get(j).keySet().size()];
-		        Iterator iterator =cdatas.get(j).keySet().iterator();
-		        while (iterator.hasNext())
-			       {
-		        			header[i]=iterator.next().toString();
-		        			 // add the property
-		        			Property p = modelrdf.createProperty("http://www.openrecordz.com/property/"+header[i]);
-		         	     resource.addProperty(p, cdata.get(header[i]).toString());
-		        			i++;
-			       }
-	        
-   	      }
-   	    
-       
-     
-       StringWriter out = new StringWriter();
-       modelrdf.write(out, "RDF/XML-ABBREV");
-       return out.toString();
-       
-
-       
-   }
+//       List<CustomData> cdatas = this.query(model, dsId, query, text, near, type, sort, direction, status, request);
+//
+//       
+//       org.apache.jena.rdf.model.Model modelrdf=null;
+//       Resource resource;
+//       
+//          	
+//   	        
+//   	     for (int j = 0 ; j < cdatas.size(); j++) {
+//   	    	 	CustomData cdata = cdatas.get(j);
+//   	    	 	
+//   	    	 	resource = modelrdf.createResource("http://www.openrecordz.com/pippo");
+//   	    	 	modelrdf = ModelFactory.createDefaultModel();
+//
+//	   	       	int i=0;
+//		        String[] header = new String[cdatas.get(j).keySet().size()];
+//		        Iterator iterator =cdatas.get(j).keySet().iterator();
+//		        while (iterator.hasNext())
+//			       {
+//		        			header[i]=iterator.next().toString();
+//		        			 // add the property
+//		        			Property p = modelrdf.createProperty("http://www.openrecordz.com/property/"+header[i]);
+//		         	     resource.addProperty(p, cdata.get(header[i]).toString());
+//		        			i++;
+//			       }
+//	        
+//   	      }
+//   	    
+//       
+//     
+//       StringWriter out = new StringWriter();
+//       modelrdf.write(out, "RDF/XML-ABBREV");
+//       return out.toString();
+//       
+//
+//       
+//   }
     
 }
