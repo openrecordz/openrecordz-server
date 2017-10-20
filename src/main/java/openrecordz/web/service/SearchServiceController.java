@@ -44,6 +44,7 @@ protected final Log logger = LogFactory.getLog(getClass());
 			 @RequestParam(value = "sort", required=false) String sortFields, 
 			 @RequestParam(value = "direction", required=false) String direction, 
 			 @RequestParam(value = "status", required=false) Integer status,
+			 @RequestParam(value = "crossdomainsearch", required=false, defaultValue="false") Boolean crossDomainSearch,
 			 HttpServletRequest request) throws OpenRecordzException {
 	
     	String className=null; //with null search datasets and records
@@ -64,6 +65,7 @@ protected final Log logger = LogFactory.getLog(getClass());
    	logger.debug("query : " + query);
    	logger.debug("fullQuery : " + fullQuery);
    	logger.debug("text : " + text);
+   	logger.debug("crossDomainSearch : " + crossDomainSearch);
    	
    	if (text!=null && !text.equals("")) {    		
 		query="{ $text: { $search: \""+text+"\" } } ";	
@@ -72,7 +74,7 @@ protected final Log logger = LogFactory.getLog(getClass());
 //   	if (fullQuery!=null)
 //   		return customDataSearchService.findByQueryLocationPaginated(fullQuery, page, pageSize, status);
 //   	else
-   		return customDataService.findByQueryInternal(query, className, page, pageSize, direction, sortFields, status, true);
+   		return customDataService.findByQueryInternal(query, className, page, pageSize, direction, sortFields, status, crossDomainSearch);
     
    	
 }
