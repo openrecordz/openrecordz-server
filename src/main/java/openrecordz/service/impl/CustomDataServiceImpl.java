@@ -8,6 +8,7 @@ import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.mongodb.core.MongoOperations;
@@ -37,6 +38,7 @@ public class CustomDataServiceImpl implements CustomDataService{
 	
 
 	@Autowired
+	@Qualifier("mongoTemplateAuth")
 	MongoOperations operations;
 	
 	@Autowired
@@ -242,9 +244,22 @@ public class CustomDataServiceImpl implements CustomDataService{
 		return this.findByQuery(queryStr, type, page, size, direction, sortField, status);
 	}
 	
+	
+	@Override
+	public List<CustomData> findByQuery(String queryStr, String className, Integer page, Integer size, String direction,
+			String sortField, Integer status) {
+		return this.findByQuery(queryStr, className, page, size, direction, sortField, status, false);
+	}
+
+	@Override
+	public List<CustomData> findByQueryInternal(String queryStr, String className, Integer page, Integer size,
+			String direction, String sortField, Integer status, boolean crossDomainSearch) {
+		return this.findByQuery(queryStr, className, page, size, direction, sortField, status, crossDomainSearch);
+	}
+	
 	@Override
 //	@Cacheable(value="customData")
-	public List<CustomData> findByQuery(String queryStr, String type, Integer page, Integer size, String direction, String sortField, Integer status) {
+	public List<CustomData> findByQuery(String queryStr, String type, Integer page, Integer size, String direction, String sortField, Integer status, boolean crossDomainSearch) {
 		
 		Integer skip = null;
 		
@@ -266,10 +281,13 @@ public class CustomDataServiceImpl implements CustomDataService{
 		
 		
 		
-		if (query.getQueryObject().containsField(CustomDataImpl.TENANTS_PROP_KEY))
-			query.getQueryObject().removeField(CustomDataImpl.TENANTS_PROP_KEY);
+		if (crossDomainSearch==false) {
+			if (query.getQueryObject().containsField(CustomDataImpl.TENANTS_PROP_KEY))
+				query.getQueryObject().removeField(CustomDataImpl.TENANTS_PROP_KEY);
+			
+			query.addCriteria(Criteria.where(CustomDataImpl.TENANTS_PROP_KEY).is(tenantService.getCurrentTenantName()));
+		}
 		
-		query.addCriteria(Criteria.where(CustomDataImpl.TENANTS_PROP_KEY).is(tenantService.getCurrentTenantName()));
 		
 		if (query.getQueryObject().containsField(CustomDataImpl.TYPE_PROP_KEY))
 			query.getQueryObject().removeField(CustomDataImpl.TYPE_PROP_KEY);
@@ -387,6 +405,8 @@ public class CustomDataServiceImpl implements CustomDataService{
 		}
 		
 	}
+
+	
 
 	
 	

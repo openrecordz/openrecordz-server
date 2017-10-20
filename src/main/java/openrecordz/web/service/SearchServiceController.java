@@ -72,7 +72,7 @@ protected final Log logger = LogFactory.getLog(getClass());
 //   	if (fullQuery!=null)
 //   		return customDataSearchService.findByQueryLocationPaginated(fullQuery, page, pageSize, status);
 //   	else
-   		return customDataService.findByQueryInternal(query, className, page, pageSize, direction, sortFields, status);
+   		return customDataService.findByQueryInternal(query, className, page, pageSize, direction, sortFields, status, true);
     
    	
 }

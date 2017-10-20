@@ -78,7 +78,13 @@ public interface CustomDataService  {
 	@PreAuthorize("isAuthenticated()")
 	public List<CustomData> findByQuery(String queryStr,String className, Integer page, Integer size, String direction, String sortField, Integer status);
 	
+	@PreAuthorize("isAuthenticated()")
+	public List<CustomData> findByQuery(String queryStr,String className, Integer page, Integer size, String direction, String sortField, Integer status, boolean crossDomainSearch);
+	
+	
 	public List<CustomData> findByQueryInternal(String queryStr,String className, Integer page, Integer size, String direction, String sortField, Integer status);
+	
+	public List<CustomData> findByQueryInternal(String queryStr,String className, Integer page, Integer size, String direction, String sortField, Integer status, boolean crossDomainSearch);
 	
 	public long countByQueryInternal(String queryStr,String className, Integer status);
 	
