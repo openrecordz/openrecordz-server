@@ -38,7 +38,7 @@ public class CustomDataServiceImpl implements CustomDataService{
 	
 
 	@Autowired
-	@Qualifier("mongoTemplateAuth")
+//	@Qualifier("mongoTemplateAuth")
 	MongoOperations operations;
 	
 	@Autowired
