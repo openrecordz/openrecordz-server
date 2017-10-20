@@ -1,6 +1,10 @@
 package openrecordz.web.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -34,7 +38,7 @@ protected final Log logger = LogFactory.getLog(getClass());
 	private int defaultPageSize = 20;
 	
 	 @RequestMapping(value = "/search", method = RequestMethod.GET)  
-	 public @ResponseBody List<CustomData> query(Model model, 
+	 public @ResponseBody List<HashMap> query(Model model, 
 //			 @PathVariable String className, 
 			 @RequestParam(value = "q", required=false, defaultValue="{}") String query,
 			 
@@ -74,9 +78,24 @@ protected final Log logger = LogFactory.getLog(getClass());
 //   	if (fullQuery!=null)
 //   		return customDataSearchService.findByQueryLocationPaginated(fullQuery, page, pageSize, status);
 //   	else
-   		return customDataService.findByQueryInternal(query, className, page, pageSize, direction, sortFields, status, crossDomainSearch);
+   		List<CustomData> cdatas =  customDataService.findByQueryInternal(query, className, page, pageSize, direction, sortFields, status, crossDomainSearch);
     
-   	
+   		
+   		//convert to hashmap to return _tenants field. Otherwise jsonIgnore hide _tenants property
+   		List<HashMap> result = new ArrayList<HashMap>();
+   		
+   		HashMap<String,Object> clone;
+   		for (CustomData cdata : cdatas) {
+   			clone= new HashMap<String, Object>();
+   			clone.putAll(cdata.toMap());
+   			logger.info("_tenants : " +  cdata.getTenants());
+   			clone.put("_tenants", cdata.getTenants());
+   			
+   			
+   			result.add(clone);
+		}
+   		
+   	return result;
 }
     
 }

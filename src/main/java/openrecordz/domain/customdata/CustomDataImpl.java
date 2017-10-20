@@ -292,6 +292,8 @@ public class CustomDataImpl extends BasicDBObject implements CustomData, Patchab
 		return clone;
 	}
 	
+	
+	
 	public String toJSON() throws OpenRecordzRuntimeException {
 //		http://stackoverflow.com/questions/15786129/converting-java-objects-to-json-with-jackson
 		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
