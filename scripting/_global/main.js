@@ -6,7 +6,9 @@ function g_getalltenants(req,res,params) {
 
 
 function previewcsv(req,res,params) {
+	importClass(Packages.java.lang.Character);
 //importClass(Packages.java.lang.Boolean)
+	
 	var charSeparator = ",";
 	if (req.getParameter("charseparator")!=null)
 			charSeparator = req.getParameter("charseparator");
