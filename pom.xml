@@ -1106,6 +1106,12 @@
     <type>pom</type>
     <version>3.4.0</version>
   </dependency> -->
+  <dependency>
+    <groupId>org.apache.jena</groupId>
+    <artifactId>jena-core</artifactId>
+    <version>3.4.0</version>
+</dependency>
+  
   
     	</dependencies>
 </project>
