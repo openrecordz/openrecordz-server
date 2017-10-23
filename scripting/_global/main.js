@@ -106,14 +106,6 @@ function parsecsv (req,res,params) {
 	logger.info("withheader: "+ withHeader); 
 
 
-/*
-	var mappingArray =req.getParameterValues("mapping");
-	if (mappingArray!=null) {
-		for(var i=0;i<mappingArray.length;i++){
-		 	logger.info("mappingfields : " + mappingArray[i]);
-		}
-	}
-*/
 
 
 	var reqBody=IOUtils.toString(req.getReader());
