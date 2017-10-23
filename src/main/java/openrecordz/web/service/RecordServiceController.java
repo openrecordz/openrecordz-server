@@ -1,7 +1,6 @@
 package openrecordz.web.service;
 
 import java.io.IOException;
-import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;

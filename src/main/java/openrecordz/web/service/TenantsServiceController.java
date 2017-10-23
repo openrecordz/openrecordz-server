@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,8 +28,8 @@ import openrecordz.domain.Person;
 import openrecordz.domain.Tenant;
 import openrecordz.domain.validator.UserRegistrationValidation;
 import openrecordz.exception.EmailAlreadyInUseException;
-import openrecordz.exception.ResourceNotFoundException;
 import openrecordz.exception.OpenRecordzException;
+import openrecordz.exception.ResourceNotFoundException;
 import openrecordz.exception.TenantAlreadyInUseException;
 import openrecordz.security.domain.User;
 import openrecordz.security.exception.AuthenticationException;
@@ -47,7 +48,7 @@ import openrecordz.web.exception.ValidationException;
 import openrecordz.web.form.UserRegistrationForm;
 
 @Controller
-public class RegisterAppServiceController implements BaseServiceController {
+public class TenantsServiceController implements BaseServiceController {
 
 	protected final Log logger = LogFactory.getLog(getClass());
 	
@@ -99,36 +100,26 @@ public class RegisterAppServiceController implements BaseServiceController {
 	
 	@RequestMapping(value = "/tenants", method = RequestMethod.GET)
 	public @ResponseBody List<String> list(WebRequest request, Model model) throws ResourceNotFoundException, UserNotExistsException {
-		Person p = personService.getByUsername(authenticationService.getCurrentLoggedUsername());
-		List<String> personTenants= new ArrayList<String>();
 		
-		for (String ten : p.getTenants()) {
-			if (!ten.startsWith("_"))
-				personTenants.add(ten);
-		}
-		
-//		personTenants.addAll();
-		Collections.reverse(personTenants);
-		
-//		Map returnValue = new HashMap();
-		
-//		returnValue.put("person", p);
-//		returnValue.put("personTenants", personTenants);
-		
-		
+		List<String> tenants= new ArrayList<String>();
 
-//		User user = userService.getByUsername(authenticationService.getCurrentLoggedUsername());
-//		String httpAuth = user.getUsername() + ":" + user.getPassword();
-//		logger.debug("http auth : " + httpAuth);
-//		
-//		String encoding = Base64.encodeBase64String(httpAuth.getBytes());
-//		logger.debug("encoded basic auth : " + encoding);
-//		
-//		returnValue.put("encoding", encoding);
-//		returnValue.put("user", user);
-		return personTenants;
-//        return returnValue;
+		Person p = personService.getByUsername(authenticationService.getCurrentLoggedUsername());
+			
+		for (String ten : p.getTenants()) {
+				if (!ten.startsWith("_"))
+					tenants.add(ten);
+		}
+			
+		Collections.reverse(tenants);
+		
+		return tenants;
     }
+	
+	@RequestMapping(value = "/tenants/all", method = RequestMethod.GET)
+	public @ResponseBody List<Map<String, String>> listAll(WebRequest request, Model model) throws SQLException  {
+		
+	   return rdbService.select(databaseUri, "select name from tenant;");
+	}
 
     
 	@RequestMapping(value = REGISTER_URL, method = RequestMethod.POST)
