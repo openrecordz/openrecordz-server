@@ -56,7 +56,7 @@ public class CsvServiceController implements BaseServiceController {
     @Autowired
 	private RecordDataService recordDataService;
     
-    @RequestMapping(value = "/csv/previewcsv", method = RequestMethod.GET)  
+    @RequestMapping(value = "/csv/preview", method = RequestMethod.GET)  
 	 public @ResponseBody List<Map<String, String>> previewcsv(Model model, HttpServletRequest req) throws OpenRecordzException, IOException {
    	
 	    	String charSeparator = ",";
@@ -88,7 +88,7 @@ public class CsvServiceController implements BaseServiceController {
     
     
     
-    @RequestMapping(value = "/csv/parsecsvheader", method = RequestMethod.GET)  
+    @RequestMapping(value = "/csv/headers", method = RequestMethod.GET)  
 	 public @ResponseBody  Map<String, Integer> parsecsvheader(Model model, HttpServletRequest req) throws OpenRecordzException, IOException {
    	    	
  	   ConfigThreadLocal.get().put("mailEnabled", false);
@@ -134,8 +134,8 @@ public class CsvServiceController implements BaseServiceController {
     
     
     
-    @RequestMapping(value = "/csv/parsecsv", method = RequestMethod.GET)  
-  	 public @ResponseBody String parsecsv(Model model, HttpServletRequest req) throws OpenRecordzException, IOException {
+    @RequestMapping(value = "/csv/import", method = RequestMethod.GET)  
+  	 public @ResponseBody String importCSV(Model model, HttpServletRequest req) throws OpenRecordzException, IOException {
      	    	
     	
     	   ConfigThreadLocal.get().put("mailEnabled", false);
