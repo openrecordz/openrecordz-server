@@ -105,6 +105,7 @@ public class CSVUtil{
 				}
 				
 				if (i<skipRow) {
+					i++;
 					continue;
 				}
 				
