@@ -192,6 +192,7 @@
 		    <intercept-url pattern="/**/tenants/add" access="isAuthenticated()" />
    		    <intercept-url pattern="/**/tenants/*" access="hasMTRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')" />
    		    
+   		     <intercept-url pattern="/**/csv/*" access="isAuthenticated()" />
    		     
    		    <intercept-url pattern="/**" access="permitAll" />
    	

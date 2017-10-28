@@ -107,6 +107,7 @@ public class CsvServiceController implements BaseServiceController {
 
  	String dsSlug=req.getParameter("ds");
  	logger.info("dsSlug: "+ dsSlug); 
+ 	
  	CustomData dataset = null;
  	if (dsSlug!=null ) {
  		dataset = customDataService.findByQueryInternal("{\"_slug\":\"" +dsSlug+"\"}", "dataset").get(0);
@@ -119,7 +120,7 @@ public class CsvServiceController implements BaseServiceController {
  	logger.info("withheader: "+ withHeader); 
 
  	CSVUtil csvUtil = new CSVUtil();
- 	 Map<String, Integer>  headers = csvUtil.getHeader(fileSystemTemplatesPath+tenantService.getCurrentTenantName()+"/"+file,withHeader,charSeparator.charAt(0));
+ 	Map<String, Integer>  headers = csvUtil.getHeader(fileSystemTemplatesPath+tenantService.getCurrentTenantName()+"/"+file,withHeader,charSeparator.charAt(0));
  	 //var headers = _utils.get("csv").getHeader(environmentService.getFileFilesystemPath()+info.get("tenantName")+"/"+file,withHeader, java.lang.Character(charSeparator.charAt(0)));
  	 
  	 
@@ -134,7 +135,7 @@ public class CsvServiceController implements BaseServiceController {
     
     
     
-    @RequestMapping(value = "/csv/import", method = RequestMethod.GET)  
+    @RequestMapping(value = "/csv/import", method = RequestMethod.POST)  
   	 public @ResponseBody String importCSV(Model model, HttpServletRequest req) throws OpenRecordzException, IOException {
      	    	
     	
