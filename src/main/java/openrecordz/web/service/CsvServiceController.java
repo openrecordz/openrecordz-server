@@ -73,11 +73,20 @@ public class CsvServiceController implements BaseServiceController {
 	    			withHeader = Boolean.parseBoolean(req.getParameter("withheader"));
 	
 	    //withHeader=false;
-	    	logger.info("withheader: "+ withHeader); 
+	    	logger.info("withheader: "+ withHeader);
+	    	
+	    	
+	    long skipRow = 0;
+	    	if (req.getParameter("skip")!=null)
+	    		skipRow = Long.parseLong(req.getParameter("skip"));
+
+	    	logger.info("skipRow: "+ skipRow); 
+	    	
+	    	
 	    	CSVUtil csvUtil = new CSVUtil();
 	    	
 	     	//var firstLines = _utils.get("csv").parse(environmentService.getFileFilesystemPath()+info.get("tenantName")+"/"+file, withHeader ,null,java.lang.Character(charSeparator.charAt(0)), 20);
-	    	List<Map<String, String>> firstLines = csvUtil.parse(fileSystemTemplatesPath+tenantService.getCurrentTenantName()+"/"+file, withHeader ,null, charSeparator.charAt(0), 20);
+	    	List<Map<String, String>> firstLines = csvUtil.parse(fileSystemTemplatesPath+tenantService.getCurrentTenantName()+"/"+file, withHeader ,null, charSeparator.charAt(0), 20, skipRow);
 	    	 logger.info("firstLines : " + firstLines);
 	  
 	    	 return firstLines;

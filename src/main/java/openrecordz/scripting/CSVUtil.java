@@ -21,10 +21,7 @@ public class CSVUtil{
 		return this.parse(filePath, withHeader, headers,null);
 	}
 	public List<Map<String, String>> parse(String filePath, boolean withHeader, String[] headers, Character delimiter) throws IOException {
-//		return this.parse(filePath, withHeader, headers, delimiter, -1)	;
-//	}
-	
-//	public List<Map<String, String>> parse(String filePath, boolean withHeader, String[] headers, Character delimiter, int limit) throws IOException {
+
 		FileReader fileReader = null;
 		CSVParser csvFileParser = null;
 
@@ -72,8 +69,11 @@ public class CSVUtil{
 			
 			
 	}
-	
 	public List<Map<String, String>> parse(String filePath, boolean withHeader, String[] headers, Character delimiter, long limitCount) throws IOException {
+		return this.parse(filePath, withHeader, headers, delimiter, limitCount, 0);
+	}
+	
+	public List<Map<String, String>> parse(String filePath, boolean withHeader, String[] headers, Character delimiter, long limitCount, long skipRow) throws IOException {
 		
 		FileReader fileReader = null;
 		CSVParser csvFileParser = null;
@@ -102,7 +102,9 @@ public class CSVUtil{
 			for (CSVRecord record : csvFileParser) {
 				if (i==limitCount)
 					break;
-//				CSVRecord record = csvRecords.get(i);
+
+				if (i<skipRow)
+					continue;
 				
 				if (headers!=null){
 					Map<String,String> map = new HashMap<String, String>();
