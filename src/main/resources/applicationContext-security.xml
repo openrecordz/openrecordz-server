@@ -186,9 +186,8 @@
    		    
    		    
    		    <intercept-url pattern="/**/tenants/registerapp" access="permitAll" />
-   		    <intercept-url pattern="/**/tenants/all" access="permitAll" />
-   		    <!--<intercept-url pattern="/**/tenants" access="hasMTRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')" />-->
-		    <intercept-url pattern="/**/tenants" access="isAuthenticated()" />
+   		    <intercept-url pattern="/**/tenants" access="permitAll" />
+		    <intercept-url pattern="/**/tenants/me" access="isAuthenticated()" />
 		    <intercept-url pattern="/**/tenants" method="POST" access="isAuthenticated()" />
    		    <intercept-url pattern="/**/tenants/*" access="hasMTRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')" />
    		    

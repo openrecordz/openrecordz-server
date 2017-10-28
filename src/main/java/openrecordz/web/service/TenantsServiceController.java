@@ -91,7 +91,7 @@ public class TenantsServiceController implements BaseServiceController {
 	@Value("$platform{mysql.database.uri}")
 	String databaseUri;
 	
-	@RequestMapping(value = "/tenants", method = RequestMethod.GET)
+	@RequestMapping(value = "/tenants/me", method = RequestMethod.GET)
 	public @ResponseBody List<String> list(WebRequest request, Model model) throws ResourceNotFoundException, UserNotExistsException {
 		
 		List<String> tenants= new ArrayList<String>();
@@ -108,36 +108,40 @@ public class TenantsServiceController implements BaseServiceController {
 		return tenants;
     }
 	
-	@RequestMapping(value = "/tenants/all", method = RequestMethod.GET)
+	@RequestMapping(value = "/tenants", method = RequestMethod.GET)
 	public @ResponseBody List<Map<String, String>> listAll(WebRequest request, Model model) throws SQLException  {
 		
-	   return rdbService.select(databaseUri, "select name from tenant;");
+	   return rdbService.select(databaseUri, "select * from tenant;");
 	}
 	
 	
 	@RequestMapping(value = "/tenants", method = RequestMethod.POST)
 	public @ResponseBody String registerAppAdd(
 			HttpServletRequest request, HttpServletResponse response, 
-			@RequestParam("tenant") String tenantadd
+			@RequestParam("name") String tenantName,
+			@RequestParam(value="description", required=false, defaultValue="") String tenantDescription
 		) throws SQLException, UserNotExistsException, ResourceNotFoundException, AuthenticationException, ValidationException {
 		
-		if (tenantadd.equals("") || tenantadd.startsWith("_"))
+		logger.debug("tenantName: " + tenantName);
+		logger.debug("tenantDescription: " + tenantDescription);
+		
+		if (tenantName.equals("") || tenantName.startsWith("_"))
 			throw new ValidationException("App name not specified");
 		
 
-		if (tenantadd.matches("^[a-zA-Z0-9]*$")==false)
+		if (tenantName.matches("^[a-zA-Z0-9]*$")==false)
 			throw new ValidationException("App Name can't contains special charset");
 		
 		
-		if (Integer.parseInt(rdbService.select(databaseUri, "select count(*) as mycount from tenant where name='"+tenantadd+"'").get(0).get("mycount")) ==0){
-			rdbService.update(databaseUri, "insert into tenant values('"+tenantadd+"')");
-		
+		if (Integer.parseInt(rdbService.select(databaseUri, "select count(*) as mycount from tenant where name='"+tenantName+"'").get(0).get("mycount")) ==0){
+			rdbService.update(databaseUri, "insert into tenant(name,description) values('"+tenantName+"', '"+tenantDescription+"')");
+
 //		if (Integer.parseInt(rdbService.select("jdbc:mysql://localhost/"+databaseName+"?user="+databaseUser+"&password="+databasePassword, "select count(*) as mycount from tenant where name='"+tenantadd+"'").get(0).get("mycount")) ==0){
 //			rdbService.update("jdbc:mysql://localhost/"+databaseName+"?user="+databaseUser+"&password="+databasePassword, "insert into tenant values('"+tenantadd+"')");
 			
 			final String curTenantName = tenantService.getCurrentTenantName();
 			
-			tenantService.setCurrentTenant(new Tenant(tenantadd));
+			tenantService.setCurrentTenant(new Tenant(tenantName));
 			personService.joinCurrentTenant(authenticationService.getCurrentLoggedUsername());
 			
 			
@@ -158,11 +162,11 @@ public class TenantsServiceController implements BaseServiceController {
 		        }
 			}, authenticationService.getCurrentLoggedUsername(),"admin");
 			
-			logger.info("Tenant "+ tenantadd + " created");
+			logger.info("Tenant "+ tenantName + " created");
 			
 			return "{\"status\":\"success\"}";
 		}else {
-			throw new ValidationException("App name : " + tenantadd +" already in use");
+			throw new ValidationException("App name : " + tenantName +" already in use");
 		}
 		
 		
