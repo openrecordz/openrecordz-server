@@ -100,11 +100,13 @@ public class CSVUtil{
 //			for (int i=0; i<csvRecords.size(); i++) {
 			long i =0;
 			for (CSVRecord record : csvFileParser) {
-				if (i==limitCount)
+				if (i==limitCount) {
 					break;
-
-				if (i<skipRow)
+				}
+				
+				if (i<skipRow) {
 					continue;
+				}
 				
 				if (headers!=null){
 					Map<String,String> map = new HashMap<String, String>();
