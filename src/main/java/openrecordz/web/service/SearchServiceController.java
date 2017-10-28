@@ -84,7 +84,7 @@ protected final Log logger = LogFactory.getLog(getClass());
    		for (CustomData cdata : cdatas) {
    			clone= new HashMap<String, Object>();
    			clone.putAll(cdata.toMap());
-   			logger.info("_tenants : " +  cdata.getTenants());
+   			logger.debug("_tenants : " +  cdata.getTenants());
    			clone.put("_tenants", cdata.getTenants());
    			
    			
