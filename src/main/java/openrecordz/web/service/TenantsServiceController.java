@@ -118,7 +118,7 @@ public class TenantsServiceController implements BaseServiceController {
 	@RequestMapping(value = "/tenants", method = RequestMethod.POST)
 	public @ResponseBody String registerAppAdd(
 			HttpServletRequest request, HttpServletResponse response, 
-			@RequestParam("tenantadd") String tenantadd
+			@RequestParam("tenant") String tenantadd
 		) throws SQLException, UserNotExistsException, ResourceNotFoundException, AuthenticationException, ValidationException {
 		
 		if (tenantadd.equals("") || tenantadd.startsWith("_"))
