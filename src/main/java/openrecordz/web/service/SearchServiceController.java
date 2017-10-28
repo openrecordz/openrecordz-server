@@ -48,7 +48,7 @@ protected final Log logger = LogFactory.getLog(getClass());
 			 @RequestParam(value = "crossdomainsearch", required=false, defaultValue="false") Boolean crossDomainSearch,
 			 HttpServletRequest request) throws OpenRecordzException {
 	
-    	className=null; //with null search datasets and records
+    	//className=null; //with null search datasets and records
     	
    	int page = defaultPage;
    	int pageSize = defaultPageSize;
