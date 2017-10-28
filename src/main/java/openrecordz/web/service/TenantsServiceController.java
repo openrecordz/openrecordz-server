@@ -87,14 +87,7 @@ public class TenantsServiceController implements BaseServiceController {
 	
 	@Autowired
 	UserRegistrationValidation userRegistrationValidation;
-	
-//	@Value("$platform{mysql.database.name}")
-//	String databaseName;
-//	@Value("$platform{mysql.database.user}")
-//	String databaseUser;
-//	@Value("$platform{mysql.database.passwd}")
-//	String databasePassword;
-	
+
 	@Value("$platform{mysql.database.uri}")
 	String databaseUri;
 	
@@ -120,8 +113,73 @@ public class TenantsServiceController implements BaseServiceController {
 		
 	   return rdbService.select(databaseUri, "select name from tenant;");
 	}
+	
+	
+	@RequestMapping(value = "/tenants", method = RequestMethod.POST)
+	public @ResponseBody String registerAppAdd(
+			HttpServletRequest request, HttpServletResponse response, 
+			@RequestParam("tenantadd") String tenantadd
+		) throws SQLException, UserNotExistsException, ResourceNotFoundException, AuthenticationException, ValidationException {
+		
+		if (tenantadd.equals("") || tenantadd.startsWith("_"))
+			throw new ValidationException("App name not specified");
+		
 
-    
+		if (tenantadd.matches("^[a-zA-Z0-9]*$")==false)
+			throw new ValidationException("App Name can't contains special charset");
+		
+		
+		if (Integer.parseInt(rdbService.select(databaseUri, "select count(*) as mycount from tenant where name='"+tenantadd+"'").get(0).get("mycount")) ==0){
+			rdbService.update(databaseUri, "insert into tenant values('"+tenantadd+"')");
+		
+//		if (Integer.parseInt(rdbService.select("jdbc:mysql://localhost/"+databaseName+"?user="+databaseUser+"&password="+databasePassword, "select count(*) as mycount from tenant where name='"+tenantadd+"'").get(0).get("mycount")) ==0){
+//			rdbService.update("jdbc:mysql://localhost/"+databaseName+"?user="+databaseUser+"&password="+databasePassword, "insert into tenant values('"+tenantadd+"')");
+			
+			final String curTenantName = tenantService.getCurrentTenantName();
+			
+			tenantService.setCurrentTenant(new Tenant(tenantadd));
+			personService.joinCurrentTenant(authenticationService.getCurrentLoggedUsername());
+			
+			
+			 
+//			 if (!tenantService.getCurrentTenantType().equals(Tenant.PUBLIC_TENANT_TYPE))
+//				 finalRole=role+"@"+tenantService.getCurrentTenantName();
+			 final String finalUsername = authenticationService.getCurrentLoggedUsername();
+			Boolean myresult = authenticationService.runAs(new AuthenticationService.RunAsWork<Boolean>() {
+				@Override
+		        public Boolean doWork() throws Exception {
+					String finalRole = "ROLE_ADMIN@" + tenantService.getCurrentTenantName();
+					authorizationService.addRole(finalUsername, finalRole);
+					
+//					finalRole = "ROLE_ADMIN@" + curTenantName;
+//					authorizationService.addRole(authenticationService.getCurrentLoggedUsername(), finalRole);
+					
+		            return true;
+		        }
+			}, authenticationService.getCurrentLoggedUsername(),"admin");
+			
+			logger.info("Tenant "+ tenantadd + " created");
+			
+			return "{\"status\":\"success\"}";
+		}else {
+			throw new ValidationException("App name : " + tenantadd +" already in use");
+		}
+		
+		
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+    @Deprecated
 	@RequestMapping(value = REGISTER_URL, method = RequestMethod.POST)
 	public @ResponseBody String registerApp(
 			HttpServletRequest request, HttpServletResponse response,
@@ -263,59 +321,7 @@ public class TenantsServiceController implements BaseServiceController {
 //		return "registerapp-add";
 //	}
 //
-	@RequestMapping(value = "/tenants/add", method = RequestMethod.POST)
-	public @ResponseBody String registerAppAdd(
-			HttpServletRequest request, HttpServletResponse response, 
-			@RequestParam("tenantadd") String tenantadd
-		) throws SQLException, UserNotExistsException, ResourceNotFoundException, AuthenticationException, ValidationException {
-		
-		if (tenantadd.equals("") || tenantadd.startsWith("_"))
-			throw new ValidationException("App name not specified");
-		
-
-		if (tenantadd.matches("^[a-zA-Z0-9]*$")==false)
-			throw new ValidationException("App Name can't contains special charset");
-		
-		
-		if (Integer.parseInt(rdbService.select(databaseUri, "select count(*) as mycount from tenant where name='"+tenantadd+"'").get(0).get("mycount")) ==0){
-			rdbService.update(databaseUri, "insert into tenant values('"+tenantadd+"')");
-		
-//		if (Integer.parseInt(rdbService.select("jdbc:mysql://localhost/"+databaseName+"?user="+databaseUser+"&password="+databasePassword, "select count(*) as mycount from tenant where name='"+tenantadd+"'").get(0).get("mycount")) ==0){
-//			rdbService.update("jdbc:mysql://localhost/"+databaseName+"?user="+databaseUser+"&password="+databasePassword, "insert into tenant values('"+tenantadd+"')");
-			
-			final String curTenantName = tenantService.getCurrentTenantName();
-			
-			tenantService.setCurrentTenant(new Tenant(tenantadd));
-			personService.joinCurrentTenant(authenticationService.getCurrentLoggedUsername());
-			
-			
-			 
-//			 if (!tenantService.getCurrentTenantType().equals(Tenant.PUBLIC_TENANT_TYPE))
-//				 finalRole=role+"@"+tenantService.getCurrentTenantName();
-			 final String finalUsername = authenticationService.getCurrentLoggedUsername();
-			Boolean myresult = authenticationService.runAs(new AuthenticationService.RunAsWork<Boolean>() {
-				@Override
-		        public Boolean doWork() throws Exception {
-					String finalRole = "ROLE_ADMIN@" + tenantService.getCurrentTenantName();
-					authorizationService.addRole(finalUsername, finalRole);
-					
-//					finalRole = "ROLE_ADMIN@" + curTenantName;
-//					authorizationService.addRole(authenticationService.getCurrentLoggedUsername(), finalRole);
-					
-		            return true;
-		        }
-			}, authenticationService.getCurrentLoggedUsername(),"admin");
-			
-			logger.info("Tenant "+ tenantadd + " created");
-			
-			return "{\"status\":\"success\"}";
-		}else {
-			throw new ValidationException("App name : " + tenantadd +" already in use");
-		}
-		
-		
-	}
-
+	
 	
 	
 	
