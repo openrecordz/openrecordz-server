@@ -2,9 +2,7 @@ package openrecordz.web.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -39,19 +37,18 @@ protected final Log logger = LogFactory.getLog(getClass());
 	
 	 @RequestMapping(value = "/search", method = RequestMethod.GET)  
 	 public @ResponseBody List<HashMap> query(Model model, 
-//			 @PathVariable String className, 
 			 @RequestParam(value = "q", required=false, defaultValue="{}") String query,
+			 @RequestParam(value = "class", required=false) String className,
 			 
 			 @RequestParam(value = "text", required=false) String text,
 			 
-			 @RequestParam(value = "fq", required=false) String fullQuery,
 			 @RequestParam(value = "sort", required=false) String sortFields, 
 			 @RequestParam(value = "direction", required=false) String direction, 
 			 @RequestParam(value = "status", required=false) Integer status,
 			 @RequestParam(value = "crossdomainsearch", required=false, defaultValue="false") Boolean crossDomainSearch,
 			 HttpServletRequest request) throws OpenRecordzException {
 	
-    	String className=null; //with null search datasets and records
+    	className=null; //with null search datasets and records
     	
    	int page = defaultPage;
    	int pageSize = defaultPageSize;
@@ -67,7 +64,6 @@ protected final Log logger = LogFactory.getLog(getClass());
    	logger.debug("pageSize : " + pageSize);
    	logger.debug("className : " + className);    	
    	logger.debug("query : " + query);
-   	logger.debug("fullQuery : " + fullQuery);
    	logger.debug("text : " + text);
    	logger.debug("crossDomainSearch : " + crossDomainSearch);
    	

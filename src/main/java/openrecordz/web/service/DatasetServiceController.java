@@ -178,7 +178,6 @@ public class DatasetServiceController implements BaseServiceController {
 			 
 			 @RequestParam(value = "text", required=false) String text,
 			 
-			 @RequestParam(value = "fq", required=false) String fullQuery,
 			 @RequestParam(value = "sort", required=false) String sortFields, 
 			 @RequestParam(value = "direction", required=false) String direction, 
 			 @RequestParam(value = "status", required=false) Integer status,
@@ -200,16 +199,13 @@ public class DatasetServiceController implements BaseServiceController {
    	logger.debug("pageSize : " + pageSize);
    	logger.debug("className : " + className);    	
    	logger.debug("query : " + query);
-   	logger.debug("fullQuery : " + fullQuery);
    	logger.debug("text : " + text);
    	
    	if (text!=null && !text.equals("")) {    		
 		query="{ $text: { $search: \""+text+"\" } } ";	
 	}
    	
-//   	if (fullQuery!=null)
-//   		return customDataSearchService.findByQueryLocationPaginated(fullQuery, page, pageSize, status);
-//   	else
+
    		return customDataService.findByQueryInternal(query, className, page, pageSize, direction, sortFields, status);
     
    	
@@ -257,7 +253,7 @@ public class DatasetServiceController implements BaseServiceController {
 //
 //       List<Book> listBooks = Arrays.asList(book1, book2, book3, book4);
 
-       List<CustomData> cdatas = this.query(model, query,text, null, sort,direction, status, request);
+       List<CustomData> cdatas = this.query(model, query,text, sort,direction, status, request);
        
 //       CsvDozerBeanWriter csvWriter = new  CsvDozerBeanWriter(response.getWriter(),
 //             CsvPreference.STANDARD_PREFERENCE);
