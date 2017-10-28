@@ -9,3 +9,7 @@ ADD COLUMN `description` varchar(350) DEFAULT NULL;
 
 ALTER TABLE `tenant` 
 ADD COLUMN `created_on`  timestamp NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP;
+
+
+ALTER TABLE `tenant` 
+ADD COLUMN `featured` boolean DEFAULT false;

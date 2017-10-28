@@ -109,12 +109,17 @@ public class TenantsServiceController implements BaseServiceController {
     }
 	
 	@RequestMapping(value = "/tenants", method = RequestMethod.GET)
-	public @ResponseBody List<Map<String, String>> listAll(WebRequest request, Model model) throws SQLException  {
+	public @ResponseBody List<Map<String, String>> listAll(WebRequest request, Model model,
+			@RequestParam(value="featured", required=false, defaultValue="false") Boolean featured) throws SQLException  {
 		
-	   return rdbService.select(databaseUri, "select * from tenant;");
+	   return rdbService.select(databaseUri, "select * from tenant where featured="+featured+" order by created_on desc;");
 	}
 	
 	
+	
+			
+			
+//	curl -X POST -u admin:admin -d 'name=test23&description=test23escr' http://localhost:9090/service/v1/tenants
 	@RequestMapping(value = "/tenants", method = RequestMethod.POST)
 	public @ResponseBody String registerAppAdd(
 			HttpServletRequest request, HttpServletResponse response, 
