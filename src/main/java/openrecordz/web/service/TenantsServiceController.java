@@ -112,7 +112,11 @@ public class TenantsServiceController implements BaseServiceController {
 	public @ResponseBody List<Map<String, String>> listAll(WebRequest request, Model model,
 			@RequestParam(value="featured", required=false, defaultValue="false") Boolean featured) throws SQLException  {
 		
-	   return rdbService.select(databaseUri, "select * from tenant where featured="+featured+" order by created_on desc;");
+		if (featured) {
+			return rdbService.select(databaseUri, "select * from tenant where featured="+featured+" order by created_on desc;");
+		}else {
+			return rdbService.select(databaseUri, "select * from tenant order by created_on desc;");
+		}
 	}
 	
 	
