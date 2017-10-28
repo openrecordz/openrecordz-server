@@ -233,7 +233,7 @@ public class CsvServiceController implements BaseServiceController {
     	}
 
     	Map datasetMapping = new HashMap();
-    	datasetMapping.put("._mapping", reqBodyAsJson.get("mappingArray"));
+    	datasetMapping.put("_mapping", reqBodyAsJson.get("mappingArray"));
     	logger.info("jsonUtil.toJSON(datasetMapping) : " +jsonUtil.toJSON(datasetMapping));
 
     	customDataService.patch(dataset.getId(),"dataset", jsonUtil.toJSON(datasetMapping));
