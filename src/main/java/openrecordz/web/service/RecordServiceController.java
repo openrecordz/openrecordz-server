@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -463,6 +464,73 @@ public class RecordServiceController implements BaseServiceController {
 //        listWriter.close();
         csvWriter.close();
     }
+    
+    
+    
+    @RequestMapping(value = "/datasets/{dsId}.rdf", method = RequestMethod.GET)  
+	 public String queryrdf(Model model, @PathVariable String dsId, 
+			 @RequestParam(value = "q", required=false, defaultValue="{}") String query,
+			 
+			 @RequestParam(value = "text", required=false) String text,
+			 @RequestParam(value = "near", required=false) String near,
+
+			 //			 deprecated use solr			 
+//			 @RequestParam(value = "fq", required=false) String fullQuery,
+			 
+			 @RequestParam(value = "type", required=false) String type,
+			 
+			 @RequestParam(value = "sort", required=false) String sort, 
+			 @RequestParam(value = "direction", required=false) String direction, 
+			 @RequestParam(value = "status", required=false) Integer status,
+			 HttpServletRequest request, HttpServletResponse response) throws OpenRecordzException, IOException {
+
+       String csvFileName = dsId+".rdf";
+
+       response.setContentType("application/rdf+xml");
+
+    
+       List<CustomData> cdatas = this.query(model, dsId, query, text, near, type, sort, direction, status, request);
+       
+       StringBuilder rdfXML = new StringBuilder();
+
+       /*
+<?xml version="1.0"?>
+<rdf:RDF
+xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+xmlns:cd="http://www.recshop.fake/cd#"> 
+<rdf:Description
+ rdf:about="http://www.recshop.fake/cd/Empire Burlesque">
+  <cd:artist>Bob Dylan</cd:artist>
+  <cd:country>USA</cd:country>
+  <cd:company>Columbia</cd:company>
+  <cd:price>10.90</cd:price>
+  <cd:year>1985</cd:year>
+</rdf:Description>
+</rdf:RDF>   
+*/
+
+       rdfXML.append("<?xml version=\"1.0\"?>\n" + 
+       		"<rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\n");
+       
+
+       if (cdatas!=null && cdatas.size()>0) {
+    		int i=0;
+    	   		for (CustomData customData : cdatas) {
+    	   			rdfXML.append("<rdf:Description rdf:about=\"http://www.openrecordz.com/catalog/"+customData.getId()+"\">\n");
+    	   			
+    	   				Iterator<Map.Entry<Integer, Object>> it = customData.toMap().entrySet().iterator();
+    	   				while (it.hasNext()) {
+    	   				    Entry<Integer, Object> pair = it.next();
+    	   				    rdfXML.append("<"+pair.getKey()+">"+pair.getValue()+"</"+pair.getKey()+">\n");
+	   					//System.out.println(pair.getKey() + "/" + pair.getValue());
+
+    	   				}
+    	   					
+    	   					
+			}
+       }
+       return rdfXML.toString();
+   }
     
     
     
