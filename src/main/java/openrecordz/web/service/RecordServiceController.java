@@ -525,13 +525,13 @@ xmlns:cd="http://www.recshop.fake/cd#">
 	   					//System.out.println(pair.getKey() + "/" + pair.getValue());
 
     	   				}
+    	   				rdfXML.append("</rdf:Description>\n");
     	   					
     	   					
 			}
        }
        
-       rdfXML.append("</rdf:Description>\n" + 
-       		"</rdf:RDF>");
+       rdfXML.append("</rdf:RDF>");
        
        return rdfXML.toString();
    }
