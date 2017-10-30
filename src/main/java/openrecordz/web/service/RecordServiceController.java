@@ -511,7 +511,6 @@ xmlns:cd="http://www.recshop.fake/cd#">
 
        rdfXML.append("<?xml version=\"1.0\"?>\n" + 
        		"<rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\n");
-       
 
        if (cdatas!=null && cdatas.size()>0) {
     		int i=0;
