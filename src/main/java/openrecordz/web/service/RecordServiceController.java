@@ -529,6 +529,10 @@ xmlns:cd="http://www.recshop.fake/cd#">
     	   					
 			}
        }
+       
+       rdfXML.append("</rdf:Description>\n" + 
+       		"</rdf:RDF>");
+       
        return rdfXML.toString();
    }
     
