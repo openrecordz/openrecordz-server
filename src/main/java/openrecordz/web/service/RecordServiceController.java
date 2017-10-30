@@ -467,8 +467,8 @@ public class RecordServiceController implements BaseServiceController {
     
     
     
-    @RequestMapping(value = "/datasets/{dsId}.rdff2", method = RequestMethod.GET)  
-	 public String queryrdf(Model model, @PathVariable String dsId, 
+    @RequestMapping(value = "/datasets/{dsId}.rdf", method = RequestMethod.GET)  
+	 public @ResponseBody String queryrdf(Model model, @PathVariable String dsId, 
 			 @RequestParam(value = "q", required=false, defaultValue="{}") String query,
 			 
 			 @RequestParam(value = "text", required=false) String text,
