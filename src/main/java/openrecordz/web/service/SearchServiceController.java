@@ -84,10 +84,16 @@ protected final Log logger = LogFactory.getLog(getClass());
    		for (CustomData cdata : cdatas) {
    			clone= new HashMap<String, Object>();
    			clone.putAll(cdata.toMap());
+   			
    			logger.debug("_tenants : " +  cdata.getTenants());
    			clone.put("_tenants", cdata.getTenants());
    			
-   			
+   			//add dataset
+   			try {
+   				clone.put("_dataset", customDataService.getByIdInternal(cdata.getId()));
+   			}catch (Exception e) {
+				logger.error("Error getting dataset with id : "+cdata.getId());
+			}
    			result.add(clone);
 		}
    		
