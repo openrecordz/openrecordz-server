@@ -91,9 +91,9 @@ protected final Log logger = LogFactory.getLog(getClass());
    			//add dataset
    			if (cdata.getType().equals("record")) {
 	   			try {
-	   				clone.put("_dataset", customDataService.getByIdInternal(cdata.getId()));
+	   				clone.put("_dataset", customDataService.getByIdInternal(cdata.get("_dataset_ref_id").toString()));
 	   			}catch (Exception e) {
-					logger.error("Error getting dataset with id : "+cdata.getId());
+					logger.error("Error getting dataset with id : "+cdata.get("_dataset_ref_id").toString());
 				}
    			}
    			
