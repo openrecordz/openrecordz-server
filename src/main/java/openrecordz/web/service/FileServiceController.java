@@ -11,7 +11,6 @@ import javax.activation.FileTypeMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -28,8 +27,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import openrecordz.exception.ResourceNotFoundException;
 import openrecordz.exception.OpenRecordzException;
+import openrecordz.exception.ResourceNotFoundException;
 import openrecordz.security.exception.AuthorizationException;
 import openrecordz.service.FileService;
 
@@ -64,9 +63,12 @@ public class FileServiceController implements BaseServiceController {
         		        		
         		if (path!=null && !path.equals(""))
         			filePath = fileService.save(fixedName, file.getInputStream(), path);
-        		else
+        		else if (fixedName!=null && !fixedName.equals("")) {
+        			filePath = fileService.save(fixedName, file.getInputStream());
+        		}else {
         			filePath = fileService.save(file.getInputStream());
-								
+
+        		}
 				logger.info("File saved into: " + filePath);
 	            	
 //				return filePath;

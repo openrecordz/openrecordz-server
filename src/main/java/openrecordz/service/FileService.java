@@ -15,6 +15,7 @@ public interface FileService {
 	
 	public String save(InputStream in) throws IOException;
 	
+	public String save(String filename,InputStream in) throws IOException;
 	
 	public File get(String path) throws ResourceNotFoundException;
 	

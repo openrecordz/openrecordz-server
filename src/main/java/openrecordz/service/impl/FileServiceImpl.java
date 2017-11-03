@@ -52,6 +52,35 @@ public class FileServiceImpl implements FileService {
 	}
 	
 	@Override
+	public String save(String filename,InputStream in) throws IOException {
+		   
+			String baseDirWithTenant = baseFileDir+tenantService.getCurrentTenantName();
+			log.debug("baseDirWithTenant : " + baseDirWithTenant);
+			 
+			File dir = new File(baseDirWithTenant);
+			
+			boolean created = dir.mkdirs();
+			log.debug("folders : " + dir.getAbsolutePath() + " created : " + created);
+			   
+			 File ftmp=File.createTempFile("or", filename, dir);			 			 
+			 log.info("ftmp : " + ftmp);
+			 
+		  		   
+		   
+		   OutputStream out = new FileOutputStream(ftmp);
+			byte buf[] = new byte[1024];
+			int len;
+			while ((len = in.read(buf)) > 0) {
+				out.write(buf, 0, len);
+			}
+			out.close();
+			in.close();
+			log.info("File has been created. path: " + ftmp.getAbsolutePath());
+			return ftmp.getAbsolutePath().replace(baseDirWithTenant, "");
+	}
+	
+	
+	@Override
 	public String save(InputStream in) throws IOException {
 		   
 			String baseDirWithTenant = baseFileDir+tenantService.getCurrentTenantName();
@@ -62,7 +91,7 @@ public class FileServiceImpl implements FileService {
 			boolean created = dir.mkdirs();
 			log.debug("folders : " + dir.getAbsolutePath() + " created : " + created);
 			   
-			 File ftmp=File.createTempFile("s21-tmp", ".csv", dir);			 			 
+			 File ftmp=File.createTempFile("or", ".csv", dir);			 			 
 			 log.info("ftmp : " + ftmp);
 			 
 		  		   
