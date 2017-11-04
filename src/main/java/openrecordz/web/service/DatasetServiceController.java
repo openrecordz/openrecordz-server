@@ -97,9 +97,9 @@ public class DatasetServiceController implements BaseServiceController {
 	 public @ResponseBody CustomData get(Model model, 
 //			 @PathVariable String className, 
 			 @PathVariable("id") String id,
-			 @RequestParam(value = "byslug", required=false) Boolean searchbySlug,
-			 @RequestParam(value = "countr", required=false) Boolean countRecords,
-			 @RequestParam(value = "countb", required=false) Boolean countBinary,
+			 @RequestParam(value = "byslug", required=false, defaultValue="false") Boolean searchbySlug,
+			 @RequestParam(value = "countr", required=false, defaultValue="false") Boolean countRecords,
+			 @RequestParam(value = "countb", required=false, defaultValue="false") Boolean countBinary,
 
 			 HttpServletRequest request) throws OpenRecordzException {
  	
