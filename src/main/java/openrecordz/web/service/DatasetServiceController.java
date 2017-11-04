@@ -29,6 +29,7 @@ import openrecordz.domain.customdata.CustomData;
 import openrecordz.exception.ResourceNotFoundException;
 import openrecordz.exception.OpenRecordzException;
 import openrecordz.service.CustomDataService;
+import openrecordz.service.RecordDataService;
 
 
 
@@ -56,6 +57,9 @@ public class DatasetServiceController implements BaseServiceController {
 	@Value("$platform{default.pagesize}")
 	private int defaultPageSize = 20;
     
+	@Autowired
+	RecordDataService recordDataService;
+	
 	//@Autowired
 	//MessageSource cdmessageSource;
 //    https://www.parse.com/docs/rest#objects-types
@@ -93,23 +97,34 @@ public class DatasetServiceController implements BaseServiceController {
 	 public @ResponseBody CustomData get(Model model, 
 //			 @PathVariable String className, 
 			 @PathVariable("id") String id,
+			 @RequestParam(value = "byslug", required=false) Boolean searchbySlug,
+			 @RequestParam(value = "countr", required=false) Boolean countRecords,
+			 @RequestParam(value = "countb", required=false) Boolean countBinary,
+
 			 HttpServletRequest request) throws OpenRecordzException {
  	
-    	CustomData cdata=null;
-    	try {
-    		cdata = customDataService.getByIdInternal(id);
-   	
-    	}catch (ResourceNotFoundException rnfe) {
-//    		ELIINA QUESTA PARTE ***********NON é un sito che deve fare SEO.....basta solo per id
-    		List<CustomData> cdatas = customDataService.findByQueryInternal("{\"_slug\":\"" +id+"\"}", "dataset");
-    		if (cdatas!=null && cdatas.size()>0)
-    			cdata=cdatas.get(0);
-    		else throw new ResourceNotFoundException("CustomData not found with id : " + id);
-		}
-   	
-          
-     return cdata;
+    	CustomData ds =null;
+     	if (searchbySlug!=null) {
+     		List<CustomData> dsArrayAsSlug = customDataService.findByQueryInternal("{\"_slug\":\"" +id+"\"}","dataset");
+    		if (dsArrayAsSlug!=null && dsArrayAsSlug.size()>0){
+    			ds=dsArrayAsSlug.get(0);
+    			id=ds.getId();
+    		} else
+    			throw new ResourceNotFoundException("Dataset not found with slug : " + id);
+	    	}else {
+	    		ds = customDataService.getByIdInternal(id);
+	    	}
+     	
+     	if (countRecords==true) 
+     		ds.put("_countRecords", recordDataService.countByQueryInternal("{}", id, "record", null));
+     	
+     	if (countBinary==true) 
+     		ds.put("_countBinaries", recordDataService.countByQueryInternal("{}", id, "binary", null));
+     	
+   return ds;
  }
+    
+   
     
     
     @RequestMapping(value = "/datasets/{id}", method = RequestMethod.PUT)  
