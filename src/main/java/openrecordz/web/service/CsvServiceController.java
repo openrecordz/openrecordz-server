@@ -2,6 +2,7 @@ package openrecordz.web.service;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -154,100 +155,117 @@ public class CsvServiceController implements BaseServiceController {
     	   String dsName=req.getParameter("ds");
     	
     	   String fileds =req.getParameter("file");
-    	   logger.info("fileds : " + fileds);
+    	   logger.debug("fileds : " + fileds);
 
 
     	   String charSeparator = ",";
     	   if (req.getParameter("charseparator")!=null)
     			charSeparator = req.getParameter("charseparator");
 
-    	   logger.info("charSeparator: "+ charSeparator); 
+    	   logger.debug("charSeparator: "+ charSeparator); 
     	 
 
 	    	Boolean withHeader=true;
 	    	if (req.getParameter("withheader")!=null)
 	    			withHeader = Boolean.parseBoolean(req.getParameter("withheader"));
 
-	    	logger.info("withheader: "+ withHeader); 
+	    	logger.debug("withheader: "+ withHeader); 
 
 
- 
+	    	List errors = new ArrayList();
+	    
 
-
-    	String reqBody=IOUtils.toString(req.getReader());
-    	logger.info(reqBody);
-    	Map reqBodyAsJson = (Map)JSON.parse(reqBody);
-    	logger.info("reqBodyAsJson : " + reqBodyAsJson);
-    	logger.info("reqBodyAsJson.columnname : " + reqBodyAsJson.get("columnname"));
-    	logger.info("reqBodyAsJson.mapping : " + reqBodyAsJson.get("mapping"));
-    	
-    	String columnNameAsString =reqBodyAsJson.get("columnname").toString();
-    	String[] columnNameArray =columnNameAsString.split(",");
-    	
-    	logger.info("columnNameArray: "+ columnNameArray);
-
-    	for(int i=0;i<columnNameArray.length;i++){
-    	 	logger.info("columnNameArray : " + columnNameArray[i]);
-    	}
-
-
-
-    	CSVUtil csvUtil= new CSVUtil();
-
-//    	 var results = _utils.get("csv").parse("/mnt/ebsvolume/repos/scripts/"+info.get("tenantName")+"/"+fileds,true,columnNameArray);
-    	  List<Map<String,String>> results = csvUtil.parse(fileSystemTemplatesPath+tenantService.getCurrentTenantName()+"/"+fileds,true,columnNameArray,charSeparator.charAt(0));
-    	 //var results = _utils.get("csv").parse(environmentService.getFileFilesystemPath()+info.get("tenantName")+"/"+fileds,true,columnNameArray,java.lang.Character(charSeparator.charAt(0)));
-    	 
-
-    	 logger.info("results : " + results);
-
-
-
-    	CustomData dataset = customDataService.findByQueryInternal("{\"_slug\":\"" +dsName+"\"}", "dataset").get(0);
-    	logger.info("dataset.id : " + dataset.getId() );
-
-    	JSONUtil jsonUtil = new JSONUtil();
-    	for (int i = 0;i<results.size();i++) {
-    		Map<String,String> result = results.get(i);
-
-
-    		logger.info("result : " + result);
-
-    		String resAsJson = jsonUtil.toJSON(result);
-    		logger.info("resAsJson : " + resAsJson);
-
-    		//if csv contains _idext it's possible a patch over a record
-    		if (result.containsKey("_idext") && result.get("_idext")!=null) {
-    			String _idext=result.get("_idext").toString();
-    			logger.info("Mapping contains _idext key con valore: "+_idext);
-    			
-    			List<CustomData> searchExistingRecordByIdExt=recordDataService.findByQueryInternal("{\"_idext\":\"" +_idext+"\"}", dataset.getId(), "record");
-    			//not found..could be first import....
-    			if (searchExistingRecordByIdExt.size()==0) {
-    				logger.info("not found records with _idext: "+_idext +". Creating new record");
-    				String recordId=recordDataService.add(dataset.getId(),"record", resAsJson);	
-    			}else {
-    				String existingRecordId=searchExistingRecordByIdExt.get(0).getId();
-    				logger.info("found records with _idext: "+_idext +". Patching the record with id : "+existingRecordId );
-    				String recordId=recordDataService.patch(existingRecordId,"record", resAsJson);			
-    			}			
-    		} else {
-
-    		//	toreturn[i]=contentService.getById(cid);
-    		//	var cdId=customDataService.add(dsName, resAsJson);
-    			String recordId=recordDataService.add(dataset.getId(),"record", resAsJson);
-
-    		//toreturn[i]=customDataService.getById(cdId);
-    		}
-    	}
-
-    	Map datasetMapping = new HashMap();
-    	datasetMapping.put("_mapping", reqBodyAsJson.get("mappingArray"));
-    	logger.info("jsonUtil.toJSON(datasetMapping) : " +jsonUtil.toJSON(datasetMapping));
-
-    	customDataService.patch(dataset.getId(),"dataset", jsonUtil.toJSON(datasetMapping));
-    	 
-    	  return "success";
+	    	String reqBody=IOUtils.toString(req.getReader());
+	    	logger.info(reqBody);
+	    	Map reqBodyAsJson = (Map)JSON.parse(reqBody);
+	    	logger.debug("reqBodyAsJson : " + reqBodyAsJson);
+	    	logger.debug("reqBodyAsJson.columnname : " + reqBodyAsJson.get("columnname"));
+	    	logger.debug("reqBodyAsJson.mapping : " + reqBodyAsJson.get("mapping"));
+	    	
+	    	String columnNameAsString =reqBodyAsJson.get("columnname").toString();
+	    	String[] columnNameArray =columnNameAsString.split(",");
+	    	
+	    	logger.debug("columnNameArray: "+ columnNameArray);
+	
+	    	for(int i=0;i<columnNameArray.length;i++){
+	    	 	logger.debug("columnNameArray : " + columnNameArray[i]);
+	    	}
+	
+	
+	
+	    	CSVUtil csvUtil= new CSVUtil();
+	
+	//    	 var results = _utils.get("csv").parse("/mnt/ebsvolume/repos/scripts/"+info.get("tenantName")+"/"+fileds,true,columnNameArray);
+	    	  List<Map<String,String>> results = csvUtil.parse(fileSystemTemplatesPath+tenantService.getCurrentTenantName()+"/"+fileds,true,columnNameArray,charSeparator.charAt(0));
+	    	 //var results = _utils.get("csv").parse(environmentService.getFileFilesystemPath()+info.get("tenantName")+"/"+fileds,true,columnNameArray,java.lang.Character(charSeparator.charAt(0)));
+	    	 
+	
+	    	 logger.debug("results : " + results);
+	
+	
+	
+	    	CustomData dataset = customDataService.findByQueryInternal("{\"_slug\":\"" +dsName+"\"}", "dataset").get(0);
+	    	logger.debug("dataset.id : " + dataset.getId() );
+	
+	    	JSONUtil jsonUtil = new JSONUtil();
+	    	for (int i = 0;i<results.size();i++) {
+	    		Map<String,String> result = results.get(i);
+	
+	
+	    		logger.debug("result : " + result);
+	
+	    		String resAsJson = jsonUtil.toJSON(result);
+	    		logger.debug("resAsJson : " + resAsJson);
+	
+	    		//if csv contains _idext it's possible a patch over a record
+	    		if (result.containsKey("_idext") && result.get("_idext")!=null) {
+	    			String _idext=result.get("_idext").toString();
+	    			logger.debug("Mapping contains _idext key con valore: "+_idext);
+	    			
+	    			List<CustomData> searchExistingRecordByIdExt=recordDataService.findByQueryInternal("{\"_idext\":\"" +_idext+"\"}", dataset.getId(), "record");
+	    			//not found..could be first import....
+	    			if (searchExistingRecordByIdExt.size()==0) {
+	    				logger.debug("not found records with _idext: "+_idext +". Creating new record");
+	    				
+	    				try {
+	    					String recordId=recordDataService.add(dataset.getId(),"record", resAsJson);	
+	    				} catch (Exception e) {
+	    					logger.warn("Error importing csv", e);
+	    					errors.add(e.getMessage());
+					}
+	    			}else {
+	    				
+	    				try {
+		    				String existingRecordId=searchExistingRecordByIdExt.get(0).getId();
+		    				logger.debug("found records with _idext: "+_idext +". Patching the record with id : "+existingRecordId );
+		    				String recordId=recordDataService.patch(existingRecordId,"record", resAsJson);	
+	    				}catch (Exception e) {
+	    					logger.warn("Error importing csv", e);
+	    					errors.add(e.getMessage());
+					}
+	    			}			
+	    		} else {
+	
+	    		//	toreturn[i]=contentService.getById(cid);
+	    		//	var cdId=customDataService.add(dsName, resAsJson);
+	    			String recordId=recordDataService.add(dataset.getId(),"record", resAsJson);
+	
+	    		//toreturn[i]=customDataService.getById(cdId);
+	    		}
+	    	}
+	
+	    	Map datasetMapping = new HashMap();
+	    	datasetMapping.put("_mapping", reqBodyAsJson.get("mappingArray"));
+	    	logger.debug("jsonUtil.toJSON(datasetMapping) : " +jsonUtil.toJSON(datasetMapping));
+	
+	    	customDataService.patch(dataset.getId(),"dataset", jsonUtil.toJSON(datasetMapping));
+	    	 
+	    	
+	    	if (errors.size()>0) {
+	    		throw new RuntimeException(errors.toString());
+	    	} else {
+	    	  return "success";
+	    	}
     }
 
     
