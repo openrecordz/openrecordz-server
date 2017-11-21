@@ -38,10 +38,18 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 	
 	
 	public boolean isSuperAdministrator(String username) {
-		return (getAllAuthorities(username).contains(new SimpleGrantedAuthority(SUPER_ADMIN_ROLE_NAME)));
+		try {
+			return (getAllAuthorities(username).contains(new SimpleGrantedAuthority(SUPER_ADMIN_ROLE_NAME)));
+		}catch (Exception e) {
+			return false;
+		}
 	}
 	public boolean isAdministrator(String username) {
-		return isSuperAdministrator(username) || (getAllAuthorities(username).contains(new SimpleGrantedAuthority(ADMIN_ROLE_NAME)));
+		try {
+			return isSuperAdministrator(username) || (getAllAuthorities(username).contains(new SimpleGrantedAuthority(ADMIN_ROLE_NAME)));
+		}catch (Exception e) {
+			return false;
+		}
 	}
 	
 	private Collection<? extends GrantedAuthority> getAllAuthorities(String username) {
