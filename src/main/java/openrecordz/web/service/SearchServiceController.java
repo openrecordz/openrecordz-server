@@ -88,8 +88,8 @@ protected final Log logger = LogFactory.getLog(getClass());
    			logger.debug("_tenants : " +  cdata.getTenants());
    			clone.put("_tenants", cdata.getTenants());
    			
-   			//add dataset
-   			if (cdata.getType().equals("record")) {
+   			//add dataset meta
+   			if (cdata.containsKey("_dataset_ref_id")) {
 	   			try {
 	   				clone.put("_dataset", customDataService.getByIdInternal(cdata.get("_dataset_ref_id").toString()));
 	   			}catch (Exception e) {
