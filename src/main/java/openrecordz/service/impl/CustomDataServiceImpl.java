@@ -98,8 +98,15 @@ public class CustomDataServiceImpl implements CustomDataService{
 	
 	
 	public CustomData getByIdInternal(String id) throws ResourceNotFoundException {
-		return this.getById(id);
-	}
+		CustomDataImpl customData = (CustomDataImpl)customDataRepository.findOne(id);
+		
+		if (customData==null)
+			throw new ResourceNotFoundException("Resource not found with id : " + id);
+		//not check tenant ownership
+//		if (!customData.getTenants().contains(tenantService.getCurrentTenantName())) {
+//			throw new ResourceNotFoundException("Resource not found into this tenant with id : " + id);
+//		}
+		return customData;	}
 	
 	@Override
 	//@Cacheable(value="customData")
