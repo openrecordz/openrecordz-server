@@ -57,7 +57,8 @@ public class UserServiceController  implements BaseServiceController {
 	@Autowired
 	TenantService tenantService;
 
-	 @RequestMapping(value = "/users/me/forgot_password", method = RequestMethod.POST)
+//	 @RequestMapping(value = "/users/me/forgot_password", method = RequestMethod.POST)
+	@RequestMapping(value = "/users/forgot_password", method = RequestMethod.POST)
 	    public @ResponseBody String passwordForgot(@RequestParam("email") String email) throws UserNotExistsException, ResourceNotFoundException {
 	    	
 //	    	passwordForgotValidation.validate(passwordForgotForm, result);
