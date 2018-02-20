@@ -151,7 +151,9 @@
   		       		      
    		  <!--   <intercept-url pattern="/**/abuse/report" access="permitAll" />
    		    
-   		    <intercept-url pattern="/**/users/me/forgot_password" access="permitAll" /> -->   		    
+   		    <intercept-url pattern="/**/users/me/forgot_password" access="permitAll" /> -->   	
+   		    <intercept-url pattern="/**/users/forgot_password" access="permitAll" /> 	    
+   		    	    
    		    <intercept-url pattern="/**/users/me/*" access="hasRole('ROLE_RESTUSER')" />
    		    
    		    <intercept-url pattern="/**/users/getroles" access="isAuthenticated()" />
