@@ -421,11 +421,16 @@ public class CustomDataServiceImpl implements CustomDataService{
 	
 	private void addDateField(CustomData customData) {
 		SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy");
+		log.error("addDateField");
 
 		try  {
 
 			for(String key: customData.keySet()){
-				if (key.endsWith("_d")) {			
+				log.error("addDateField key:" + key);
+
+				if (key.endsWith("_d")) {
+					log.error("addDateField key:" + key);
+
 						customData.put(key, format.parse(customData.toMap().get(key).toString()));
 				}
 			}
