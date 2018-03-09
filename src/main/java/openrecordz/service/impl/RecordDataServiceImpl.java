@@ -1,6 +1,7 @@
 package openrecordz.service.impl;
 
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -86,6 +87,7 @@ public class RecordDataServiceImpl implements RecordDataService{
 		record.setModifiedOn(new Date());
 		
 		addLocation(record);
+		addDateField(record);
 		
 		CustomData returncdata = customDataRepository.save(record);
 		
@@ -155,6 +157,7 @@ public class RecordDataServiceImpl implements RecordDataService{
 		cdata.setModifiedOn(new Date());
 		
 		addLocation(cdata);
+		addDateField(cdata);
 		
 		CustomData returncdata = customDataRepository.save(cdata);
 		
@@ -197,6 +200,8 @@ public class RecordDataServiceImpl implements RecordDataService{
 		cdataOld.setModifiedOn(new Date());
 		
 		addLocation(cdataOld);
+		addDateField(cdataOld);
+
 		
 		CustomData returncdata = customDataRepository.save(cdataOld);
 		
@@ -417,6 +422,28 @@ public class RecordDataServiceImpl implements RecordDataService{
 			}
 		}catch (Exception e) {
 				log.error("Error adding _location property", e);
+		}
+		
+	}
+	
+	
+	private void addDateField(CustomData customData) {
+		SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy");
+		log.debug("addDateField");
+
+		try  {
+
+			for(String key: customData.keySet()){
+				log.debug("addDateField key:" + key);
+
+				if (key.endsWith("_d")) {
+					log.debug("addDateField key end with _d:" + key);
+
+						customData.put(key, format.parse(customData.toMap().get(key).toString()));
+				}
+			}
+		}catch (Exception e) {
+				log.error("Error adding date field", e);
 		}
 		
 	}
