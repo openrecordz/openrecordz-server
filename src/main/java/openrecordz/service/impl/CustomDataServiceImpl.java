@@ -1,14 +1,15 @@
 package openrecordz.service.impl;
 
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.mongodb.core.MongoOperations;
@@ -84,6 +85,7 @@ public class CustomDataServiceImpl implements CustomDataService{
 		cdata.setModifiedOn(new Date());
 		
 		addLocation(cdata);
+		addDateField(cdata);
 		
 		CustomData returncdata = customDataRepository.save(cdata);
 		
@@ -155,6 +157,8 @@ public class CustomDataServiceImpl implements CustomDataService{
 		cdata.setModifiedOn(new Date());
 		
 		addLocation(cdata);
+		addDateField(cdata);
+
 		
 		CustomData returncdata = customDataRepository.save(cdata);
 		
@@ -188,7 +192,8 @@ public class CustomDataServiceImpl implements CustomDataService{
 		cdataOld.setModifiedOn(new Date());
 		
 		addLocation(cdataOld);
-		
+		addDateField(cdata);
+
 		CustomData returncdata = customDataRepository.save(cdataOld);
 		
 		return returncdata.getId();
@@ -409,6 +414,23 @@ public class CustomDataServiceImpl implements CustomDataService{
 			}
 		}catch (Exception e) {
 				log.error("Error adding _location property", e);
+		}
+		
+	}
+
+	
+	private void addDateField(CustomData customData) {
+		SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy");
+
+		try  {
+
+			for(String key: customData.keySet()){
+				if (key.endsWith("_d")) {			
+						customData.put(key, format.parse(customData.toMap().get(key).toString()));
+				}
+			}
+		}catch (Exception e) {
+				log.error("Error adding date field", e);
 		}
 		
 	}
