@@ -192,7 +192,7 @@ public class CustomDataServiceImpl implements CustomDataService{
 		cdataOld.setModifiedOn(new Date());
 		
 		addLocation(cdataOld);
-		addDateField(cdata);
+		addDateField(cdataOld);
 
 		CustomData returncdata = customDataRepository.save(cdataOld);
 		
