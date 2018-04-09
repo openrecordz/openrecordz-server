@@ -74,7 +74,10 @@ public class CustomDataServiceImpl implements CustomDataService{
 		log.debug("json : "+ json);
 		
 //		if (checkReservedCharsEnabled && className.startsWith("_") && authenticationService.isAdministrator())
-		if (checkReservedCharsEnabled && className.startsWith("_") && !authorizationService.isAdministrator(authenticationService.getCurrentLoggedUsername()))
+		boolean isAdministrator =  authorizationService.isAdministrator(authenticationService.getCurrentLoggedUsername());
+		log.debug("isAdministrator : "+ isAdministrator);
+
+		if (checkReservedCharsEnabled && className.startsWith("_") && !isAdministrator)
 			throw new AuthorizationRuntimeException("ClassName can't start with _. This is a reserved char...");
 		
 		
