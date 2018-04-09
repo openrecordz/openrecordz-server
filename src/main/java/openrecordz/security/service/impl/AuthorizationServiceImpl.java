@@ -49,7 +49,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 		try {
 			logger.error("getAllAuthorities(username):"+ getAllAuthorities(username).toString());
 
-			return isSuperAdministrator(username) || (getAllAuthorities(username).contains(new SimpleGrantedAuthority(ADMIN_ROLE_NAME)));
+			return isSuperAdministrator(username) || (getAllAuthorities(username).contains(new SimpleGrantedAuthority(ADMIN_ROLE_NAME+"@"+ tenantService.getCurrentTenantName())));
 		}catch (Exception e) {
 			logger.error("error getting isAdministrator", e);
 			return false;
