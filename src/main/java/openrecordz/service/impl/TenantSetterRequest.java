@@ -26,9 +26,23 @@ public class TenantSetterRequest {
 		logger.debug("Server name : "+ request.getServerName());
 		String tenant = TenantService.DEFAULT_TENANT;
 		try {
-			String serverName = request.getServerName();
+			String reqServerName = request.getServerName();
+			
+			
+			logger.error("reqServerName: "+ reqServerName);
+
 			String thirdLevel = request.getServerName().substring(0, request.getServerName().indexOf("."));
-			tenant = messageSource.getMessage("tenants.mapping."+serverName, null, thirdLevel, Locale.getDefault());
+			
+			
+			tenant = messageSource.getMessage("tenants.mapping."+reqServerName, null, thirdLevel, Locale.getDefault());
+//			String serNameSetting = messageSource.getMessage("tenants.mapping."+tenant, null, null, Locale.getDefault());
+//			
+//			if (serNameSetting!=null && serNameSetting.equals(reqServerName)) {
+//				return tenant;
+//			}else {
+//				return thirdLevel;
+//			}
+			
 //			if (serverName.matches(platformUrl)) {
 				
 //				tenant=thirdLevel;
