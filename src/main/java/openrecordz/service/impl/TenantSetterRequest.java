@@ -30,39 +30,31 @@ public class TenantSetterRequest {
 			String reqServerName = request.getServerName();
 			logger.error("reqServerName: "+ reqServerName);
 
-		    final String origin = request.getHeader("origin");
-			logger.error("origin: "+ origin);
-			
-			Enumeration headerNames = request.getHeaderNames();
-			while(headerNames.hasMoreElements()) {
-			  String headerName = (String)headerNames.nextElement();
-			  logger.error("" + headerName);
-			  logger.error("" + request.getHeader(headerName));
-			}
-			
-			
-
-
 			String thirdLevel = request.getServerName().substring(0, request.getServerName().indexOf("."));
+
+		  
+			//TODO soleto
+//			final String origin = request.getHeader("origin");
+//			logger.error("origin: "+ origin);
+//			
+//			Enumeration headerNames = request.getHeaderNames();
+//			while(headerNames.hasMoreElements()) {
+//			  String headerName = (String)headerNames.nextElement();
+//			  logger.error("" + headerName);
+//			  logger.error("" + request.getHeader(headerName));
+//			}
+			
+//			tenant = messageSource.getMessage("tenants.mapping."+origin, null, thirdLevel, Locale.getDefault());
+
+
+
 			
 			
-			tenant = messageSource.getMessage("tenants.mapping."+origin, null, thirdLevel, Locale.getDefault());
 			logger.error("tenant: "+ tenant);
 
-//			tenant = messageSource.getMessage("tenants.mapping."+reqServerName, null, thirdLevel, Locale.getDefault());
+			tenant = messageSource.getMessage("tenants.mapping."+reqServerName, null, thirdLevel, Locale.getDefault());
 			
-//			String serNameSetting = messageSource.getMessage("tenants.mapping."+tenant, null, null, Locale.getDefault());
-//			
-//			if (serNameSetting!=null && serNameSetting.equals(reqServerName)) {
-//				return tenant;
-//			}else {
-//				return thirdLevel;
-//			}
-			
-//			if (serverName.matches(platformUrl)) {
-				
-//				tenant=thirdLevel;
-//			}
+
 		}catch (Exception e) {
 			//logger.warn("Error setting tenant for server name : " + request.getServerName()+ ". Setted tenant to default value. Error : ",e);
 			logger.warn("Error setting tenant for server name : " + request.getServerName()+ ". Setted tenant to default value. Error : ");
