@@ -1,5 +1,6 @@
 package openrecordz.service.impl;
 
+import java.util.Enumeration;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +32,13 @@ public class TenantSetterRequest {
 
 		    final String origin = request.getHeader("origin");
 			logger.error("origin: "+ origin);
-
+			
+			Enumeration headerNames = request.getHeaderNames();
+			while(headerNames.hasMoreElements()) {
+			  String headerName = (String)headerNames.nextElement();
+			  logger.error("" + headerName);
+			  logger.error("" + request.getHeader(headerName));
+			}
 			
 			
 
