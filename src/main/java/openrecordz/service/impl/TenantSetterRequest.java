@@ -40,6 +40,8 @@ public class TenantSetterRequest {
 			
 			
 			tenant = messageSource.getMessage("tenants.mapping."+origin, null, thirdLevel, Locale.getDefault());
+			logger.error("tenant: "+ tenant);
+
 //			tenant = messageSource.getMessage("tenants.mapping."+reqServerName, null, thirdLevel, Locale.getDefault());
 			
 //			String serNameSetting = messageSource.getMessage("tenants.mapping."+tenant, null, null, Locale.getDefault());
