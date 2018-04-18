@@ -33,9 +33,9 @@ public class TenantSetterRequest {
 			String thirdLevel = request.getServerName().substring(0, request.getServerName().indexOf("."));
 
 		  
-			//TODO soleto
-//			final String origin = request.getHeader("origin");
-//			logger.error("origin: "+ origin);
+			//TODO soleto 
+			final String origin = request.getHeader("origin");
+			logger.error("origin: "+ origin);
 //			
 			Enumeration headerNames = request.getHeaderNames();
 			while(headerNames.hasMoreElements()) {
@@ -46,14 +46,13 @@ public class TenantSetterRequest {
 			
 //			tenant = messageSource.getMessage("tenants.mapping."+origin, null, thirdLevel, Locale.getDefault());
 
-
-
 			
 			
-			logger.error("tenant: "+ tenant);
 
 			tenant = messageSource.getMessage("tenants.mapping."+reqServerName, null, thirdLevel, Locale.getDefault());
 			
+			logger.error("tenant: "+ tenant);
+
 
 		}catch (Exception e) {
 			//logger.warn("Error setting tenant for server name : " + request.getServerName()+ ". Setted tenant to default value. Error : ",e);
