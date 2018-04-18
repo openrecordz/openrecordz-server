@@ -98,3 +98,33 @@ mkdir files
 ATTENTION:
 
 REMEMBER TO CHANGE YOUR OPENRECORDZ ADMIN PASSWORD
+
+
+# Set a Custom Domain (custom DNS)
+
+* Create a CNAME DNS entry in your DNS control panel like this:
+dati.comune.NOMECOMUNE.it -> CNAME ->   NOMECOMUNE.openrecordz.com
+
+
+```
+
+curl -v -X POST -u '<ADMIN_USERNAME>:<ADMIN_PASSWORD>' -H 'Content-Type: text/plain;charset=UTF-8' -d '{"json":{"code":"tenants.mapping.<CUSTOM_DOMAIN_ENTRY>","message":"<TENANT>"}}' http://<TENANT>.api.openrecordz.com/service/v1/cdata/_message_source/
+
+```
+
+Example:
+
+```
+curl -v -X POST -u '<ADMIN_USERNAME>:<ADMIN_PASSWORD>' -H 'Content-Type: text/plain;charset=UTF-8' -d '{"json":{"code":"tenants.mapping.comuneditest.frontiere21.com","message":"comuneditest"}}' http://comuneditest.api.openrecordz.com/service/v1/cdata/_message_source/
+```
+## GET a tenant config
+```
+curl -v -X GET -u '<ADMIN_USERNAME>:<ADMIN_PASSWORD>' -H "Content-Type: application/json" http://comuneditest.api.openrecordz.com/service/v1/cdata/_message_source/
+```
+
+
+
+
+
+
+

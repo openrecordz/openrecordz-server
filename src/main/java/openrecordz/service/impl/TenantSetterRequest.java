@@ -37,12 +37,12 @@ public class TenantSetterRequest {
 //			final String origin = request.getHeader("origin");
 //			logger.error("origin: "+ origin);
 //			
-//			Enumeration headerNames = request.getHeaderNames();
-//			while(headerNames.hasMoreElements()) {
-//			  String headerName = (String)headerNames.nextElement();
-//			  logger.error("" + headerName);
-//			  logger.error("" + request.getHeader(headerName));
-//			}
+			Enumeration headerNames = request.getHeaderNames();
+			while(headerNames.hasMoreElements()) {
+			  String headerName = (String)headerNames.nextElement();
+			  logger.error("" + headerName);
+			  logger.error("" + request.getHeader(headerName));
+			}
 			
 //			tenant = messageSource.getMessage("tenants.mapping."+origin, null, thirdLevel, Locale.getDefault());
 
