@@ -34,16 +34,24 @@ public class TenantSetterRequest {
 
 		  
 			//TODO soleto 
-			final String origin = request.getHeader("origin");
+			String origin = request.getHeader("origin");
 			logger.error("origin: "+ origin);
-//			
-			Enumeration headerNames = request.getHeaderNames();
-			while(headerNames.hasMoreElements()) {
-			  String headerName = (String)headerNames.nextElement();
-			  logger.error("" + headerName);
-			  logger.error("" + request.getHeader(headerName));
-			}
 			
+			String protocol = request.getProtocol();
+			logger.error("protocol: "+ protocol);
+			
+			String domainOrigin = origin.replace(protocol, "");
+			logger.error("domainOrigin: "+ domainOrigin);
+
+			
+			
+//			Enumeration headerNames = request.getHeaderNames();
+//			while(headerNames.hasMoreElements()) {
+//			  String headerName = (String)headerNames.nextElement();
+//			  logger.error("" + headerName);
+//			  logger.error("" + request.getHeader(headerName));
+//			}
+//			
 //			tenant = messageSource.getMessage("tenants.mapping."+origin, null, thirdLevel, Locale.getDefault());
 
 			
