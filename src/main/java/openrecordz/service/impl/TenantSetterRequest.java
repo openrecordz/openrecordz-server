@@ -37,10 +37,10 @@ public class TenantSetterRequest {
 			String origin = request.getHeader("origin");
 			logger.error("origin: "+ origin);
 			
-			String protocol = request.getProtocol();
-			logger.error("protocol: "+ protocol);
+			String schema = request.getScheme();
+			logger.error("protocol: "+ schema);
 			
-			String domainOrigin = origin.replace(protocol, "");
+			String domainOrigin = origin.replace(schema+"://", "");
 			logger.error("domainOrigin: "+ domainOrigin);
 
 			
