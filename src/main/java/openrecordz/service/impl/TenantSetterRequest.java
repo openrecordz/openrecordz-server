@@ -28,8 +28,11 @@ public class TenantSetterRequest {
 		String tenant = TenantService.DEFAULT_TENANT;
 		try {
 			String reqServerName = request.getServerName();
-			logger.error("reqServerName: "+ reqServerName);
+//			logger.error("reqServerName: "+ reqServerName);
+			
+			logger.debug("reqServerName: "+ reqServerName);
 
+			
 			String thirdLevel = request.getServerName().substring(0, request.getServerName().indexOf("."));
 
 		  
@@ -57,7 +60,8 @@ public class TenantSetterRequest {
 
 			tenant = messageSource.getMessage("tenants.mapping."+reqServerName, null, thirdLevel, Locale.getDefault());
 			
-			logger.error("tenant: "+ tenant);
+//			logger.error("tenant: "+ tenant);
+			logger.debug("tenant: "+ tenant);
 
 
 		}catch (Exception e) {
