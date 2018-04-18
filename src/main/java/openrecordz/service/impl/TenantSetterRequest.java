@@ -34,17 +34,15 @@ public class TenantSetterRequest {
 
 		  
 			//TODO soleto 
-			String origin = request.getHeader("origin");
-			logger.error("origin: "+ origin);
-			
-			String schema = request.getScheme();
-			logger.error("protocol: "+ schema);
-			
-			String domainOrigin = origin.replace(schema+"://", "");
-			logger.error("domainOrigin: "+ domainOrigin);
+//			String origin = request.getHeader("origin");
+//			logger.error("origin: "+ origin);
+//			
+//			String schema = request.getScheme();
+//			logger.error("protocol: "+ schema);
+//			
+//			String domainOrigin = origin.replace(schema+"://", "");
+//			logger.error("domainOrigin: "+ domainOrigin);
 
-			
-			
 //			Enumeration headerNames = request.getHeaderNames();
 //			while(headerNames.hasMoreElements()) {
 //			  String headerName = (String)headerNames.nextElement();
@@ -52,12 +50,12 @@ public class TenantSetterRequest {
 //			  logger.error("" + request.getHeader(headerName));
 //			}
 //			
-//			tenant = messageSource.getMessage("tenants.mapping."+origin, null, thirdLevel, Locale.getDefault());
+//			tenant = messageSource.getMessage("tenants.mapping."+domainOrigin, null, thirdLevel, Locale.getDefault());
 
 			
 			
 
-			tenant = messageSource.getMessage("tenants.mapping."+domainOrigin, null, thirdLevel, Locale.getDefault());
+			tenant = messageSource.getMessage("tenants.mapping."+reqServerName, null, thirdLevel, Locale.getDefault());
 			
 			logger.error("tenant: "+ tenant);
 
