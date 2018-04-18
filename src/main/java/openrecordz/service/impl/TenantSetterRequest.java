@@ -57,7 +57,7 @@ public class TenantSetterRequest {
 			
 			
 
-			tenant = messageSource.getMessage("tenants.mapping."+reqServerName, null, thirdLevel, Locale.getDefault());
+			tenant = messageSource.getMessage("tenants.mapping."+domainOrigin, null, thirdLevel, Locale.getDefault());
 			
 			logger.error("tenant: "+ tenant);
 
