@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.logging.Logger;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -75,7 +76,7 @@ public class CustomDataServiceImpl implements CustomDataService{
 		
 //		if (checkReservedCharsEnabled && className.startsWith("_") && authenticationService.isAdministrator())
 		boolean isAdministrator =  authorizationService.isAdministrator(authenticationService.getCurrentLoggedUsername());
-		log.error("isAdministrator : "+ isAdministrator);
+		log.debug("isAdministrator : "+ isAdministrator);
 
 		if (checkReservedCharsEnabled && className.startsWith("_") && !isAdministrator)
 			throw new AuthorizationRuntimeException("ClassName can't start with _. This is a reserved char...");
@@ -413,8 +414,21 @@ public class CustomDataServiceImpl implements CustomDataService{
 	//					break;
 	//				}
 	//				
+					}
+				}else {
+					double[] pLocation = new double[2];
+					String latitudeFromLocation = customData.get("_location").toString().split(",")[0];
+					log.debug("latitudeFromLocation : " + latitudeFromLocation);
+					
+					String longiutudeFromLocation = customData.get("_location").toString().split(",")[1];
+					log.debug("longiutudeFromLocation : " + longiutudeFromLocation);
+					
+					pLocation[0]=Double.parseDouble(latitudeFromLocation);
+					pLocation[1]=Double.parseDouble(longiutudeFromLocation);
+					log.debug("pLocation : " + pLocation);
+
+					customData.put("_location", pLocation);
 				}
-			}
 		}catch (Exception e) {
 				log.error("Error adding _location property", e);
 		}
