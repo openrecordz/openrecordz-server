@@ -419,7 +419,20 @@ public class RecordDataServiceImpl implements RecordDataService{
 	//				}
 	//				
 				}
-			}
+			}else {
+					double[] pLocation = new double[2];
+					String latitudeFromLocation = customData.get("_location").toString().split(",")[0].trim();
+					log.debug("latitudeFromLocation : " + latitudeFromLocation);
+					
+					String longiutudeFromLocation = customData.get("_location").toString().split(",")[1].trim();
+					log.debug("longiutudeFromLocation : " + longiutudeFromLocation);
+					
+					pLocation[0]=Double.parseDouble(latitudeFromLocation);
+					pLocation[1]=Double.parseDouble(longiutudeFromLocation);
+					log.debug("pLocation : " + pLocation);
+
+					customData.put("_location", pLocation);
+				}
 		}catch (Exception e) {
 				log.error("Error adding _location property", e);
 		}
