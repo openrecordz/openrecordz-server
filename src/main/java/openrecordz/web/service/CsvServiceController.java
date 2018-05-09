@@ -57,6 +57,8 @@ public class CsvServiceController implements BaseServiceController {
     @Autowired
 	private RecordDataService recordDataService;
     
+//    curl -v 'http:/localhost:9090/service/v1/csv/preview?file=test.csv&charseparator=;&skip=0&_=1525852865139'  -uadmin:admin
+    
     @RequestMapping(value = "/csv/preview", method = RequestMethod.GET)  
 	 public @ResponseBody List<Map<String, String>> previewcsv(Model model, HttpServletRequest req) throws OpenRecordzException, IOException {
    	

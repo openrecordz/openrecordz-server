@@ -197,7 +197,9 @@
                         <!-- https://en.wikipedia.org/wiki/List_of_HTTP_status_codes -->
                         <entry key="openrecordz.exception.TooManyNotificationException" value="429, _exmsg"/>
                         
-                          <entry key="openrecordz.exception.TenantAlreadyInUseException" value="451 _exmsg"/>
+                        <entry key="openrecordz.exception.TenantAlreadyInUseException" value="451 _exmsg"/>
+                        
+                        <entry key="openrecordz.scripting.CSVDuplicateHeaderRuntimeException" value="530 _exmsg"/>
                         
                         
                         <!-- 500 (catch all): -->

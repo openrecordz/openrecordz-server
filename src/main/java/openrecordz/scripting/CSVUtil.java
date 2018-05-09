@@ -1,6 +1,5 @@
 package openrecordz.scripting;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,8 +10,14 @@ import java.util.Map;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class CSVUtil{
+	
+	
+	protected final Log logger = LogFactory.getLog(getClass());
+
 
 	public List<Map<String, String>> parse(String filePath) throws IOException {
 		return this.parse(filePath, true, null);
@@ -38,9 +43,15 @@ public class CSVUtil{
 			//initialize FileReader object
 			fileReader = new FileReader(filePath); 
 
-			//initialize CSVParser object
-			csvFileParser = new CSVParser(fileReader, csvFileFormat);
-
+			try {
+				//initialize CSVParser object
+				csvFileParser = new CSVParser(fileReader, csvFileFormat);
+			} catch (IllegalArgumentException iae) {
+				CSVDuplicateHeaderRuntimeException csvDuplicateHeaderRuntimeException = new CSVDuplicateHeaderRuntimeException(iae);
+				logger.warn("Duplicate CSV Header ", csvDuplicateHeaderRuntimeException);
+				throw csvDuplicateHeaderRuntimeException;
+			}
+			
 			List<Map<String, String>> lm1 = new ArrayList<Map<String, String>>();
 			
 			//Get a list of CSV file records
@@ -91,9 +102,16 @@ public class CSVUtil{
 			//initialize FileReader object
 			fileReader = new FileReader(filePath);
 
-			//initialize CSVParser object
-			csvFileParser = new CSVParser(fileReader, csvFileFormat);
-
+			try {
+				//initialize CSVParser object
+				csvFileParser = new CSVParser(fileReader, csvFileFormat);
+			}catch (IllegalArgumentException iae) {
+				CSVDuplicateHeaderRuntimeException csvDuplicateHeaderRuntimeException = new CSVDuplicateHeaderRuntimeException(iae);
+				logger.warn("Duplicate CSV Header ", csvDuplicateHeaderRuntimeException);
+				throw csvDuplicateHeaderRuntimeException;
+			}
+			
+			
 			List<Map<String, String>> lm1 = new ArrayList<Map<String, String>>();
 			
 			//Get a list of CSV file records
@@ -149,10 +167,16 @@ public class CSVUtil{
 		
 			//initialize FileReader object
 			fileReader = new FileReader(filePath);
-
-			//initialize CSVParser object
-			csvFileParser = new CSVParser(fileReader, csvFileFormat);
-
+			
+			try {
+				//initialize CSVParser object
+				csvFileParser = new CSVParser(fileReader, csvFileFormat);
+			}catch (IllegalArgumentException iae) {
+				CSVDuplicateHeaderRuntimeException csvDuplicateHeaderRuntimeException = new CSVDuplicateHeaderRuntimeException(iae);
+				logger.warn("Duplicate CSV Header ", csvDuplicateHeaderRuntimeException);
+				throw csvDuplicateHeaderRuntimeException;
+			}
+			
 			return csvFileParser.getHeaderMap();
 			
 			
