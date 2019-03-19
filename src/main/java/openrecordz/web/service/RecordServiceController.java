@@ -175,8 +175,8 @@ public class RecordServiceController implements BaseServiceController {
   			
   			HttpServletRequest request) throws OpenRecordzException {
     	
-    	String cdataId = recordDataService.update(id, dsId, jsonStr, versioningEnabled);
-//    	String cdataId = customDataService.update(id, "record", jsonStr);
+    	String cdataId = recordDataService.update(id, "record", jsonStr, versioningEnabled);
+//    	String cdataId = recordDataService.update(id, dsId, jsonStr, versioningEnabled);
     	CustomData cdata = recordDataService.getById(cdataId);    
         
         return cdata;
@@ -189,8 +189,9 @@ public class RecordServiceController implements BaseServiceController {
  			@RequestBody String jsonStr,
  			HttpServletRequest request) throws OpenRecordzException {
    	
-   	String cdataId = recordDataService.patch(id, dsId, jsonStr);
-//   	String cdataId = customDataService.patch(id, "record", jsonStr);
+   	String cdataId = customDataService.patch(id, "record", jsonStr);
+//	String cdataId = recordDataService.patch(id, dsId, jsonStr);
+
    	CustomData cdata = recordDataService.getById(cdataId);    
        
        return cdata;

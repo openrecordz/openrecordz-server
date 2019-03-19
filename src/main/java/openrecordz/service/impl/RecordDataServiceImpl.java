@@ -148,8 +148,14 @@ public class RecordDataServiceImpl implements RecordDataService{
 //		return returncdata.getId();
 ////		return id;
 		
-		CustomData cdata = new CustomDataImpl(className, json);
+		Record cdata = new Record(className, json);
 		cdata.setId(id);
+		
+		if (cdataOld.get(Record.DATASET_REF_ID_PROP_KEY)!=null) {
+			String datasetRefId = cdataOld.get(Record.DATASET_REF_ID_PROP_KEY).toString();
+			cdata.setDatasetRefId(datasetRefId);
+		}
+		
 		cdata.addAllTenants(cdataOld.getTenants());
 		cdata.setCreatedBy(cdataOld.getCreatedBy());
 		cdata.setCreatedOn(cdataOld.getCreatedOn());
