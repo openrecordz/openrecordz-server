@@ -178,7 +178,7 @@ public class CsvServiceController implements BaseServiceController {
 	    
 
 	    	String reqBody=IOUtils.toString(req.getReader());
-	    	logger.info(reqBody);
+	    	logger.debug(reqBody);
 	    	Map reqBodyAsJson = (Map)JSON.parse(reqBody);
 	    	logger.debug("reqBodyAsJson : " + reqBodyAsJson);
 	    	logger.debug("reqBodyAsJson.columnname : " + reqBodyAsJson.get("columnname"));

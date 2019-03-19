@@ -62,15 +62,16 @@ db.person.createIndex( { "$**": "text" }, { name: "ORPeopleTextIndex" },  { defa
 ```
 
 ## MYSQL
-Go to `./bin/dbscripts` and run:
+Go to `./bin/dbscripts` and run from command line :
 
 ```
-$ mysql -uroot -proot < 1_create-schema.sql
-$ mysql -uroot -proot openrecordz < 2_tenant.sql 
-$ mysql -uroot -proot openrecordz < 3_scriptDB.sql
-$ mysql -uroot -proot openrecordz < 4_spring-security-persistent-login.sql 
-$ mysql -uroot -proot openrecordz < 5_spring-security.sql 
-$ mysql -uroot -proot openrecordz < 6_url.sql     
+mysql -uroot -proot < 1_create-schema.sql
+mysql -uroot -proot openrecordz < 2_tenant.sql 
+mysql -uroot -proot openrecordz < 3_scriptDB.sql
+mysql -uroot -proot openrecordz < 4_spring-security-persistent-login.sql 
+mysql -uroot -proot openrecordz < 5_spring-security.sql 
+mysql -uroot -proot openrecordz < 6_url.sql     
+mysql -uroot -proot openrecordz < 7_spring-security-data.sql 
 ```
 
 ## HornetQ 
@@ -130,17 +131,6 @@ curl -H "Content-Type: application/json" http://localhost:9090/service/v1/datase
 ```
 
 Read REST API documentation here: http://www.openrecordz.com/documentazione/api/
-
-
-
-
-
-
-
-
-
-
-
 
 
 
